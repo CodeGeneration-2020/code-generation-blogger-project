@@ -19,14 +19,15 @@
         "serve-debug": "nodemon --inspect dist/server.js",
         "start": "npm run serve",
         "test": "jest --forceExit --coverage --verbose",
-        "watch": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run watch-node\"",
-        "watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run serve-debug\"",
+        "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+        "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
         "watch-node": "nodemon dist/server.js",
         "watch-sass": "node-sass -w src/public/css/main.scss dist/public/css/main.css",
         "watch-test": "npm run test -- --watchAll",
         "watch-ts": "tsc -w"
     },
     "dependencies": {
+        "@types/passport-instagram": "^1.0.1",
         "async": "^3.1.0",
         "bcrypt-nodejs": "^0.0.3",
         "bluebird": "^3.5.5",
@@ -46,6 +47,7 @@
         "nodemailer": "^6.3.0",
         "passport": "^0.4.0",
         "passport-facebook": "^3.0.0",
+        "passport-instagram": "^1.0.0",
         "passport-local": "^1.0.0",
         "pug": "^2.0.4",
         "winston": "^3.2.1"

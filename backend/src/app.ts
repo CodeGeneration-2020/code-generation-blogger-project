@@ -11,6 +11,7 @@ import passport from "passport";
 import bluebird from "bluebird";
 import { MONGODB_URI, SESSION_SECRET } from "./util/secrets";
 import routes from "./routes";
+import corsMiddleware from "./middlewares/cors";
 
 const MongoStore = mongo(session);
 
@@ -19,6 +20,7 @@ import * as passportConfig from "./config/passport";
 
 // Create Express server
 const app = express();
+
 
 // Connect to MongoDB
 const mongoUrl = MONGODB_URI;
@@ -34,6 +36,7 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true, useUni
 });
 
 // Express configuration
+app.use(corsMiddleware);//CorS
 app.set("port", process.env.PORT || 4200);
 app.use(compression());
 app.use(bodyParser.json());
@@ -49,6 +52,13 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+passport.serializeUser((user, done) => {
+    done(null, user);
+  });
+  passport.deserializeUser((user, done) => {
+    done(null, user);
+  });
+passportConfig.initStrategy(passport);
 app.use(flash());
 app.use(lusca.xframe("SAMEORIGIN"));
 app.use(lusca.xssProtection(true));
@@ -79,5 +89,13 @@ app.use(
  * Primary app routes.
  */
 routes(app);
+app.get("/auth/instagram", passport.authenticate("instagram"));
+app.get(
+  "/auth/instagram/callback",
+  passport.authenticate("instagram", {
+    successRedirect: "/",
+    failureRedirect: "/"
+  })
+);
 
 export default app;
