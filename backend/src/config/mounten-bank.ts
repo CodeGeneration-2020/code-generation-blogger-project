@@ -1,7 +1,7 @@
+
 const mbConfig = {
-        port: 5000,
-        hello_service_port: 5001,
-        customer_service_port: 5002
-}
+        port: process.env.MOUNTEBANK_PORT,
+        instagramServicePort: process.env.MOUNTEBANK_INSTGRAM_PORT
+};
 
 export default mbConfig;

@@ -1,9 +1,9 @@
-import { Router } from "express";
+import { Router } from 'express';
 
 const home = Router();
 
-home.get("/", (req, res, next) => {
-    res.send("Works Fine!!!!!");
+home.get('/', (req, res, next) => {
+    res.send('Works Fine!!!!!');
 });
 
 

@@ -1,19 +1,19 @@
-import StabService from "./stub.service";
-import INSTAGRAM_MOCK from "../consts/instagram-mock";
+import StabService from './stub.service';
+import INSTAGRAM_MOCK from '../consts/instagram-mock';
 
 class InstagramMockService {
     accessToken: string;
-    ig_user_id: number;
+    igUserId: number;
 
     constructor(accessToken: string, private stabService: StabService) {
         this.accessToken = accessToken;
-        this.ig_user_id = 17841405309211844;
+        this.igUserId = 17841405309211844;
     }
 
     getBusinessAccountMetrics() {
         return this.stabService.createStab(
-            "GET",
-            `${INSTAGRAM_MOCK.GET_BUSINESS_ACCOUNT_METRICS.url}/${this.ig_user_id}`,
+            'GET',
+            `/${INSTAGRAM_MOCK.GET_BUSINESS_ACCOUNT_METRICS.url}/${this.igUserId}`,
             [
                 {
                     statusCode: 200,
@@ -21,7 +21,7 @@ class InstagramMockService {
                     body: INSTAGRAM_MOCK.GET_BUSINESS_ACCOUNT_METRICS.res
                 }
             ]
-        )
+        );
     }
 }
 

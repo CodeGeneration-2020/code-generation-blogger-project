@@ -1,5 +1,5 @@
 const MESSAGES = {
-    TEST: "test"
+    TEST: 'test'
 };
 
 export default MESSAGES;
