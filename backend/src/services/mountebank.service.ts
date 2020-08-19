@@ -1,22 +1,16 @@
 import fetch from 'node-fetch';
-import mbConfig from '../config/mounten-bank'
+import mbConfig from '../config/mounten-bank';
 
 type Protocol = 'http' | 'https';
 
 
-interface IImposter {
-    port: number;
-    protocol: Protocol;
-    stubs: object;
-}
-
-export class Imposter implements IImposter {
-    constructor( public port: number, public protocol: Protocol, public stubs: object) {}
+export class Imposter {
+    constructor( public port: string, public protocol: Protocol, public stubs: object[]) {}
 }
 
 class MountebankService {
-    postImposter(body: IImposter) {
-        const url = `http://127.0.0.1:${mbConfig.port}/imposters`;
+    postImposter(body: Imposter) {
+        const url = `${process.env.BACKEND_HOST}:${mbConfig.port}/imposters`;
 
         return fetch(url, {
             method:'POST',
