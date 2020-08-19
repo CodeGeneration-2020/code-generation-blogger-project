@@ -11,6 +11,7 @@ import passport from "passport";
 import bluebird from "bluebird";
 import { MONGODB_URI, SESSION_SECRET } from "./util/secrets";
 import routes from "./routes";
+import initMountebank from "./services/init/mountebank.service.init";
 
 const MongoStore = mongo(session);
 
@@ -23,6 +24,10 @@ const app = express();
 // Connect to MongoDB
 const mongoUrl = MONGODB_URI;
 mongoose.Promise = bluebird;
+
+// Init Mountebank
+
+initMountebank();
 
 mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true } ).then(
     () => {
