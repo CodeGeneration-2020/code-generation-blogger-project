@@ -14,6 +14,7 @@ import { GlobalStyle } from 'styles/global-styles';
 
 import { HomePage } from './containers/HomePage/Loadable';
 import { NotFoundPage } from './components/NotFoundPage/Loadable';
+import Filters from './components/List/list.component';
 
 export function App() {
   return (
@@ -24,9 +25,9 @@ export function App() {
       >
         <meta name="description" content="A React Boilerplate application" />
       </Helmet>
-
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route path="/list" component={Filters} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

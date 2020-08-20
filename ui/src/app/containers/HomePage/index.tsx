@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-export function HomePage() {
+export const HomePage = props => {
   return (
     <>
       <Helmet>
@@ -11,4 +11,4 @@ export function HomePage() {
       <span>HomePage container</span>
     </>
   );
-}
+};
