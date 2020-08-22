@@ -5,7 +5,6 @@ import { Request, Response, NextFunction } from 'express';
 class Users {
     
     constructor(public usersService: IUsersService) {
-        
     }
 
     async getAllBloggers(req: Request, res: Response, next: NextFunction) {
