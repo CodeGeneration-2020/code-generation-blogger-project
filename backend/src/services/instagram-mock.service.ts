@@ -1,7 +1,16 @@
 import StabService from './stub.service';
 import INSTAGRAM_MOCK from '../consts/instagram-mock';
 
-class InstagramMockService {
+
+interface IinstagramService {
+    accessToken: string;
+    igUserId: number;
+    getBusinessAccountMetrics: any;
+    getInsights: any;
+}
+
+
+class InstagramMockService implements IinstagramService {
     accessToken: string;
     igUserId: number;
 
@@ -19,6 +28,19 @@ class InstagramMockService {
                     statusCode: 200,
                     headers: { 'Content-Type': 'application/json' },
                     body: INSTAGRAM_MOCK.GET_BUSINESS_ACCOUNT_METRICS.res
+                }
+            ]
+        );
+    }
+    getInsights(){
+        return this.stabService.createStab(
+            'GET',
+            `/${INSTAGRAM_MOCK.GET_BUSINESS_ACCOUNT_METRICS.url}/${this.igUserId}/insignhts/metric=impressions,reach,profile_views&period=day&access_token=FAKE_ACCESS_TOKEN`,
+            [
+                {
+                    statusCode: 200,
+                    headers: { 'Content-Type': 'application/json' },
+                    body: INSTAGRAM_MOCK.GET_INSIGHTS.res
                 }
             ]
         );

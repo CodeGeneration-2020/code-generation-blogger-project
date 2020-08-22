@@ -17,7 +17,8 @@ const initMountebank = async () => {
     });
 
     await instanceMountebankService.postImposter(
-        new Imposter(mbConfig.instagramServicePort, 'http', [instanceInstagramMockService.getBusinessAccountMetrics()])
+        new Imposter(mbConfig.instagramServicePort, 'http',
+        [instanceInstagramMockService.getBusinessAccountMetrics(),instanceInstagramMockService.getInsights()])
     );
 };
 

@@ -10,6 +10,7 @@ import mongoose from 'mongoose';
 import passport from 'passport';
 import bluebird from 'bluebird';
 import { MONGODB_URI, SESSION_SECRET } from './util/secrets';
+import corsMiddleware from './middlewares/cors';
 import routes from './routes';
 import initMountebank from './services/init/mountebank.service.init';
 
@@ -38,6 +39,7 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true, useUni
 });
 
 // Express configuration
+app.use(corsMiddleware);
 app.set('port', process.env.PORT || 4200);
 app.use(compression());
 app.use(bodyParser.json());
