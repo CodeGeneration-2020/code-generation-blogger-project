@@ -10,13 +10,20 @@ import * as UserActions from '../../../store/user/actions';
 import CustomSlider from '../SliderRangeComponent/Slider';
 
 const Customer = props => {
-  const [volume, setVolume] = React.useState(0);
-  const [subscribers, setSubscribers] = React.useState(0);
-  const [valueLocation, setValueLocation] = React.useState('');
   const sexOptions = [
     { value: 'any', label: 'any' },
     { value: 'female', label: 'female' },
     { value: 'male', label: 'male' },
+  ];
+  const country = [
+    { value: 'UK', label: 'uk' },
+    { value: 'USA', label: 'usa' },
+    { value: 'Deutch', label: 'deutch' },
+  ];
+  const city = [
+    { value: 'Kharkiv', label: 'Kharkiv' },
+    { value: 'Albaniya', label: 'Albaniya' },
+    { value: 'Serbiya', label: 'Serbiya' },
   ];
   const tagsOptions = [
     { value: '#endregion', label: '#endregion' },
@@ -27,14 +34,35 @@ const Customer = props => {
     <Styled.Wrapper>
       <Styled.Label htmlFor="price">Price</Styled.Label>
       <CustomSlider title="price" />
-      <Styled.Label htmlFor="location">Location</Styled.Label>
-      <Styled.Input
-        type="text"
-        id="location"
-        onChange={e => {
-          props.setFilter({ value: e.target.value, title: 'location' });
+      <Styled.Label htmlFor="country">country</Styled.Label>
+      <Select
+        closeMenuOnSelect={false}
+        defaultValue={country[0]}
+        isMulti
+        options={country}
+        id="country"
+        onChange={country => {
+          props.setFilter({
+            value: country && country.map(item => item.value),
+            title: 'country',
+          });
         }}
       />
+      <Styled.Label htmlFor="city">city</Styled.Label>
+      <Select
+        closeMenuOnSelect={false}
+        defaultValue={city[0]}
+        isMulti
+        options={city}
+        id="city"
+        onChange={city => {
+          props.setFilter({
+            value: city && city.map(item => item.value),
+            title: 'city',
+          });
+        }}
+      />
+
       <Styled.Label htmlFor="sex">Sex</Styled.Label>
       <Select
         defaultValue={sexOptions[0]}
@@ -73,7 +101,6 @@ export default connect(
     };
   },
   {
-    setFilters: UserActions.ActionCreators.setFilters,
     setFilter: UserActions.ActionCreators.setFilter,
     initFilters: UserActions.ActionCreators.initFilters,
   },

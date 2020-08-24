@@ -2,7 +2,10 @@ export const customerFilters = {
   subscribers: {
     value: null,
   },
-  location: {
+  country: {
+    value: '',
+  },
+  sity: {
     value: '',
   },
   sex: {
