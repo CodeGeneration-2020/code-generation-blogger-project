@@ -2,7 +2,8 @@ import { Customer,CustomerDocument } from '../models/Customer';
 import { Blogger,BloggerDocument } from '../models/Blogger';
 
 interface Ifilters{
-    location: string;
+    country:string;
+    city: string;
     storyPrice: string;
     postPrice: string;
     tags: string;
@@ -28,15 +29,15 @@ class UsersService {
         const storyPrice = filters.storyPrice.split(',');
         const postPrice = filters.postPrice.split(',');
         const tags = filters.tags.split(',');
-
+        const location = {country:filters.country,city:filters.city};
         const bloggers = await Blogger.find({
-            location:filters.location,
             storyPrice: {$gte:+storyPrice[0], $lte:+storyPrice[1]},
             postPrice: {$gte:+postPrice[0], $lte:+postPrice[1]},
             tags: { $in: tags },
-            sex:filters.sex
+            sex:filters.sex,
+            location:{"country":filters.country,"city":filters.city},
         }).skip(+filters.skip).limit(+filters.limit);
-
+        console.log(filters,bloggers)
         return bloggers;
     }
 }

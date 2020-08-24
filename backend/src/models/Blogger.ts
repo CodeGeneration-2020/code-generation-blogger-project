@@ -15,7 +15,10 @@ export type BloggerDocument = mongoose.Document & {
         };
         storyPrice: number|undefined;
         postPrice: number|undefined;
-        location: string|undefined;
+        location: {
+                country:string;
+                city:string;
+        },
         tags: string[];
         sex: string|undefined;
 };
@@ -36,7 +39,10 @@ const userSchema = new mongoose.Schema({
         },
         storyPrice:Schema.Types.Number,
         postPrice:Schema.Types.Number,
-        location:Schema.Types.String,
+        location:{
+         country:Schema.Types.String,
+         city:Schema.Types.String
+        },
         tags: [{type: Schema.Types.String}],
         sex:Schema.Types.String
 }, { timestamps: true ,_id:false});
