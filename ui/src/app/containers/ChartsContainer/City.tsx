@@ -5,7 +5,7 @@ function sortByCountUser(dataUsers) {
   dataUsers.sort((a, b) => (a.value < b.value ? 1 : -1));
 }
 
-const CityChart = ({data}) => {
+const CityChart = ({ data }) => {
   const usersCount = data.reduce((sum, current) => {
     return sum + current.users;
   }, 0);

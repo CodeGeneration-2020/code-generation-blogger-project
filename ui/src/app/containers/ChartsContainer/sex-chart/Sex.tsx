@@ -3,23 +3,28 @@ import PieChart from '../../../components/shared/PieChart';
 import * as Styled from './SexChart.style';
 import InformationIcon from '../../../../img/information.png';
 
-const SexPieChart = ({data}) => {
-  return <Styled.SexChartContainer>
-    <div className="header">Пол<span></span><img width="20" height="20" src={InformationIcon} alt="i"/></div>
-    <div className="chart">
-      <PieChart data={[data.women,data.men]} />
-    </div>
-    <div className="sex">
+const SexPieChart = ({ data }) => {
+  return (
+    <Styled.SexChartContainer>
+      <div className="header">
+        Пол<span></span>
+        <img width="20" height="20" src={InformationIcon} alt="i" />
+      </div>
+      <div className="chart">
+        <PieChart data={[data.women, data.men]} />
+      </div>
+      <div className="sex">
         <div className="men">
-          <span>{100/(data.women+data.men)*data.men}</span>
+          <span>{(100 / (data.women + data.men)) * data.men}%</span>
           <div>Мужчины</div>
         </div>
         <div className="women">
-          <span>{100/(data.women+data.men)*data.women}</span>
+          <span>{(100 / (data.women + data.men)) * data.women}%</span>
           <div>Женщины</div>
         </div>
-    </div>
-  </Styled.SexChartContainer> 
+      </div>
+    </Styled.SexChartContainer>
+  );
 };
 
 export default SexPieChart;

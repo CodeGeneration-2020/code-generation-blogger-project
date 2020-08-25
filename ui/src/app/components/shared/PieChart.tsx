@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as d3 from 'd3';
 
-const PieChart = ({ data }) => {
-  const height = 300;
-  const width = 300;
+const PieChart: React.FC<{ data: number[] }> = ({ data }) => {
+  const height: number = 300;
+  const width: number = 300;
 
-  let pie = d3.pie()(data);
+  let pie: any = d3.pie()(data);
 
   return (
     <svg height={height} width={width}>
@@ -17,15 +17,15 @@ const PieChart = ({ data }) => {
 };
 
 const Slice = props => {
-  let { pie } = props;
-  let arc = d3.arc().innerRadius(0).outerRadius(70);
+  let { pie }: any = props;
+  let arc: any = d3.arc().innerRadius(0).outerRadius(70);
 
   let interpolate = d3.interpolateRgb('#bbdefb', '#1e88e5');
 
   return pie.map((slice, index) => {
     let sliceColor = interpolate(index / (pie.length - 1));
 
-    return <path key={index} d={arc(slice)} fill={sliceColor} />;
+    return <path key={index} d={arc(slice) as string} fill={sliceColor} />;
   });
 };
 
