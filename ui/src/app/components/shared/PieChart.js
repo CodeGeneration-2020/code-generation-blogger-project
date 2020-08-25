@@ -2,8 +2,8 @@ import * as React from 'react';
 import * as d3 from 'd3';
 
 const PieChart = ({ data }) => {
-  const height = 600;
-  const width = 600;
+  const height = 300;
+  const width = 300;
 
   let pie = d3.pie()(data);
 
@@ -18,7 +18,7 @@ const PieChart = ({ data }) => {
 
 const Slice = props => {
   let { pie } = props;
-  let arc = d3.arc().innerRadius(0).outerRadius(100);
+  let arc = d3.arc().innerRadius(0).outerRadius(70);
 
   let interpolate = d3.interpolateRgb('#bbdefb', '#1e88e5');
 

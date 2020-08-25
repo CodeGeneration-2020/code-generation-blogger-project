@@ -2,15 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import Registration from '../../../services/registration.service';
 import UsersAPI from '../../../services/users.service';
-import PieChart from '../../components/shared/PieChart';
-import BarChart from '../../components/shared/BarChart';
-const data = [
-  { attribute: 'Kiev', value: 50 },
-  { attribute: 'Lviv', value: 26 },
-  { attribute: 'Kharkiv', value: 14 },
-  { attribute: 'Dnepro(город)', value: 7 },
-  { attribute: 'Tokio', value: 0.8 },
-];
+
 export function HomePage() {
   return (
     <>
@@ -30,10 +22,6 @@ export function HomePage() {
       <button onClick={() => UsersAPI.getBloggersByFilters()}>
         getBloggersByFilters
       </button>
-      <div>
-        <BarChart data={data} />
-        <PieChart data={[30, 70]} />
-      </div>
     </>
   );
 }

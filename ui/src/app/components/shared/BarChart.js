@@ -1,20 +1,15 @@
 import React, { useRef, useEffect } from 'react';
 import { select, scaleBand, scaleLinear, max } from 'd3';
 
-const margin = { top: 80, right: 60, bottom: 80, left: 140 };
+const margin = { top: 50, right: 50, bottom: 50, left: 130 };
 const color = ['#fff', '#90caf9', '#2196f3', '#1565c0'];
 const width = 600 - margin.left - margin.right;
-let height = 400;
+const height = 250;
 
-function RacingBarChart({ data }) {
+function BarChart({ data }) {
   const svgRef = useRef();
-  height = data.length * 40;
-  // will be called initially and on every data change
   useEffect(() => {
     let svg = select(svgRef.current);
-
-    // sorting the data
-    data.sort((a, b) => b.value - a.value);
 
     const yScale = scaleBand()
       .paddingInner(0.1)
@@ -49,7 +44,7 @@ function RacingBarChart({ data }) {
           return color[3];
         } else if ((d.value < 30) & (d.value >= 15)) {
           return color[2];
-        } else if ((d.value < 15) & (d.value > 1)) {
+        } else if ((d.value < 15) & (d.value >= 1)) {
           return color[1];
         } else if (d.value < 1) {
           return color[0];
@@ -68,7 +63,9 @@ function RacingBarChart({ data }) {
             (entry, index) => yScale(index) + yScale.bandwidth() / 2 + 5,
           ),
       )
-      .text(entry => `${entry.value < 1 ? 'меньше 1' : entry.value}%`)
+      .text(
+        entry => `${entry.value < 1 ? 'меньше 1' : Math.trunc(entry.value)}%`,
+      )
       .style('fill', function (d, i) {
         if (d.value >= 30) {
           return color[3];
@@ -82,7 +79,7 @@ function RacingBarChart({ data }) {
       .attr('x', entry => xScale(entry.value + 0.5))
       .transition()
       .attr('y', (entry, index) => yScale(index) + yScale.bandwidth() / 2 + 5);
-    //attribute names
+    // attribute names
     svg
       .selectAll('.label_attribute')
       .data(data, (entry, index) => entry.attribute)
@@ -97,7 +94,7 @@ function RacingBarChart({ data }) {
       .text(entry => `${entry.attribute}`)
       .style('stroke', 'gray')
       .attr('class', 'label_attribute')
-      .attr('x', entry => xScale(-entry.attribute.length - 3))
+      .attr('x', entry => xScale(-10))
       .transition()
       .attr('y', (entry, index) => yScale(index) + yScale.bandwidth() / 2 + 5);
   }, [data]);
@@ -113,4 +110,4 @@ function RacingBarChart({ data }) {
   );
 }
 
-export default RacingBarChart;
+export default BarChart;
