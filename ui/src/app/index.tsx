@@ -14,6 +14,7 @@ import { GlobalStyle } from 'styles/global-styles';
 
 import { HomePage } from './containers/HomePage/Loadable';
 import { NotFoundPage } from './components/NotFoundPage/Loadable';
+import BloggerDetails from './components/blogger-details/BloggerDetails';
 
 export function App() {
   return (
@@ -27,6 +28,11 @@ export function App() {
 
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route
+          exact
+          path="/blogger/details/:id"
+          component={BloggerDetails}
+        />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

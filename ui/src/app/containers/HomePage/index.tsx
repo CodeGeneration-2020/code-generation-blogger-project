@@ -19,7 +19,9 @@ export function HomePage() {
       </a>
       <button onClick={() => Registration.auth('blogger')}>auth</button>
       <button onClick={() => UsersAPI.getUsers('bloggers')}>getUsers</button>
-      <button onClick={() => UsersAPI.getBloggersByFilters()}>getBloggersByFilters</button>
+      <button onClick={() => UsersAPI.getBloggersByFilters()}>
+        getBloggersByFilters
+      </button>
     </>
   );
 }
