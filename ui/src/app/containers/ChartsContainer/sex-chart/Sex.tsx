@@ -7,7 +7,7 @@ const SexPieChart = ({ data }) => {
   return (
     <Styled.SexChartContainer>
       <div className="header">
-        Пол<span></span>
+        <span>Пол</span>
         <img width="20" height="20" src={InformationIcon} alt="i" />
       </div>
       <div className="chart">

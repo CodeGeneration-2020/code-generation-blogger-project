@@ -116,5 +116,8 @@
         "statements": 90
       }
     }
+  },
+  "devDependencies": {
+    "@types/query-string": "6.3.0"
   }
 }
