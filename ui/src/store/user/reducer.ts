@@ -2,10 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { ActionCreators, ActionTypes } from './actions';
 import { bloggerFilters, customerFilters } from '../../consts/lists';
 import { IState } from '../../types/index';
-import { FilterItem } from 'app/components/List/list.styles';
 
 const initialState: IState = {
   filters: {},
+  name: '',
+  type: '',
+  isAuth: false,
 };
 
 const USER_REDUCER = createSlice({
@@ -27,6 +29,16 @@ const USER_REDUCER = createSlice({
           ...state.filters,
           [action.payload.title]: { value: action.payload.value },
         },
+      };
+    },
+    [ActionTypes.REGISTER_USER]: (state, action) => {
+      return {
+        ...state,
+      };
+    },
+    [ActionTypes.GET_USERS]: (state, action) => {
+      return {
+        ...state,
       };
     },
   },

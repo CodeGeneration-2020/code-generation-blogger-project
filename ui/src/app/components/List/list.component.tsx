@@ -18,7 +18,12 @@ const Filters = props => {
     axios
       .get('http://localhost:3000/www.json')
       .then(({ data }) => setBloggers(data));
-  }, [index, props, type]);
+    load();
+  }, [index, load, props, type]);
+  const load = async () => {
+    await props.getUsers(6);
+    console.log('load worked');
+  };
   return (
     <Styled.Wrapper>
       {type === 'blogger' ? <Blogger /> : <Customer />}
@@ -74,5 +79,7 @@ export default connect(
     setFilters: UserActions.ActionCreators.setFilters,
     setFilter: UserActions.ActionCreators.setFilter,
     initFilters: UserActions.ActionCreators.initFilters,
+    registerUser: UserActions.ActionCreators.registerUser,
+    getUsers: UserActions.ActionCreators.getUsers,
   },
 )(Filters);
