@@ -13,6 +13,9 @@ export const SideBarContainer = styled.div`
     transition: 0.4s;
   }
   & button {
+    position: absolute;
+    top: 0;
+    left: 0;
     background-color: black;
     color: red;
     border: none;
