@@ -6,7 +6,7 @@ class UsersService {
   constructor(apiService) {
     this.apiService = apiService;
   }
-  getBloggerById(bloggerId){
+  getBloggerById(bloggerId) {
     return this.apiService.GET(`user/blogger/${bloggerId}`, {});
   }
   getUsers(user) {
