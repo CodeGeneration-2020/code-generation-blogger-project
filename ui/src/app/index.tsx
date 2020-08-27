@@ -28,11 +28,7 @@ export function App() {
 
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route
-          exact
-          path="/blogger/details/:id"
-          component={BloggerDetails}
-        />
+        <Route exact path="/blogger/details/:id" component={BloggerDetails} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

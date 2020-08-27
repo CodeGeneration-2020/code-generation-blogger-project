@@ -8,6 +8,7 @@ const height = 250;
 
 const BarChart: React.FC<{ data: Array<IBarChartData> }> = ({ data }) => {
   const svgRef = useRef();
+
   useEffect(() => {
     let svg = select(svgRef.current as any);
 
@@ -26,6 +27,8 @@ const BarChart: React.FC<{ data: Array<IBarChartData> }> = ({ data }) => {
     // append group translated to chart area
     svg = svg
       .append('g')
+      .attr('viewBox', '0 0 200 100')
+      .attr('preserveAspectRatio', 'xMinYMin')
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
     // draw the bars
@@ -35,13 +38,12 @@ const BarChart: React.FC<{ data: Array<IBarChartData> }> = ({ data }) => {
       .join((enter: any) =>
         enter.append('rect').attr('y', (entry, index) => yScale(index)),
       )
-      .attr('fill', (entry: any) => entry.color)
       .attr('class', 'bar')
       .attr('x', 0)
       .attr('height', yScale.bandwidth())
       .transition()
       .attr('width', entry => xScale(entry.value))
-      //.attr('y', (entry, index) => yScale(index))
+      .attr('y', (entry: any, index: any) => yScale(index) as any)
       .style('fill', (d: IBarChartData): any => {
         if (d.value >= 30) {
           return color[3];

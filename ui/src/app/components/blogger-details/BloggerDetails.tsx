@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect, useDispatch} from 'react-redux';
 import CityChartContainers from '../../containers/ChartsContainer/City';
 import AgeChartContainers from '../../containers/ChartsContainer/Age';
 import SexChartContainers from '../../containers/ChartsContainer/sex-chart/Sex';
@@ -8,24 +9,15 @@ import {
   ICityDetails,
   ISexDetails,
 } from '../../../types/components';
-import UsersService from '../../../services/users.service';
+import  * as BloggerActions from '../../../store/blogger/actions';
 
-const BloggerDetails: React.FC<{match?:any,idBlogger?:number}> = ({match,idBlogger}) => {
-  const [cityInfo,setCityInfo] = React.useState<ICityDetails>();
-  const [sexInfo,setSexInfo] = React.useState<ISexDetails>(); 
-  const [ageInfo,setAgeInfo] = React.useState<IAgeDetails>();
+const BloggerDetails: React.FC<{match?:any,idBlogger?:number,getBlogger:any,sexInfo:ISexDetails,cityInfo:ICityDetails,ageInfo:ISexDetails}> = ({match,idBlogger,getBlogger,sexInfo,cityInfo,ageInfo}) => {
   const [toggle, setToggle] = React.useState<boolean>(false);
 
   React.useEffect(()=>{
     const ig_id = match ? match.params.id : idBlogger;
-    const getBloggerDetails = async(bloggerId)=>{
-      const response =  await UsersService.getBloggerById(bloggerId);
-      const {dataAge,dataCity,dataSex} = response.data;
-      setCityInfo(dataCity);
-      setSexInfo(dataSex);
-      setAgeInfo(dataAge);
-    }
-    getBloggerDetails(ig_id);
+      console.log(ig_id)
+      getBlogger(ig_id);
   },[match,idBlogger])
   
   
@@ -65,9 +57,9 @@ const BloggerDetails: React.FC<{match?:any,idBlogger?:number}> = ({match,idBlogg
               <div className="engagement-rate"><span>ER: 20%</span></div>
           </div>
       </Styled.Characteristics>
-      <div style={{width:'100%',display:'flex',justifyContent:'center',padding:'20px'}}>
+      <div className="toggle-charts">
         <button onClick={()=>setToggle(!toggle)}
-         style={{width:'170px',height:'50px',background:'red',color:'white',borderRadius:'30px',border:'none',fontSize:'16px'}}>
+         >
         {toggle ? 'Hide statistic' : 'Show more statistic'}
         </button>
       </div>
@@ -105,4 +97,13 @@ const BloggerDetails: React.FC<{match?:any,idBlogger?:number}> = ({match,idBlogg
   );
 };
 
-export default BloggerDetails;
+export default connect(state => {
+  const { BLOGGER_REDUCER }:any = state;
+  return {
+    cityInfo:BLOGGER_REDUCER.bloggerInfo.dataCity,
+    sexInfo:BLOGGER_REDUCER.bloggerInfo.dataSex,
+    ageInfo:BLOGGER_REDUCER.bloggerInfo.dataAge,
+  };
+  }, {
+    getBlogger: BloggerActions.ActionCreators.getBloggerById,
+  })(BloggerDetails)

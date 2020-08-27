@@ -40,6 +40,7 @@ class User {
         } catch (e) {
             return next(e);
         }
+
     }
 
     async getCustomer(req: Request, res: Response, next: NextFunction) {
