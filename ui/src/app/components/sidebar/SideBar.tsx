@@ -17,6 +17,7 @@ const SideBar = ({ id }) => {
     <Styled.SideBarContainer>
       <div id="menu" className="nav">
         <button
+          className="close-sidebar"
           onClick={() => {
             closeSlideMenu();
           }}

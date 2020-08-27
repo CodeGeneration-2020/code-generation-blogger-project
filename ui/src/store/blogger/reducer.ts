@@ -10,11 +10,11 @@ const BLOGGER_REDUCER = createSlice({
   name: 'BLOGGER_REDUCER',
   initialState,
   extraReducers: {
-    [ActionCreators.getBloggerById.fulfilled]: (state, action) => {
+    [ActionCreators.getBloggerById.fulfilled as any]: (state, action) => {
       state.error = {};
       state.bloggerInfo = action.payload;
     },
   },
-});
+} as any);
 
 export default BLOGGER_REDUCER;
