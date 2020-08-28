@@ -2,11 +2,8 @@ import React from 'react';
 import { Slider, Rail, Handles, Tracks, Ticks } from 'react-compound-slider';
 import { Handle, Track, Tick } from './component';
 
-import * as UserActions from '../../../store/user/actions';
-import { connect } from 'react-redux';
-
 const CustomSlider = props => {
-  const [volume, setVolume] = React.useState([150, 200]);
+  const [volume] = React.useState([150, 200]);
   const sliderStyle: React.CSSProperties = {
     position: 'relative',
     width: '100%',
@@ -23,7 +20,7 @@ const CustomSlider = props => {
     backgroundColor: 'rgb(155,155,155)',
   };
 
-  const domain: number[] = [100, 500];
+  const domain: number[] = [100, 1000000];
   return (
     <Slider
       mode={1}
@@ -32,7 +29,7 @@ const CustomSlider = props => {
       rootStyle={sliderStyle}
       onChange={value => {
         console.log('Value: ', value);
-        props.setFilter({ value: value, title: props.title });
+        props.changeHandler({ value: value, title: props.title }, props.title);
       }}
       values={volume}
     >
@@ -80,16 +77,4 @@ const CustomSlider = props => {
   );
 };
 
-export default connect(
-  (state: any) => {
-    const { USER_REDUCER } = state;
-    return {
-      filters: USER_REDUCER.filters,
-    };
-  },
-  {
-    setFilters: UserActions.ActionCreators.setFilters,
-    setFilter: UserActions.ActionCreators.setFilter,
-    initFilters: UserActions.ActionCreators.initFilters,
-  },
-)(CustomSlider);
+export default CustomSlider;

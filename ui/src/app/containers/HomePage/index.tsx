@@ -3,9 +3,9 @@ import { Helmet } from 'react-helmet-async';
 import Registration from '../../../services/registration.service';
 import UsersAPI from '../../../services/users.service';
 
-export const HomePage = props => {
+export function HomePage() {
   return (
-    <>
+    <div>
       <Helmet>
         <title>Home Page</title>
         <meta name="description" content="A Boilerplate application homepage" />
@@ -19,7 +19,9 @@ export const HomePage = props => {
       </a>
       <button onClick={() => Registration.auth('blogger')}>auth</button>
       <button onClick={() => UsersAPI.getUsers('bloggers')}>getUsers</button>
-      <button onClick={() => UsersAPI.getBloggersByFilters()}>getBloggersByFilters</button>
-    </>
+      <div>
+        <h1>List Bloggers</h1>
+      </div>
+    </div>
   );
-};
+}

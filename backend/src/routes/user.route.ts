@@ -6,7 +6,7 @@ const user = Router();
 
 const userControllerInstance = new UserController(new UserService());
 
-user.get('/blogger', (req, res, next) => {
+user.get('/blogger/:id', (req, res, next) => {
     userControllerInstance.getBlogger(req, res, next);
 });
 

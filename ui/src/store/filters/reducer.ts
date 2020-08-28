@@ -1,17 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ActionCreators, ActionTypes } from './actions';
+import { ActionTypes } from './actions';
 import { bloggerFilters, customerFilters } from '../../consts/lists';
-import { IState } from '../../types/index';
+import { IFiltersReducer } from '../../types/index';
+import { LIMITQUERY } from '../../consts/lists';
 
-const initialState: IState = {
-  filters: {},
-  name: '',
+const initialState: IFiltersReducer = {
   type: '',
-  isAuth: false,
+  skip: 0,
+  limit: LIMITQUERY,
+  filters: {},
 };
 
 const USER_REDUCER = createSlice({
-  name: 'user',
+  name: 'FILTERS_REDUCER',
   initialState,
   reducers: {},
   extraReducers: {
@@ -31,14 +32,24 @@ const USER_REDUCER = createSlice({
         },
       };
     },
-    [ActionTypes.REGISTER_USER]: (state, action) => {
+    [ActionTypes.CLEAR_FILTERS]: state => {
       return {
         ...state,
+        filters: {},
+        skip: 0,
+        limit: LIMITQUERY,
       };
     },
-    [ActionTypes.GET_USERS]: (state, action) => {
+    [ActionTypes.SET_SKIP]: state => {
       return {
         ...state,
+        skip: state.skip + state.limit,
+      };
+    },
+    [ActionTypes.RESET_SKIP]: state => {
+      return {
+        ...state,
+        skip: 0,
       };
     },
   },

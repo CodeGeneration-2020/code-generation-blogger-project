@@ -9,7 +9,7 @@ export interface IUserService{
 
 class UserService  {
     async getBlogger(id: number) {
-        return Blogger.findById(id);
+        return Blogger.findOne({ig_id:id});
     }
     async getCustomer(id: number) {
         return Customer.findById(id);

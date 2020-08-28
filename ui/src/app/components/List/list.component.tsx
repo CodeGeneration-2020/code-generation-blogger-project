@@ -1,85 +1,110 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import * as UserActions from '../../../store/user/actions';
 import { connect } from 'react-redux';
-import USER_REDUCER from 'store/user/reducer';
+import * as BloggerActions from '../../../store/blogger/actions';
+import * as FiltersActions from '../../../store/filters/actions';
 import * as Styled from './list.styles';
-import Blogger from '../Blogger/blogger.component';
-import Customer from '../Customer/customer.component';
-import axios from 'axios';
+import { NavLink } from 'react-router-dom';
+import SideBar, { openSlideMenu } from '../../components/sidebar/SideBar';
+import { IBloggerInfo } from '../../../types/components/index';
+import { v4 as uuidv4 } from 'uuid';
+import UsersFiltersContainer from '../../containers/UsersFiltersContainer/UsersFilters';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
-const Filters = props => {
-  const [index, setIndex] = React.useState(false);
-  const [bloggers, setBloggers] = React.useState([]);
-  const typeArray = ['blogger', 'customer'];
-  const type = typeArray[index ? 1 : 0];
-  React.useEffect(() => {
-    props.initFilters({ type: type });
-    axios
-      .get('http://localhost:3000/www.json')
-      .then(({ data }) => setBloggers(data));
-    load();
-  }, [index, load, props, type]);
-  const load = async () => {
-    await props.getUsers(6);
-    console.log('load worked');
+const ListComponent = props => {
+  const [idBlogger, toggleIdBlogger] = React.useState<number | undefined>();
+
+  const openSideBar = async (e, id: number) => {
+    e.preventDefault();
+    await toggleIdBlogger(id);
+    openSlideMenu();
   };
+
+  React.useEffect(() => {
+    props.getBloggersByFilters(props.filters);
+    // eslint-disable-next-line
+  }, []);
+
+  const getBloggersPagination = () => {
+    props.getBloggersPagination({
+      filters: props.filters,
+      skip: props.skip + props.limit,
+      limit: props.limit,
+    });
+    props.setSkip();
+  };
+
   return (
-    <Styled.Wrapper>
-      {type === 'blogger' ? <Blogger /> : <Customer />}
-      <button onClick={() => setIndex(!index)}>Change state!!! </button>
-      <p>
-        IS Blogger : <span>{type}</span>
-      </p>
-      <Styled.BloggerListWrap>
-        {bloggers &&
-          bloggers.map(item => (
-            <Styled.BloggerItem>
-              <Styled.Avatar>
-                <img
-                  alt={(item as any).full_name}
-                  src={(item as any).profile_picture}
-                />
-              </Styled.Avatar>
-              <Styled.DataCol>
-                <h3>{(item as any).full_name}</h3>
-                <p>
-                  Post: {(item as any).postPrice}$ Story:{' '}
-                  {(item as any).storyPrice}$
-                </p>
-                <p>POst + Story price : XXX</p>
-              </Styled.DataCol>
-              <Styled.DataCol>
-                <h3>
-                  {(item as any).location.country},{(item as any).location.city}
-                </h3>
-                <p>Follovers: {(item as any).metric.folower} / active?</p>
-                <p>Auditory: XXX</p>
-              </Styled.DataCol>
-              <Styled.TagBox>
-                {(item as any).tags &&
-                  (item as any).tags.map(tag => <span>#{tag}</span>)}
-              </Styled.TagBox>
-            </Styled.BloggerItem>
-          ))}
-      </Styled.BloggerListWrap>
-    </Styled.Wrapper>
+    <>
+      <Styled.Wrapper>
+        <UsersFiltersContainer />
+        <button onClick={() => getBloggersPagination()}>
+          Start Pagination
+        </button>
+        <Styled.BloggerListWrap>
+          <InfiniteScroll
+            dataLength={props.bloggers.length}
+            next={() => getBloggersPagination()}
+            hasMore={true}
+            loader={props.loading && <h4>Loading...</h4>}
+          >
+            {props.bloggers.length &&
+              props.bloggers.map((item: IBloggerInfo) => (
+                <NavLink
+                  to={'/blogger/details/' + item.ig_id}
+                  key={item.ig_id}
+                  onClick={e => {
+                    openSideBar(e, item.ig_id);
+                  }}
+                >
+                  <Styled.BloggerItem>
+                    <Styled.Avatar>
+                      <img alt={item.full_name} src={item.profile_picture} />
+                    </Styled.Avatar>
+                    <Styled.DataCol>
+                      <h3>{item.full_name}</h3>
+                      <p>
+                        Post: {item.postPrice}$ Story: {item.storyPrice}$
+                      </p>
+                      <p>POst + Story price : XXX</p>
+                    </Styled.DataCol>
+                    <Styled.DataCol>
+                      <h3>
+                        {item.location.country},{item.location.city}
+                      </h3>
+                      <p>Follovers: {item.metric.followers} / active?</p>
+                      <p>Auditory: XXX</p>
+                    </Styled.DataCol>
+                    <Styled.TagBox>
+                      {item.tags &&
+                        item.tags.map(tag => (
+                          <span key={uuidv4()}>#{tag}</span>
+                        ))}
+                    </Styled.TagBox>
+                  </Styled.BloggerItem>
+                </NavLink>
+              ))}
+          </InfiniteScroll>
+        </Styled.BloggerListWrap>
+      </Styled.Wrapper>
+      {idBlogger && <SideBar id={idBlogger} />}
+    </>
   );
 };
 
 export default connect(
   (state: any) => {
-    const { USER_REDUCER } = state;
+    const { BLOGGER_REDUCER, FILTERS_REDUCER } = state;
     return {
-      isBlogger: USER_REDUCER.isBlogger,
-      filters: USER_REDUCER.filters,
+      bloggers: BLOGGER_REDUCER.bloggers,
+      loading: BLOGGER_REDUCER.loading,
+      filters: FILTERS_REDUCER.filters,
+      skip: FILTERS_REDUCER.skip,
+      limit: FILTERS_REDUCER.limit,
     };
   },
   {
-    setFilters: UserActions.ActionCreators.setFilters,
-    setFilter: UserActions.ActionCreators.setFilter,
-    initFilters: UserActions.ActionCreators.initFilters,
-    registerUser: UserActions.ActionCreators.registerUser,
-    getUsers: UserActions.ActionCreators.getUsers,
+    getBloggersByFilters: BloggerActions.ActionCreators.getBloggerByFilters,
+    getBloggersPagination: BloggerActions.ActionCreators.getBloggersPagination,
+    setSkip: FiltersActions.ActionCreators.setSkip,
   },
-)(Filters);
+)(ListComponent);

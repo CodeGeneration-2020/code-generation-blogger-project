@@ -2,7 +2,7 @@ import React from 'react';
 import * as Styled from './blogger.styles';
 import Select from 'react-select';
 
-import * as UserActions from '../../../store/user/actions';
+import * as FiltersActions from '../../../store/filters/actions';
 import { connect } from 'react-redux';
 
 import CustomSlider from '../SliderRangeComponent/Slider';
@@ -46,14 +46,14 @@ const Blogger = props => {
 
 export default connect(
   (state: any) => {
-    const { USER_REDUCER } = state;
+    const { FILTERS_REDUCER } = state;
     return {
-      filters: USER_REDUCER.filters,
+      filters: FILTERS_REDUCER.filters,
     };
   },
   {
-    setFilters: UserActions.ActionCreators.setFilters,
-    setFilter: UserActions.ActionCreators.setFilter,
-    initFilters: UserActions.ActionCreators.initFilters,
+    // setFilters: UserActions.ActionCreators.setFilters,
+    setFilter: FiltersActions.ActionCreators.setFilter,
+    initFilters: FiltersActions.ActionCreators.initFilters,
   },
 )(Blogger);
