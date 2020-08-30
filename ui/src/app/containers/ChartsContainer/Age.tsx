@@ -1,5 +1,5 @@
 import React from 'react';
-import BarChart from '../../components/shared/BarChart';
+import BarChart from '../../components/shared/bar-chart/BarChart';
 
 const AgeChart = data => {
   const usersCount = data.data.reduce((sum, current) => {

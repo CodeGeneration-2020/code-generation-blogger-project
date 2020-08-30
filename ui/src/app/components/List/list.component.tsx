@@ -37,9 +37,6 @@ const ListComponent = props => {
     <>
       <Styled.Wrapper>
         <UsersFiltersContainer />
-        <button onClick={() => getBloggersPagination()}>
-          Start Pagination
-        </button>
         <Styled.BloggerListWrap>
           <InfiniteScroll
             dataLength={props.bloggers.length}

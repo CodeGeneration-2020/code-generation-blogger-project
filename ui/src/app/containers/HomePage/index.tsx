@@ -10,7 +10,7 @@ export function HomePage() {
         <title>Home Page</title>
         <meta name="description" content="A Boilerplate application homepage" />
       </Helmet>
-      <a
+      {/* <a
         href={
           'https://api.instagram.com/oauth/authorize/?client_id=1582327085279138&redirect_uri=https://localhost:3000/&scope=user_profile,user_media&response_type=code'
         }
@@ -21,7 +21,7 @@ export function HomePage() {
       <button onClick={() => UsersAPI.getUsers('bloggers')}>getUsers</button>
       <div>
         <h1>List Bloggers</h1>
-      </div>
+      </div> */}
     </div>
   );
 }

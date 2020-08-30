@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 import { select, scaleBand, scaleLinear, max } from 'd3';
 import { IBarChartData } from '../../../types/components';
+import { like } from '../../../consts/colors';
 const margin = { top: 50, right: 50, bottom: 50, left: 130 };
-const color = ['#fff', '#90caf9', '#2196f3', '#1565c0'];
-const width = 600 - margin.left - margin.right;
+const width = 230 - margin.left - margin.right;
 const height = 250;
 
 const BarChart: React.FC<{ data: Array<IBarChartData> }> = ({ data }) => {
@@ -46,13 +46,13 @@ const BarChart: React.FC<{ data: Array<IBarChartData> }> = ({ data }) => {
       .attr('y', (entry: any, index: any) => yScale(index) as any)
       .style('fill', (d: IBarChartData): any => {
         if (d.value >= 30) {
-          return color[3];
+          return like.blue_darken_3;
         } else if (d.value < 30 && d.value >= 15) {
-          return color[2];
+          return like.blue;
         } else if (d.value < 15 && d.value >= 1) {
-          return color[1];
+          return like.blue_lighten_3;
         } else if (d.value < 1) {
-          return color[0];
+          return like.white;
         }
       });
     // draw the labels
@@ -74,11 +74,11 @@ const BarChart: React.FC<{ data: Array<IBarChartData> }> = ({ data }) => {
       )
       .style('fill', (data: IBarChartData): any => {
         if (data.value >= 30) {
-          return color[3];
+          return like.blue_darken_3;
         } else if (data.value < 30 && data.value >= 15) {
-          return color[2];
+          return like.blue;
         } else if (data.value < 15) {
-          return color[1];
+          return like.blue_lighten_3;
         }
       })
       .attr('class', 'label_value')
@@ -105,7 +105,7 @@ const BarChart: React.FC<{ data: Array<IBarChartData> }> = ({ data }) => {
       .text(entry => `${entry.attribute}`)
       .style('stroke', 'gray')
       .attr('class', 'label_attribute')
-      .attr('x', entry => xScale(-10))
+      .attr('x', entry => xScale(-7))
       .transition()
       .attr(
         'y',

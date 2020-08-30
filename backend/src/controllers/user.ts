@@ -5,9 +5,9 @@ const dataCity = [
     { city: 'Kiev', users: 500 },
     { city: 'Lviv', users: 260 },
     { city: 'Kharkiv', users: 142 },
-    { city: 'Dnepro(город)', users: 79 },
+    { city: 'Dnepro(город)', users: 14 },
     { city: 'Tokio', users: 2 },
-    { city: 'Druzhkovka', users: 14 },
+    { city: 'Druzhkovka', users: 79 },
     { city: 'Lutsk', users: 7 },
     { city: 'London', users: 452 },
   ];

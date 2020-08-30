@@ -10,7 +10,7 @@ import { sexOptions, country, city, tagsOptions } from '../../../consts/lists';
 import useDebounce from '../../helpers/useDebounce';
 
 const Customer = props => {
-  const debounceSearch = useDebounce(props.filters, 3500);
+  const debounceSearch = useDebounce(props.filters, 1000);
 
   React.useEffect(
     () => {

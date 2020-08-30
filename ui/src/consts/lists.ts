@@ -38,14 +38,16 @@ export const sexOptions = [
 ];
 export const country = [
   { value: 'Ukraine', label: 'Ukraine' },
-  { value: 'USA', label: 'usa' },
-  { value: 'Deutch', label: 'deutch' },
+  { value: 'USA', label: 'Usa' },
+  { value: 'Deutch', label: 'Deutch' },
+  { value: 'France', label: 'France' },
+  { value: 'England', label: 'England' },
 ];
 export const city = [
   { value: 'Kharkiv', label: 'Kharkiv' },
   { value: 'Kiev', label: 'Kiev' },
-  { value: 'Albaniya', label: 'Albaniya' },
-  { value: 'Serbiya', label: 'Serbiya' },
+  { value: 'Paris', label: 'Paris' },
+  { value: 'London', label: 'London' },
 ];
 export const tagsOptions = [
   { value: 'sport', label: 'sport' },

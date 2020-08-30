@@ -1,52 +1,50 @@
 import styled from 'styled-components';
 
 export const SexChartContainer = styled.div`
-  position: relative;
+  width: 100%;
+`;
+
+export const Header = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
-  & .header {
-    position: absolute;
-    font-size: 18px;
-    font-weight: 700;
-    top: 10%;
-    left: 10%;
-    & > img {
-      padding-bottom: 4%;
-      padding-left: 2%;
-    }
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 700;
+  & > img {
   }
-  & .chart {
-    padding-top: 5%;
+`;
+export const Chart = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+export const Sex = styled.div`
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  color: gray;
+  font-size: 18px;
+  & .women {
     display: flex;
-    justify-content: center;
-  }
-  & .sex {
-    color: gray;
-    font-size: 18px;
-    & .women {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: absolute;
-      bottom: 0;
-      right: 20%;
-      & > span {
-        color: #bbdefb;
-        font-weight: 700;
-      }
+    flex-direction: column;
+    align-items: center;
+    bottom: 0;
+    right: 20%;
+    & > span {
+      color: #bbdefb;
+      font-weight: 700;
     }
-    & .men {
-      position: absolute;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      bottom: 0;
-      left: 20%;
-      & > span {
-        font-weight: 700;
-        color: #1e88e5;
-      }
+  }
+  & .men {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    bottom: 0;
+    left: 20%;
+    & > span {
+      font-weight: 700;
+      color: #1e88e5;
     }
   }
 `;

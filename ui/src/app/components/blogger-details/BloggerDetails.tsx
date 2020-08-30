@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import CityChartContainers from '../../containers/ChartsContainer/City';
 import AgeChartContainers from '../../containers/ChartsContainer/Age';
 import SexChartContainers from '../../containers/ChartsContainer/sex-chart/Sex';
+import {
+  calculateSroryPostPrice,
+  calculateER,
+} from '../../helpers/calculateBloggerDetails';
+import './Chart.css';
 import * as Styled from './BloggerDetails.style';
 import {
   IAgeDetails,
@@ -80,9 +85,10 @@ const BloggerDetails: React.FC<{
             <span>
               Post + Story:{' '}
               {bloggerData &&
-                bloggerData.storyPrice +
-                  bloggerData.postPrice -
-                  (bloggerData.storyPrice / 100) * 30}
+                calculateSroryPostPrice(
+                  bloggerData.storyPrice,
+                  bloggerData.postPrice,
+                )}
               $
             </span>
           </div>
@@ -94,7 +100,16 @@ const BloggerDetails: React.FC<{
             </span>
           </div>
           <div className="engagement-rate">
-            <span>ER: 20%</span>
+            <span>
+              ER:{' '}
+              {bloggerData &&
+                calculateER(
+                  (bloggerData.metric.followers / 100) * 12,
+                  (bloggerData.metric.followers / 100) * 8,
+                  bloggerData.metric.followers,
+                )}
+              %
+            </span>
           </div>
         </div>
       </Styled.Characteristics>

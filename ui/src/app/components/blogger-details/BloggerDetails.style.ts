@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const BloggerDetailsContainer = styled.div`
-  width: 95%;
+  width: 98%;
   height: 100%;
   margin: auto;
   & .toggle-charts {
@@ -118,26 +118,28 @@ export const Charts = styled.div`
 
   & .charts {
     display: flex;
-    @media screen and (max-width: 1200px) {
+    width: 100%;
+    @media screen and (max-width: 1320px) {
       flex-direction: column;
     }
     & .sex {
       width: 50%;
-      @media screen and (max-width: 900px) {
+      @media screen and (max-width: 1320px) {
         margin: auto;
+        padding: 50px 0;
         width: 100%;
       }
     }
     & .city {
       width: 50%;
-      @media screen and (max-width: 1200px) {
+      @media screen and (max-width: 1320px) {
         width: 100%;
       }
     }
   }
   & .age {
     width: 50%;
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1320px) {
       width: 100%;
     }
   }
