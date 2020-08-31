@@ -62,3 +62,4 @@ export const tagsOptions = [
 ];
 
 export const LIMITQUERY = 3;
+export const limitComments = 5;

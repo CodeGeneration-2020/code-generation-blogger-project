@@ -12,7 +12,7 @@ export interface IUserService{
     getBlogger: (id: number) =>  Promise<BloggerDocument>;
     getCustomer: (id: number) =>  Promise<CustomerDocument>;
     createCommentForBlogger: (id: number, body: ICreateCommentBody) => object;
-    getBloggerComments: (id:number) =>  Promise<CommentsDocumnet[]>;
+    getBloggerComments: (id:number,skip: number,limit: number) =>  Promise<CommentsDocumnet[]>;
 }
 
 class UserService implements IUserService  {
@@ -31,8 +31,8 @@ class UserService implements IUserService  {
         await comment.save();
         return {createComment:'success'};
     }
-    async getBloggerComments(id:number){
-        const comments = await Comments.find({bloggerId:id}).populate('customerId');
+    async getBloggerComments(id:number,skip: number,limit: number){
+        const comments = await Comments.find({bloggerId:id}).populate('customerId').skip(+skip).limit(+limit);;
         return comments;
     }
 }

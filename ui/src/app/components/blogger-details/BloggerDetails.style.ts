@@ -147,7 +147,7 @@ export const Charts = styled.div`
 
 export const Statistic = styled.div`
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   padding: 40px 20px;
   @media screen and (max-width: 475px) {
@@ -194,5 +194,20 @@ export const Statistic = styled.div`
       width: 200px;
       height: 200px;
     }
+  }
+`;
+
+export const Result = styled.div`
+  width: 100%;
+  text-align: center;
+`;
+
+export const ListComments = styled.div`
+  width: 100%;
+  height: 400px;
+  overflow: auto;
+  border-top: 2px solid gray;
+  & .comment {
+    padding: 40px;
   }
 `;

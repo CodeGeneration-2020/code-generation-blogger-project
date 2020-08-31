@@ -16,26 +16,29 @@ class UsersService {
   }
   getBloggersByFilters(filters, skip = 0, limit = LIMITQUERY) {
     return this.apiService.GET(
-      `users/filters/bloggers?storyPrice=${
-        addQuery(filters.price)
-      }&postPrice=${addQuery(filters.price)}&country=${
-        addQuery(filters.country)
-      }&city=${addQuery(filters.city)}&tags=${
-        addQuery(filters.tags)
-      }&sex=${addQuery(filters.sex)}&followers=${
-        addQuery(filters.subscribers)
-      }&skip=${skip}&limit=${limit}`,
+      `users/filters/bloggers?storyPrice=${addQuery(
+        filters.price,
+      )}&postPrice=${addQuery(filters.price)}&country=${addQuery(
+        filters.country,
+      )}&city=${addQuery(filters.city)}&tags=${addQuery(
+        filters.tags,
+      )}&sex=${addQuery(filters.sex)}&followers=${addQuery(
+        filters.subscribers,
+      )}&skip=${skip}&limit=${limit}`,
       {},
     );
   }
-  createComment(userType,senderId,receiverId,comment){
+  createComment(userType, senderId, receiverId, comment) {
     return this.apiService.POST(`user/${userType}/${receiverId}/comment`, {
       senderId,
       comment,
-    })
+    });
   }
-  getComments(userType,userId){
-    return this.apiService.GET(`user/${userType}/${userId}/comments`,{})
+  getComments(userType, userId, skip, limit) {
+    return this.apiService.GET(
+      `user/${userType}/${userId}/comments?skip=${skip}&limit=${limit}`,
+      {},
+    );
   }
 }
 

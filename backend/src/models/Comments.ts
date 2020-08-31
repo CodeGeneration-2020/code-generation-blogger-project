@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
-import {BloggerDocument} from './Blogger';
-import {CustomerDocument} from './Customer';
+
 
 export type CommentsDocumnet = mongoose.Document & {
-    customerId:Number|BloggerDocument;
-    bloggerId:Number|BloggerDocument;
+    customerId:Number;
+    bloggerId:Number;
     comment:String;
 };
 

@@ -45,7 +45,7 @@ class User {
 
     async getBloggerComments(req: Request, res: Response, next: NextFunction) {
         try {
-            const bloggerComments = await this.userService.getBloggerComments(+req.params.id);
+            const bloggerComments = await this.userService.getBloggerComments(+req.params.id,+req.query.skip,+req.query.limit);
             res.json(bloggerComments);
         } catch (e) {
             return next(e);
