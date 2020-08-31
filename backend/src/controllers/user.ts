@@ -43,6 +43,26 @@ class User {
 
     }
 
+    async getBloggerComments(req: Request, res: Response, next: NextFunction) {
+        try {
+            const bloggerComments = await this.userService.getBloggerComments(+req.params.id);
+            res.json(bloggerComments);
+        } catch (e) {
+            return next(e);
+        }
+
+    }
+
+    async createCommentForBlogger(req: Request, res: Response, next: NextFunction) {
+        try {
+            const response = await this.userService.createCommentForBlogger(+req.params.id,req.body);
+            res.json(response);
+        } catch (e) {
+            return next(e);
+        }
+
+    }
+
     async getCustomer(req: Request, res: Response, next: NextFunction) {
         try {
             const users = await this.userService.getCustomer(+req.query.id);

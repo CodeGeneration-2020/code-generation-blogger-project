@@ -20,13 +20,22 @@ class UsersService {
         addQuery(filters.price)
       }&postPrice=${addQuery(filters.price)}&country=${
         addQuery(filters.country)
-      }&city=${filters.city ? filters.city.value : ''}&tags=${
+      }&city=${addQuery(filters.city)}&tags=${
         addQuery(filters.tags)
-      }&sex=${filters.sex ? filters.sex.value : ''}&followers=${
+      }&sex=${addQuery(filters.sex)}&followers=${
         addQuery(filters.subscribers)
       }&skip=${skip}&limit=${limit}`,
       {},
     );
+  }
+  createComment(userType,senderId,receiverId,comment){
+    return this.apiService.POST(`user/${userType}/${receiverId}/comment`, {
+      senderId,
+      comment,
+    })
+  }
+  getComments(userType,userId){
+    return this.apiService.GET(`user/${userType}/${userId}/comments`,{})
   }
 }
 

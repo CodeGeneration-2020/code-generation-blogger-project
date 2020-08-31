@@ -1,7 +1,7 @@
-import { Blogger,BloggerDocument } from '../models/Blogger';
+import { Blogger } from '../models/Blogger';
 
 export interface IAuthService{
-    authBlogger:(blogger:any)=>BloggerDocument;
+    authBlogger:(blogger: any) => Promise<void>;
 }
 
 class AuthService {
