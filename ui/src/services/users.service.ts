@@ -1,6 +1,7 @@
 import API from './api.service';
 import { IApi } from './api.service';
 import { LIMITQUERY } from '../consts/lists';
+import { addQuery } from '../app/helpers/addQuery';
 
 class UsersService {
   apiService: IApi;
@@ -16,13 +17,13 @@ class UsersService {
   getBloggersByFilters(filters, skip = 0, limit = LIMITQUERY) {
     return this.apiService.GET(
       `users/filters/bloggers?storyPrice=${
-        filters.price ? filters.price.value : ''
-      }&postPrice=${filters.price ? filters.price.value : ''}&country=${
-        filters.country ? filters.country.value : ''
+        addQuery(filters.price)
+      }&postPrice=${addQuery(filters.price)}&country=${
+        addQuery(filters.country)
       }&city=${filters.city ? filters.city.value : ''}&tags=${
-        filters.tags ? filters.tags.value : ''
+        addQuery(filters.tags)
       }&sex=${filters.sex ? filters.sex.value : ''}&followers=${
-        filters.subscribers ? filters.subscribers.value : ''
+        addQuery(filters.subscribers)
       }&skip=${skip}&limit=${limit}`,
       {},
     );
