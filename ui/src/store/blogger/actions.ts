@@ -7,9 +7,11 @@ const ActionTypes = {
   GET_BLOGGER_BY_FILTERS: '[BLOGGER] get_bloggers_by_filters',
   GET_BLOGGER_COMMENTS: '[BLOGGER] get_blogger_comments',
   CLEAR_BLOGGER_COMMENTS: '[BLOGGER] clear_blogger_comments',
+  CLEAR_BLOGGER_INFO:  '[BLOGGER] clear_blogger_info',
 };
 
 const clearBloggerComments = createAction(ActionTypes.CLEAR_BLOGGER_COMMENTS);
+const clearBloggerInfo = createAction(ActionTypes.CLEAR_BLOGGER_INFO);
 
 const getBloggerById = createAsyncThunk(
   ActionTypes.GET_BLOGGER_BY_ID,
@@ -59,6 +61,7 @@ const ActionCreators = {
   getBloggerByFilters,
   getBloggerComments,
   clearBloggerComments,
+  clearBloggerInfo,
 };
 
 export { ActionTypes, ActionCreators };

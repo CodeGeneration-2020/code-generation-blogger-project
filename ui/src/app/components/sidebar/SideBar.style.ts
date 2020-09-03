@@ -2,17 +2,31 @@ import styled from 'styled-components';
 
 export const SideBarContainer = styled.div`
   & .nav {
+    display:flex;
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     top: 0;
     right: 0;
     overflow-x: hidden;
-    background: #e0f7fa;
     transition: 0.4s;
+    & .close-menu{
+      width:30%;
+      background:black;
+      opacity:.5;
+    }
+    & .sidebar{
+      position:relative;
+      width:70%;
+      height: 100%;
+      top: 0;
+      right: 0;
+      overflow-x: hidden;
+      background: #e0f7fa;
+    }
   }
-  & .close-sidebar {
+  & .btn-close-sidebar {
     position: absolute;
     top: 0;
     left: 0;

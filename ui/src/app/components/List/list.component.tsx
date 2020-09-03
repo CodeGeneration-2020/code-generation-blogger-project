@@ -83,7 +83,7 @@ const ListComponent = props => {
           </InfiniteScroll>
         </Styled.BloggerListWrap>
       </Styled.Wrapper>
-      {idBlogger && <SideBar id={idBlogger} />}
+      {<SideBar id={idBlogger} closeSidebarEvent={()=>toggleIdBlogger(undefined)}/>}
     </>
   );
 };

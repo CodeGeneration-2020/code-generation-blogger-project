@@ -43,7 +43,7 @@ export const Avatar = styled('div')`
 `;
 export const DataCol = styled(BloggerListWrap)`
   width: 28%;
-  flex-wrap-wrap;
+  flex-wrap:wrap;
 `;
 export const TagBox = styled(DataCol)`
   border: 3px solid silver;

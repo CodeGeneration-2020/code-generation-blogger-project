@@ -24,7 +24,6 @@ const BloggerDetails: React.FC<{
   idBlogger?: number;
   getBlogger: any;
   getBloggerComments: any;
-  clearBloggerComments: any;
   sexInfo: ISexDetails;
   cityInfo: ICityDetails;
   ageInfo: IAgeDetails;
@@ -42,24 +41,16 @@ const BloggerDetails: React.FC<{
   getBloggerComments,
   comments,
   loading,
-  clearBloggerComments,
 }) => {
   const [toggle, setToggle] = React.useState<boolean>(false);
   const [skipComments, setSkipComments] = React.useState<number>(0);
-
-  const clearComments = () => {
-    setSkipComments(0);
-    clearBloggerComments();
-  };
-
-  React.useEffect(() => {
-    const ig_id = match ? match.params.id : idBlogger;
-    clearComments();
-    getBlogger(ig_id);
-    // eslint-disable-next-line
-  }, [match, idBlogger]);
-
-  React.useEffect(() => {
+  const initBloggerInfo = (id) => {
+    if(id){
+      setSkipComments(0);
+      getBlogger(id);
+      }
+  }
+  const getComments = (bloggerData) =>{
     if (!bloggerData) return;
     getBloggerComments({
       bloggerId: bloggerData._id,
@@ -67,6 +58,16 @@ const BloggerDetails: React.FC<{
       limit: 5,
     });
     setSkipComments(skipComments + 5);
+  }
+
+  React.useEffect(() => {
+    const ig_id = match ? match.params.id : idBlogger;
+    initBloggerInfo(ig_id);
+    // eslint-disable-next-line
+  }, [match, idBlogger]);
+
+  React.useEffect(() => {
+    getComments(bloggerData);
     // eslint-disable-next-line
   },[bloggerData])
 
@@ -184,6 +185,7 @@ const BloggerDetails: React.FC<{
         <Styled.ListComments>
           {comments.length > 0 ? (
             <InfiniteScroll
+              height={500}
               dataLength={comments.length}
               next={() => {
                 getBloggerComments({
@@ -227,6 +229,5 @@ export default connect(
   {
     getBlogger: BloggerActions.ActionCreators.getBloggerById,
     getBloggerComments: BloggerActions.ActionCreators.getBloggerComments,
-    clearBloggerComments: BloggerActions.ActionCreators.clearBloggerComments,
   },
 )(BloggerDetails);

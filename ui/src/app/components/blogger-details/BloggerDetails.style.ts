@@ -205,7 +205,6 @@ export const Result = styled.div`
 export const ListComments = styled.div`
   width: 100%;
   height: 400px;
-  overflow: auto;
   border-top: 2px solid gray;
   & .comment {
     padding: 40px;

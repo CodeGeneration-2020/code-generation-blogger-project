@@ -19,6 +19,12 @@ const BLOGGER_REDUCER = createSlice({
         bloggerComments: [],
       };
     },
+    [ActionTypes.CLEAR_BLOGGER_INFO]: state => {
+      return {
+        ...state,
+        bloggerInfo: {},
+      };
+    },
     [ActionCreators.getBloggerById.fulfilled as any]: (state, action) => {
       state.error = {};
       state.bloggerInfo = action.payload;
