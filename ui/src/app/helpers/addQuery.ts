@@ -1,3 +1,3 @@
 export function addQuery(filter) {
-    return filter ? filter.value : '';
-  }
+  return filter ? filter.value : '';
+}

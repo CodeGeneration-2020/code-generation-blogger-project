@@ -10,6 +10,14 @@ user.get('/blogger/:id', (req, res, next) => {
     userControllerInstance.getBlogger(req, res, next);
 });
 
+user.get('/blogger/:id/comments', (req, res, next) => {
+    userControllerInstance.getBloggerComments(req, res, next);
+});
+
+user.post('/blogger/:id/comment', (req, res, next) => {
+    userControllerInstance.createCommentForBlogger(req, res, next);
+});
+
 user.get('/customer', (req, res, next) => {
     userControllerInstance.getCustomer(req, res, next);
 });

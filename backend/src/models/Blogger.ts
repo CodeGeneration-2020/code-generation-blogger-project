@@ -21,6 +21,7 @@ export type BloggerDocument = mongoose.Document & {
         },
         tags: string[];
         sex: string|undefined;
+        commentId: Number;
 };
 
 
@@ -44,7 +45,8 @@ const userSchema = new mongoose.Schema({
          city:Schema.Types.String
         },
         tags: [{type: Schema.Types.String}],
-        sex:Schema.Types.String
+        sex:Schema.Types.String,
+        commentId: {type:Number, ref: 'Comments'}
 }, { timestamps: true ,_id:false});
 
-export const Blogger = mongoose.model<BloggerDocument>('Bloggers2', userSchema);
+export const Blogger = mongoose.model<BloggerDocument>('Bloggers', userSchema);

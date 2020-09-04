@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const BloggerDetailsContainer = styled.div`
   width: 98%;
-  height: 100%;
+  height: 95vh;
   margin: auto;
   & .toggle-charts {
     width: 100%;
@@ -34,7 +34,12 @@ export const HeaderProfile = styled.div`
     border-radius: 50%;
     border: 1px solid gray;
     & > span {
-      margin-left: 20px;
+      text-align: center;
+    }
+    @media screen and (max-width: 600px) {
+      width: 70px;
+      height: 70px;
+      font-size: 12px;
     }
   }
 
@@ -58,6 +63,9 @@ export const HeaderProfile = styled.div`
         margin-left: 5px;
       }
     }
+    @media screen and (max-width: 600px) {
+      font-size: 14px;
+    }
   }
 
   & .icon {
@@ -74,6 +82,12 @@ export const HeaderProfile = styled.div`
       justify-content: center;
       align-items: center;
       color: lightblue;
+      @media screen and (max-width: 600px) {
+        text-align: center;
+        width: 50px;
+        height: 35px;
+        font-size: 8px;
+      }
     }
   }
 `;
@@ -101,6 +115,9 @@ export const Characteristics = styled.div`
       margin-left: auto;
       margin-top: 10px;
     }
+  }
+  @media screen and (max-width: 600px) {
+    font-size: 12px;
   }
 `;
 
@@ -147,7 +164,7 @@ export const Charts = styled.div`
 
 export const Statistic = styled.div`
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   display: flex;
   padding: 40px 20px;
   @media screen and (max-width: 475px) {
@@ -194,5 +211,19 @@ export const Statistic = styled.div`
       width: 200px;
       height: 200px;
     }
+  }
+`;
+
+export const Result = styled.div`
+  width: 100%;
+  text-align: center;
+`;
+
+export const ListComments = styled.div`
+  width: 100%;
+  height: 400px;
+  border-top: 2px solid gray;
+  & .comment {
+    padding: 40px;
   }
 `;

@@ -3,7 +3,7 @@ const ROUTES = {
     HOME: '/home',
     AUTH: '/auth',
     USERS: '/users',
-    USER: '/user'
+    USER: '/user',
 };
 
 export default ROUTES;

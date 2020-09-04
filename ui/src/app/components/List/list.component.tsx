@@ -9,13 +9,14 @@ import { IBloggerInfo } from '../../../types/components/index';
 import { v4 as uuidv4 } from 'uuid';
 import UsersFiltersContainer from '../../containers/UsersFiltersContainer/UsersFilters';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import BloggerDetails from '../blogger-details/BloggerDetails';
 
 const ListComponent = props => {
-  const [idBlogger, toggleIdBlogger] = React.useState<number | undefined>();
+  const [idBlogger, toggleIdBlogger] = React.useState<number>();
 
-  const openSideBar = async (e, id: number) => {
+  const openSideBar = (e, id: number) => {
     e.preventDefault();
-    await toggleIdBlogger(id);
+    toggleIdBlogger(id);
     openSlideMenu();
   };
 
@@ -83,7 +84,9 @@ const ListComponent = props => {
           </InfiniteScroll>
         </Styled.BloggerListWrap>
       </Styled.Wrapper>
-      {idBlogger && <SideBar id={idBlogger} />}
+      <SideBar>
+        <BloggerDetails idBlogger={idBlogger} />
+      </SideBar>
     </>
   );
 };

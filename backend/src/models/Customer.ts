@@ -8,6 +8,7 @@ export type CustomerDocument = mongoose.Document & {
         profile_picture: string;
         biography: string;
         website: string;
+        commentId: Number;
 };
 
 const customerSchema = new mongoose.Schema({
@@ -18,6 +19,7 @@ const customerSchema = new mongoose.Schema({
         profile_picture:Schema.Types.String,
         biography:Schema.Types.String,
         website:Schema.Types.String,
+        commentId: {type:Number, ref: 'Comments'},
 }, { timestamps: true, _id:false });
 
-export const Customer = mongoose.model<CustomerDocument>('Customer', customerSchema);
+export const Customer = mongoose.model<CustomerDocument>('Customers', customerSchema);
