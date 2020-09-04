@@ -47,4 +47,4 @@ const userSchema = new mongoose.Schema({
         sex:Schema.Types.String
 }, { timestamps: true ,_id:false});
 
-export const Blogger = mongoose.model<BloggerDocument>('Blogger', userSchema);
+export const Blogger = mongoose.model<BloggerDocument>('Bloggers2', userSchema);

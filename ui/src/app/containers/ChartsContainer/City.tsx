@@ -1,5 +1,5 @@
 import React from 'react';
-import BarChart from '../../components/shared/BarChart';
+import BarChart from '../../components/shared/bar-chart/BarChart';
 
 function sortByCountUser(dataUsers) {
   dataUsers.sort((a, b) => (a.value < b.value ? 1 : -1));

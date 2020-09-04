@@ -12,7 +12,7 @@ export const SideBarContainer = styled.div`
     background: #e0f7fa;
     transition: 0.4s;
   }
-  & button {
+  & .close-sidebar {
     position: absolute;
     top: 0;
     left: 0;

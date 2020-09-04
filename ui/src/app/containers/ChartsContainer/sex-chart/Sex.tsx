@@ -6,14 +6,14 @@ import InformationIcon from '../../../../img/information.png';
 const SexPieChart = ({ data }) => {
   return (
     <Styled.SexChartContainer>
-      <div className="header">
+      <Styled.Header>
         <span>Пол</span>
         <img width="20" height="20" src={InformationIcon} alt="i" />
-      </div>
-      <div className="chart">
+      </Styled.Header>
+      <Styled.Chart>
         <PieChart data={[data.women, data.men]} />
-      </div>
-      <div className="sex">
+      </Styled.Chart>
+      <Styled.Sex>
         <div className="men">
           <span>{(100 / (data.women + data.men)) * data.men}%</span>
           <div>Мужчины</div>
@@ -22,7 +22,7 @@ const SexPieChart = ({ data }) => {
           <span>{(100 / (data.women + data.men)) * data.women}%</span>
           <div>Женщины</div>
         </div>
-      </div>
+      </Styled.Sex>
     </Styled.SexChartContainer>
   );
 };

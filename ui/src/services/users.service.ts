@@ -1,5 +1,7 @@
 import API from './api.service';
 import { IApi } from './api.service';
+import { LIMITQUERY } from '../consts/lists';
+import { addQuery } from '../app/helpers/addQuery';
 
 class UsersService {
   apiService: IApi;
@@ -10,11 +12,19 @@ class UsersService {
     return this.apiService.GET(`user/blogger/${bloggerId}`, {});
   }
   getUsers(user) {
-    return this.apiService.GET(`users/${user}?&skip=2&limit=2`, {});
+    return this.apiService.GET(`users/${user}?&skip=0&limit=5`, {});
   }
-  getBloggersByFilters() {
+  getBloggersByFilters(filters, skip = 0, limit = LIMITQUERY) {
     return this.apiService.GET(
-      `users/filters/bloggers?storyPrice=50,20000&postPrice=50,20000&country=Ukraine&city=Kharkiv&tags=sport,food,it&sex=male&skip=0&limit=2`,
+      `users/filters/bloggers?storyPrice=${
+        addQuery(filters.price)
+      }&postPrice=${addQuery(filters.price)}&country=${
+        addQuery(filters.country)
+      }&city=${filters.city ? filters.city.value : ''}&tags=${
+        addQuery(filters.tags)
+      }&sex=${filters.sex ? filters.sex.value : ''}&followers=${
+        addQuery(filters.subscribers)
+      }&skip=${skip}&limit=${limit}`,
       {},
     );
   }

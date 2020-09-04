@@ -1,0 +1,176 @@
+[
+  {
+    "_id": 1,
+    "tags": ["it", "kk"],
+    "ig_id": 1001,
+    "username": "Vasia",
+    "full_name": "Vasia Pupkin",
+    "profile_picture": "picture",
+    "biography": "bio",
+    "website": "insta_url",
+    "metric": {
+      "media": 12,
+      "follows": 1000,
+      "followers": 1221212
+    },
+    "storyPrice": 1000,
+    "postPrice": 1200,
+    "location": {
+      "country": "Ukraine",
+      "city": "Kiev"
+    },
+    "sex": "male",
+    "createdAt": {
+      "$date": "2020-08-20T15:36:21.129Z"
+    },
+    "updatedAt": {
+      "$date": "2020-08-20T15:36:21.129Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": 2,
+    "tags": ["entertainment", "it"],
+    "ig_id": 21001,
+    "username": "Dimon",
+    "full_name": "Dimon Pupkin",
+    "profile_picture": "picture",
+    "biography": "bio",
+    "website": "insta_url",
+    "metric": {
+      "media": 112,
+      "follows": 1000,
+      "followers": 12212
+    },
+    "storyPrice": 1000,
+    "postPrice": 1200,
+    "location": {
+      "country": "Ukraine",
+      "city": "Kiev"
+    },
+    "sex": "male",
+    "createdAt": {
+      "$date": "2020-08-20T15:39:39.704Z"
+    },
+    "updatedAt": {
+      "$date": "2020-08-20T15:39:39.704Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": 3,
+    "ig_id": 211221001,
+    "username": "WASADimon",
+    "full_name": "wDWAPupkin",
+    "profile_picture": "picture",
+    "biography": "bio",
+    "website": "insta_url",
+    "metric": {
+      "media": 1112,
+      "follows": 10020,
+      "followers": 122212
+    },
+    "storyPrice": 10200,
+    "postPrice": 12200,
+    "location": {
+      "country": "Ukraine",
+      "city": "Kharkiv"
+    },
+    "tags": ["sport", "meetings"],
+    "sex": "male",
+    "createdAt": {
+      "$date": "2020-08-20T15:42:33.328Z"
+    },
+    "updatedAt": {
+      "$date": "2020-08-20T15:42:33.328Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": 4,
+    "tags": ["web", "mobile"],
+    "ig_id": 211221012101,
+    "username": "Linka",
+    "full_name": "Lina Ball",
+    "profile_picture": "picture",
+    "biography": "bio",
+    "website": "insta_url",
+    "metric": {
+      "media": 1112,
+      "follows": 2210020,
+      "followers": 2122212
+    },
+    "storyPrice": 1200,
+    "postPrice": 11200,
+    "location": {
+      "country": "Ukraine",
+      "city": "London"
+    },
+    "sex": "female",
+    "createdAt": {
+      "$date": "2020-08-21T10:16:57.114Z"
+    },
+    "updatedAt": {
+      "$date": "2020-08-21T10:16:57.114Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": 5,
+    "tags": ["ios", "android"],
+    "ig_id": 777101,
+    "username": "Dina",
+    "full_name": "Dina DeParol",
+    "profile_picture": "picture",
+    "biography": "bio",
+    "website": "insta_url",
+    "metric": {
+      "media": 112,
+      "follows": 120,
+      "followers": 1200212
+    },
+    "storyPrice": 1200,
+    "postPrice": 11200,
+    "location": {
+      "country": "Ukraine",
+      "city": "Paris"
+    },
+    "sex": "male",
+    "createdAt": {
+      "$date": "2020-08-21T10:20:02.707Z"
+    },
+    "updatedAt": {
+      "$date": "2020-08-21T10:20:02.707Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": 6,
+    "tags": ["sport", "meetings"],
+    "ig_id": 234234432,
+    "username": "DanaPhotki",
+    "full_name": "Dana Bogdana",
+    "profile_picture": "instaPicture",
+    "biography": "my biography",
+    "website": "insta/dana/221221",
+    "metric": {
+      "media": 123,
+      "follows": 120,
+      "followers": 100500
+    },
+    "storyPrice": 8000,
+    "postPrice": 15200,
+    "location": {
+      "country": "Ukraine",
+      "city": "Kharkiv"
+    },
+    "sex": "male",
+    "createdAt": {
+      "$date": "2020-08-22T13:46:13.253Z"
+    },
+    "updatedAt": {
+      "$date": "2020-08-22T13:46:13.253Z"
+    },
+    "__v": 0
+  }
+]

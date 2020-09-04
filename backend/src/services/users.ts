@@ -6,6 +6,7 @@ interface Ifilters{
     city: string;
     storyPrice: string;
     postPrice: string;
+    followers:string;
     tags: string;
     sex: string;
     skip: string;
@@ -26,20 +27,24 @@ class UsersService {
         return Customer.find().skip(skip).limit(limit);
     }
     async getBloggersByFilters(filters: Ifilters){
-        const storyPrice = filters.storyPrice.split(',');
-        const postPrice = filters.postPrice.split(',');
-        const tags = filters.tags.split(',');
-        const location = {country:filters.country,city:filters.city};
-        const bloggers = await Blogger.find({
-            storyPrice: {$gte:+storyPrice[0], $lte:+storyPrice[1]},
-            postPrice: {$gte:+postPrice[0], $lte:+postPrice[1]},
-            tags: { $in: tags },
-            sex:filters.sex,
-            location:{"country":filters.country,"city":filters.city},
+        const storyPrice = filters.storyPrice && filters.storyPrice.split(',');
+        const postPrice = filters.postPrice && filters.postPrice.split(',');
+        const followers = filters.followers && filters.followers.split(',');
+        const tags = filters.tags && filters.tags!=='null' && filters.tags.split(',');
+        const country = filters.country && filters.country!=='null' && filters.country.split(',');
+        const city = filters.city && filters.city!=='null' && filters.city.split(',');
+        const sex =  filters.sex && filters.sex!=='null' && filters.sex==='any' ? ['male','female'] : filters.sex;
+        return await Blogger.find({
+            storyPrice: storyPrice ?  {$gte:+storyPrice[0], $lte:+storyPrice[1]} : {$ne:storyPrice},
+            postPrice: postPrice ? {$gte:+postPrice[0], $lte:+postPrice[1]} : {$ne:postPrice},
+            "metric.followers": followers ? {$gte:+followers[0], $lte:+followers[1]} : {$ne:followers},
+            tags: tags ? { $in: tags } : {$ne:tags},
+            sex: sex ? { $in: sex } : {$ne:sex},
+            "location.country":country ? {$in:country} : {$ne:country},
+            "location.city":city ? {$in:city} : {$ne:city},
         }).skip(+filters.skip).limit(+filters.limit);
-        console.log(filters,bloggers)
-        return bloggers;
     }
 }
 
 module.exports = UsersService;
+
