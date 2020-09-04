@@ -7,7 +7,7 @@ const ActionTypes = {
   GET_BLOGGER_BY_FILTERS: '[BLOGGER] get_bloggers_by_filters',
   GET_BLOGGER_COMMENTS: '[BLOGGER] get_blogger_comments',
   CLEAR_BLOGGER_COMMENTS: '[BLOGGER] clear_blogger_comments',
-  CLEAR_BLOGGER_INFO:  '[BLOGGER] clear_blogger_info',
+  CLEAR_BLOGGER_INFO: '[BLOGGER] clear_blogger_info',
 };
 
 const clearBloggerComments = createAction(ActionTypes.CLEAR_BLOGGER_COMMENTS);
@@ -45,7 +45,6 @@ const getBloggerComments = createAsyncThunk(
 const getBloggersPagination = createAsyncThunk(
   ActionTypes.GET_BLOGGERS_PAGINATION,
   async (data: any) => {
-    console.log(data);
     const response = await UsersService.getBloggersByFilters(
       data.filters,
       data.skip,

@@ -1,43 +1,43 @@
 import styled from 'styled-components';
 
 export const SideBarContainer = styled.div`
-  & .nav {
-    display:flex;
-    height: 100%;
-    width: 0;
+  & .nav-items {
     position: fixed;
-    z-index: 2;
     top: 0;
     right: 0;
-    overflow-x: hidden;
-    transition: 0.4s;
-    & .close-menu{
-      width:30%;
-      background:black;
-      opacity:.5;
+    z-index: 2;
+    height: 100%;
+    width: 70%;
+    background: #e0f7fa;
+    transform: translateX(100%);
+    transition: transform 0.3s;
+    /* scroll style */
+    overflow: auto;
+    ::-webkit-scrollbar {
+      width: 0px;
     }
-    & .sidebar{
-      position:relative;
-      width:70%;
-      height: 100%;
-      top: 0;
-      right: 0;
-      overflow-x: hidden;
-      background: #e0f7fa;
+    /* end scroll style */
+  }
+  & .nav-open {
+    & .nav-items {
+      transform: translateX(0);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+    & .nav-overlay {
+      visibility: visible;
+      opacity: 1;
     }
   }
-  & .btn-close-sidebar {
-    position: absolute;
+  & .nav-overlay {
+    position: fixed;
     top: 0;
     left: 0;
-    background-color: black;
-    color: red;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-    cursor: pointer;
-    font-weight: 900;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
   }
 `;

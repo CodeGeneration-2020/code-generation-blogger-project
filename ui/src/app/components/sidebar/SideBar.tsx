@@ -1,51 +1,25 @@
 import React from 'react';
 import * as Styled from './SideBar.style';
-import BloggerDetails from '../blogger-details/BloggerDetails';
-import {connect} from 'react-redux';
-import * as BloggerActions from '../../../store/blogger/actions';
-
 
 export const openSlideMenu = () => {
   let menu: any = document.getElementById('menu');
-  menu.style.width = '100%';
+  menu.classList.add('nav-open');
 };
 
 export const closeSlideMenu = () => {
   const menu: any = document.getElementById('menu');
-  menu.style.width = '0';
+  menu.classList.remove('nav-open');
 };
 
-const SideBar = ({ id, clearBloggerComments, clearBloggerInfo, closeSidebarEvent }) => {
-  const closeSlideBar = () =>{
-    closeSlideMenu();
-    clearBloggerComments();
-    clearBloggerInfo();
-    closeSidebarEvent();
-  }
+const SideBar = ({ children }) => {
   return (
     <Styled.SideBarContainer>
       <div id="menu" className="nav">
-        <div className="close-menu" onClick={closeSlideBar} />
-        <div className="sidebar">
-        <button
-          className="btn-close-sidebar"
-          onClick={() => {
-            closeSlideBar();
-          }}
-        >
-          X
-        </button>
-        <BloggerDetails idBlogger={id} />
-        </div>
+        <div className="nav-items">{children}</div>
+        <div className="nav-overlay" onClick={closeSlideMenu} />
       </div>
     </Styled.SideBarContainer>
   );
 };
 
-export default connect(null,
-  {
-    clearBloggerComments: BloggerActions.ActionCreators.clearBloggerComments,
-    clearBloggerInfo: BloggerActions.ActionCreators.clearBloggerInfo,
-  }
-  )(SideBar);
-
+export default SideBar;

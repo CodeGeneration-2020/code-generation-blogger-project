@@ -24,6 +24,7 @@ const BloggerDetails: React.FC<{
   idBlogger?: number;
   getBlogger: any;
   getBloggerComments: any;
+  clearComments: any;
   sexInfo: ISexDetails;
   cityInfo: ICityDetails;
   ageInfo: IAgeDetails;
@@ -39,18 +40,20 @@ const BloggerDetails: React.FC<{
   ageInfo,
   bloggerData,
   getBloggerComments,
+  clearComments,
   comments,
   loading,
 }) => {
   const [toggle, setToggle] = React.useState<boolean>(false);
   const [skipComments, setSkipComments] = React.useState<number>(0);
-  const initBloggerInfo = (id) => {
-    if(id){
+  const initBloggerInfo = id => {
+    if (id) {
       setSkipComments(0);
+      clearComments();
       getBlogger(id);
-      }
-  }
-  const getComments = (bloggerData) =>{
+    }
+  };
+  const getComments = bloggerData => {
     if (!bloggerData) return;
     getBloggerComments({
       bloggerId: bloggerData._id,
@@ -58,7 +61,7 @@ const BloggerDetails: React.FC<{
       limit: 5,
     });
     setSkipComments(skipComments + 5);
-  }
+  };
 
   React.useEffect(() => {
     const ig_id = match ? match.params.id : idBlogger;
@@ -106,7 +109,6 @@ const BloggerDetails: React.FC<{
               Post: {bloggerData && bloggerData.postPrice}$
             </span>
             <span className="story">
-              {' '}
               Story: {bloggerData && bloggerData.storyPrice}$
             </span>
           </div>
@@ -229,5 +231,6 @@ export default connect(
   {
     getBlogger: BloggerActions.ActionCreators.getBloggerById,
     getBloggerComments: BloggerActions.ActionCreators.getBloggerComments,
+    clearComments: BloggerActions.ActionCreators.clearBloggerComments,
   },
 )(BloggerDetails);

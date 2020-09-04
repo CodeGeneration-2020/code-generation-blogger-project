@@ -11,9 +11,10 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
-  #root {
-    min-height: 100%;
-    min-width: 100%;
+  #root{
+    min-height:100%;
+    max-width: 100vw; 
+    overflow-x:hidden;
   }
 
   p,
