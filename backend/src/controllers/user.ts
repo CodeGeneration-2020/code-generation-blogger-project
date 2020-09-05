@@ -24,8 +24,7 @@ const dataCity = [
   const dataSex = {
     men: 400,
     women: 600,
-  };
-  
+  };  
 
 class User {
 
@@ -40,7 +39,6 @@ class User {
         } catch (e) {
             return next(e);
         }
-
     }
 
     async getBloggerComments(req: Request, res: Response, next: NextFunction) {
@@ -50,7 +48,6 @@ class User {
         } catch (e) {
             return next(e);
         }
-
     }
 
     async createCommentForBlogger(req: Request, res: Response, next: NextFunction) {
@@ -60,7 +57,6 @@ class User {
         } catch (e) {
             return next(e);
         }
-
     }
 
     async getCustomer(req: Request, res: Response, next: NextFunction) {
@@ -70,8 +66,7 @@ class User {
         } catch (e) {
             return next(e);
         }
-
-    }
+    }    
 }
 
 export default User;

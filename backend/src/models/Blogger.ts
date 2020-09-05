@@ -18,7 +18,7 @@ export type BloggerDocument = mongoose.Document & {
         location: {
                 country:string;
                 city:string;
-        },
+        };
         tags: string[];
         sex: string|undefined;
         commentId: Number;
