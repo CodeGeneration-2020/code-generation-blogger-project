@@ -5,7 +5,7 @@ export const SideBarContainer = styled.div`
     position: fixed;
     top: 0;
     right: 0;
-    z-index: 2;
+    z-index: 200;
     height: 100%;
     width: 70%;
     background: #e0f7fa;
@@ -29,6 +29,7 @@ export const SideBarContainer = styled.div`
     }
   }
   & .nav-overlay {
+    z-index: 100;
     position: fixed;
     top: 0;
     left: 0;
