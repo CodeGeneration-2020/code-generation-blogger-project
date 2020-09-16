@@ -32,7 +32,6 @@ class Users {
         } catch (e) {
             return next(e);
         }
-
     }
 }
 

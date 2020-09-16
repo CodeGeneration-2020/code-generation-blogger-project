@@ -38,6 +38,8 @@ mongoose.connect(mongoUrl, { useNewUrlParser: true, useCreateIndex: true, useUni
     // process.exit();
 });
 
+mongoose.set('useFindAndModify', false);
+
 // Express configuration
 app.use(corsMiddleware);
 app.set('port', process.env.PORT || 4200);

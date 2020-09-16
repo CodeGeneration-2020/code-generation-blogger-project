@@ -4,6 +4,7 @@ const ROUTES = {
     AUTH: '/auth',
     USERS: '/users',
     USER: '/user',
+    JOB: '/job'
 };
 
 export default ROUTES;
