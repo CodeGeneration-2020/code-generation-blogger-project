@@ -1,9 +1,10 @@
-import {Jobs,JobsDocumnet} from '../models/Jobs';
+import {Jobs,JobsDocumnet,ITags} from '../models/Jobs';
+
 
 export interface ICreateJobBody{
     title: String;
     budget: Number;
-    tags: String[];
+    tags: ITags[];
     description: String;
     contact:{
         phone: String;
@@ -29,11 +30,12 @@ export interface IJobService{
 class JobService implements IJobService  {
   
     async createJob(id:number,body:ICreateJobBody){
+        console.log(body)
         const jobs = new Jobs({
             customerId:id,
             status: true,
-            title:body.title,
-            budget:body.budget,
+            title: body.title,
+            budget: body.budget,
             tags: body.tags,
             description: body.description,
             contact:{
@@ -72,4 +74,3 @@ class JobService implements IJobService  {
 }
 
 export default JobService;
-

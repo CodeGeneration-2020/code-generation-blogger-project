@@ -1,12 +1,16 @@
 import mongoose from 'mongoose';
 
+export interface ITags{
+    value:String;
+    label:String;
+}
 
 export type JobsDocumnet = mongoose.Document & {
     customerId:Number;
     status:boolean;
     title:String;
     budget:Number;
-    tags:String[];
+    tags:ITags[];
     description:String;
     contact:{
         phone: String;
@@ -25,7 +29,7 @@ const JobsSchema = new mongoose.Schema({
     status: mongoose.Schema.Types.Boolean,
     title: mongoose.Schema.Types.String,
     budget: mongoose.Schema.Types.Number,
-    tags: [{type: mongoose.Schema.Types.String}],
+    tags: Array,
     description: mongoose.Schema.Types.String,
     contact:{
         phone: mongoose.Schema.Types.String,

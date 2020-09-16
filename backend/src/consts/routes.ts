@@ -5,7 +5,8 @@ const ROUTES = {
     USERS: '/users',
     USER: '/user',
     JOB: '/job',
-    TAGS: '/tags'
+    TAGS: '/tags',
+    LOCATION: '/location',
 };
 
 export default ROUTES;
