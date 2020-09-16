@@ -71,5 +71,5 @@ class JobService implements IJobService  {
     }
 }
 
-module.exports = JobService;
+export default JobService;
 

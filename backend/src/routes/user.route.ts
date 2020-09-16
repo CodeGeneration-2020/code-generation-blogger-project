@@ -1,5 +1,5 @@
 import { Router } from 'express';
-const UserService =  require ('../services/user');
+import UserService from '../services/user';
 import UserController from '../controllers/user';
 
 const user = Router();
