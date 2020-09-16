@@ -10,6 +10,8 @@ import { createReducer } from './reducers';
 import FILTERS_REDUCER from './filters/reducer';
 import JOB_REDUCER from './job/reducer';
 import BLOGGER_REDUCER from './blogger/reducer';
+import TAGS_REDUCER from './tags/reducer';
+
 export function configureAppStore() {
   const reduxSagaMonitorOptions = {};
   const sagaMiddleware = createSagaMiddleware(reduxSagaMonitorOptions);
@@ -30,6 +32,7 @@ export function configureAppStore() {
       BLOGGER_REDUCER: BLOGGER_REDUCER.reducer,
       FILTERS_REDUCER: FILTERS_REDUCER.reducer,
       JOB_REDUCER: JOB_REDUCER.reducer,
+      TAGS_REDUCER: TAGS_REDUCER.reducer,
     }),
     middleware: [...getDefaultMiddleware(), ...middlewares],
     devTools: process.env.NODE_ENV !== 'production',

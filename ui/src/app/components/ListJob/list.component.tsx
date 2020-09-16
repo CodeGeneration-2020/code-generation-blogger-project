@@ -18,7 +18,8 @@ const ListJob = ({ getAllJobs, jobs, loading }) => {
 
   React.useEffect(() => {
     getAllJobs();
-  }, [getAllJobs]);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>
@@ -47,7 +48,7 @@ const ListJob = ({ getAllJobs, jobs, loading }) => {
                 <div className="tags">
                   {job.tags.map(tag => (
                     <div className="tag" key={uuidv4()}>
-                      {tag}
+                      {tag.label}
                     </div>
                   ))}
                 </div>

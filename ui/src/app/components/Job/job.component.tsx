@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as Styled from './job.styles';
 import { ActionCreators } from '../../../store/job/actions';
+import { ActionCreators as TagsAC } from '../../../store/tags/actions';
 import { v4 as uuidv4 } from 'uuid';
+import Select from 'react-select';
 
 const Job: React.FC<{
   match?: any;
@@ -17,12 +19,16 @@ const Job: React.FC<{
   setAdditionalContacts: any;
   setCountry: any;
   setCity: any;
+  setTags: any;
   toggleEditMode: any;
   createJob: any;
   editJob: any;
   getJobById: any;
+  getTags: any;
   newJob?: boolean;
+  tags: any;
 }> = ({
+  getTags,
   editMode,
   job,
   setTitle,
@@ -33,6 +39,7 @@ const Job: React.FC<{
   setAdditionalContacts,
   setCountry,
   setCity,
+  setTags,
   toggleEditMode,
   createJob,
   editJob,
@@ -40,6 +47,7 @@ const Job: React.FC<{
   match,
   currentJobId,
   newJob,
+  tags,
 }) => {
   const [readonly, setReadonly] = React.useState(true);
 
@@ -48,14 +56,17 @@ const Job: React.FC<{
       toggleEditMode('on');
       setReadonly(false);
     }
-  }, [newJob, toggleEditMode]);
+    getTags();
+    // eslint-disable-next-line
+  },[]);
 
   useEffect(() => {
     const id = match ? match.params.id : currentJobId;
     if (id) {
       getJobById(id);
     }
-  }, [match, currentJobId, getJobById]);
+    // eslint-disable-next-line
+  }, [match, currentJobId]);
 
   const saveJob = () => {
     toggleEditMode('off');
@@ -105,9 +116,21 @@ const Job: React.FC<{
           </div>
         </Styled.Description>
         <Styled.Tags>
-          {job.tags.map(tag => (
-            <div key={uuidv4()}>{tag}</div>
-          ))}
+          {editMode
+            ? tags.length > 0 && (
+                <>
+                  TAGS:
+                  <Select
+                    isMulti
+                    options={tags}
+                    defaultValue={job.tags}
+                    onChange={tag => {
+                      setTags(tag);
+                    }}
+                  />
+                </>
+              )
+            : job.tags.map(tag => <div key={uuidv4()}>{tag.label}</div>)}
         </Styled.Tags>
       </Styled.JobHeader>
       <Styled.Contact>
@@ -207,9 +230,10 @@ const Job: React.FC<{
 
 export default connect(
   (state: any) => {
-    const { JOB_REDUCER } = state;
+    const { JOB_REDUCER, TAGS_REDUCER } = state;
     return {
       job: JOB_REDUCER.job,
+      tags: TAGS_REDUCER.tags,
       editMode: JOB_REDUCER.editMode.status,
     };
   },
@@ -222,9 +246,11 @@ export default connect(
     setAdditionalContacts: ActionCreators.setAdditionalContacts,
     setCountry: ActionCreators.setCountry,
     setCity: ActionCreators.setCity,
+    setTags: ActionCreators.setTags,
     toggleEditMode: ActionCreators.toggleEditMode,
     createJob: ActionCreators.createJob,
     editJob: ActionCreators.editJob,
     getJobById: ActionCreators.getJobById,
+    getTags: TagsAC.getTags,
   },
 )(Job);

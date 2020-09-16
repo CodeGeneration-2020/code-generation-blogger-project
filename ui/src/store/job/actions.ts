@@ -15,6 +15,7 @@ const ActionTypes = {
   EDIT_JOB_BY_ID: '[JOB] edit_job_by_id',
   GET_ALL_JOBS: '[JOB] get_all_jobs',
   GET_JOB_BY_ID: '[JOB] get_job_by_id',
+  SET_TAGS: '[JOB] set_tags',
 };
 
 const createJob = createAsyncThunk(
@@ -49,6 +50,7 @@ const setAdditionalContacts = createAction(ActionTypes.SET_ADDITIONAL_CONTACTS);
 const setCountry = createAction(ActionTypes.SET_COUNTRY);
 const setCity = createAction(ActionTypes.SET_CITY);
 const toggleEditMode = createAction(ActionTypes.TOGGLE_EDIT_MODE);
+const setTags = createAction(ActionTypes.SET_TAGS);
 
 const ActionCreators = {
   setTitle,
@@ -64,6 +66,7 @@ const ActionCreators = {
   editJob,
   getAllJobs,
   getJobById,
+  setTags,
 };
 
 export { ActionTypes, ActionCreators };

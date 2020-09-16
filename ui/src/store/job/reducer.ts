@@ -89,6 +89,9 @@ const JOB_REDUCER = createSlice({
     [ActionCreators.setCity as any]: (state, action) => {
       state.job.location.city = action.payload;
     },
+    [ActionCreators.setTags as any]: (state, action) => {
+      state.job.tags = action.payload;
+    },
   },
 } as any);
 
