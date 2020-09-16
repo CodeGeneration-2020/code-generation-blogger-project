@@ -1,5 +1,5 @@
 import { Router } from 'express';
-const JobService =  require ('../services/job');
+import JobService from '../services/job';
 import JobController from '../controllers/job';
 
 const job = Router();

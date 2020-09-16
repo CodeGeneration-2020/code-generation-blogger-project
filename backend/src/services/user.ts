@@ -40,5 +40,5 @@ class UserService implements IUserService  {
 
 }
 
-module.exports = UserService;
+export default UserService;
 

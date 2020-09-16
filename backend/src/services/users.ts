@@ -14,9 +14,9 @@ interface Ifilters{
 }
 
 export interface IUsersService{
-    getAllBloggers: (limit: number,skip: number) => BloggerDocument;
-    getAllCustomers: (limit: number,skip: number) => CustomerDocument;
-    getBloggersByFilters: (filters: Ifilters) => BloggerDocument;
+    getAllBloggers: (limit: number,skip: number) => Promise<BloggerDocument[]>;
+    getAllCustomers: (limit: number,skip: number) => Promise<CustomerDocument[]>;
+    getBloggersByFilters: (filters: Ifilters) => Promise<BloggerDocument[]>;
 }
 
 class UsersService {
@@ -46,5 +46,5 @@ class UsersService {
     }
 }
 
-module.exports = UsersService;
+export default UsersService;
 

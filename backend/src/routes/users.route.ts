@@ -1,6 +1,5 @@
 import { Router } from 'express';
-const UsersService = require('../services/users');
-
+import UsersService from '../services/users';
 import UsersController from '../controllers/users';
 
 const users = Router();
