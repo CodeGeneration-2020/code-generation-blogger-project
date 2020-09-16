@@ -3,7 +3,6 @@ import AuthController from '../controllers/authController';
 import AuthService from '../services/auth.service';
 import InstagramService from '../services/insta.service';
 
-
 const auth = Router();
 
 const instaService = new InstagramService();

@@ -1,17 +1,20 @@
 import {Jobs,JobsDocumnet} from '../models/Jobs';
 
-
 export interface ICreateJobBody{
     title: String;
     budget: Number;
     tags: String[];
     description: String;
-    phone: String;
-    email: String;
+    contact:{
+        phone: String;
+        email: String;
+    };
     additional_contacts: String;
     attachments: String[];
-    country : String;
-    city: String;
+    location:{
+        country : String;
+        city: String;
+    };
 }
 
 export interface IJobService{
@@ -20,7 +23,7 @@ export interface IJobService{
     getAllJobs: () => Promise<JobsDocumnet[]>;
     getJobById: (id:string) => Promise<JobsDocumnet>;
     updateStatusJobById: (id:string,status:boolean) => Promise<JobsDocumnet>;
-    updateJobById: (id:string,body:ICreateJobBody) =>  Promise<JobsDocumnet>;
+    updateJobById: (id:string,body:JobsDocumnet) =>  Promise<JobsDocumnet>;
 }
 
 class JobService implements IJobService  {
@@ -34,14 +37,14 @@ class JobService implements IJobService  {
             tags: body.tags,
             description: body.description,
             contact:{
-                phone: body.phone,
-                email: body.email,
+                phone: body.contact.phone,
+                email: body.contact.email,
             },
             additional_contacts: body.additional_contacts,
             attachments: body.attachments,
             location: {
-                country: body.country,
-                city: body.city,
+                country: body.location.country,
+                city: body.location.city,
             }
         });
         await jobs.save();
@@ -63,14 +66,10 @@ class JobService implements IJobService  {
         return Jobs.findByIdAndUpdate(id,{status},{new:true});
     }
 
-    async updateJobById(id:string,body:ICreateJobBody){
-        const phone = body.phone ? {'contact.phone':body.phone} : '';
-        const email = body.email ? {'contact.email':body.email} : '';
-        const country = body.country ? {'location.country': body.country} : '';
-        const city = body.city ? {'location.city': body.city} : '';
-        return Jobs.findByIdAndUpdate(id,{...body,...phone,...email, ...country, ...city},{new:true});
+    async updateJobById(id:string,body:JobsDocumnet){
+        return Jobs.findByIdAndUpdate(id,{...body},{new:true});
     }
 }
 
-module.exports = JobService;
+export default JobService;
 
