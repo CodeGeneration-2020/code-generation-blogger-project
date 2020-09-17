@@ -8,6 +8,12 @@ class JobService {
   getTags() {
     return this.apiService.GET('tags/', {});
   }
+  getCity() {
+    return this.apiService.GET('location/city/', {});
+  }
+  getCountry() {
+    return this.apiService.GET('location/country/', {});
+  }
 }
 
 const instance = new JobService(new API());

@@ -1,4 +1,4 @@
-import {Jobs,JobsDocumnet,ITags} from '../models/Jobs';
+import {Jobs,JobsDocumnet,ITags,ILocation} from '../models/Jobs';
 
 
 export interface ICreateJobBody{
@@ -13,8 +13,8 @@ export interface ICreateJobBody{
     additional_contacts: String;
     attachments: String[];
     location:{
-        country : String;
-        city: String;
+        countries : ILocation[];
+        cities: ILocation[];
     };
 }
 
@@ -30,7 +30,6 @@ export interface IJobService{
 class JobService implements IJobService  {
   
     async createJob(id:number,body:ICreateJobBody){
-        console.log(body)
         const jobs = new Jobs({
             customerId:id,
             status: true,
@@ -45,8 +44,8 @@ class JobService implements IJobService  {
             additional_contacts: body.additional_contacts,
             attachments: body.attachments,
             location: {
-                country: body.location.country,
-                city: body.location.city,
+                countries: body.location.countries,
+                cities: body.location.cities,
             }
         });
         await jobs.save();

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ActionCreators } from './actions';
+import { ActionCreators, ActionTypes } from './actions';
 
 const initialState = {
   listJobs: [],
@@ -14,15 +14,14 @@ const initialState = {
     },
     additional_contacts: '',
     location: {
-      country: '',
-      city: '',
+      countries: [],
+      cities: [],
     },
     attachments: [],
+    _id: '',
+    customerId: {},
   },
-  editMode: {
-    status: false,
-    prevState: undefined,
-  },
+  editMode: false,
   loading: false,
 };
 
@@ -50,47 +49,11 @@ const JOB_REDUCER = createSlice({
     [ActionCreators.getAllJobs.rejected as any]: state => {
       state.loading = false;
     },
-    [ActionCreators.setTitle as any]: (state, action) => {
-      state.job.title = action.payload;
-    },
-    [ActionCreators.setBudget as any]: (state, action) => {
-      state.job.budget = action.payload;
-    },
-    [ActionCreators.setDescription as any]: (state, action) => {
-      state.job.description = action.payload;
-    },
-    [ActionCreators.setPhone as any]: (state, action) => {
-      state.job.contact.phone = action.payload;
-    },
-    [ActionCreators.setEmail as any]: (state, action) => {
-      state.job.contact.email = action.payload;
-    },
-    [ActionCreators.setAdditionalContacts as any]: (state, action) => {
-      state.job.additional_contacts = action.payload;
-    },
-    [ActionCreators.toggleEditMode as any]: (state, action) => {
-      if (action.payload === 'on') {
-        state.editMode.prevState = state.job;
-        state.editMode.status = true;
-      }
-      if (action.payload === 'off') {
-        state.editMode.prevState = undefined;
-        state.editMode.status = false;
-      }
-      if (action.payload === 'break' && state.editMode.status) {
-        state.job = state.editMode.prevState;
-        state.editMode.prevState = undefined;
-        state.editMode.status = false;
-      }
-    },
-    [ActionCreators.setCountry as any]: (state, action) => {
-      state.job.location.country = action.payload;
-    },
-    [ActionCreators.setCity as any]: (state, action) => {
-      state.job.location.city = action.payload;
-    },
-    [ActionCreators.setTags as any]: (state, action) => {
-      state.job.tags = action.payload;
+    [ActionTypes.TOGGLE_EDIT_MODE]: (state, action) => {
+      return {
+        ...state,
+        editMode: action.payload,
+      };
     },
   },
 } as any);

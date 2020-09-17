@@ -10,7 +10,7 @@ import { createReducer } from './reducers';
 import FILTERS_REDUCER from './filters/reducer';
 import JOB_REDUCER from './job/reducer';
 import BLOGGER_REDUCER from './blogger/reducer';
-import TAGS_REDUCER from './tags/reducer';
+import SHARED_DATA_REDUCER from './sharedData/reducer';
 
 export function configureAppStore() {
   const reduxSagaMonitorOptions = {};
@@ -32,7 +32,7 @@ export function configureAppStore() {
       BLOGGER_REDUCER: BLOGGER_REDUCER.reducer,
       FILTERS_REDUCER: FILTERS_REDUCER.reducer,
       JOB_REDUCER: JOB_REDUCER.reducer,
-      TAGS_REDUCER: TAGS_REDUCER.reducer,
+      SHARED_DATA_REDUCER: SHARED_DATA_REDUCER.reducer,
     }),
     middleware: [...getDefaultMiddleware(), ...middlewares],
     devTools: process.env.NODE_ENV !== 'production',

@@ -8,9 +8,9 @@ import Job from '../Job/job.component';
 import { v4 as uuidv4 } from 'uuid';
 
 const ListJob = ({ getAllJobs, jobs, loading }) => {
-  const [jobId, toggleJobId] = React.useState<number>();
+  const [jobId, toggleJobId] = React.useState<string>();
 
-  const openSideBar = (e, id: number) => {
+  const openSideBar = (e, id: string) => {
     e.preventDefault();
     toggleJobId(id);
     openSlideMenu();
@@ -41,8 +41,16 @@ const ListJob = ({ getAllJobs, jobs, loading }) => {
                   <div className="budget">{job.budget}</div>
                   <div className="location">
                     <div>Предпочтительная локация:</div>
-                    <span className="country">{job.location.country},</span>
-                    <span className="city">{job.location.city}</span>
+                    <span className="country">
+                      {job.location.countries.map(c => (
+                        <span key={uuidv4()}>{c.label},</span>
+                      ))}
+                    </span>
+                    <div className="city">
+                      {job.location.cities.map(c => (
+                        <span key={uuidv4()}>{c.label},</span>
+                      ))}
+                    </div>
                   </div>
                 </div>
                 <div className="tags">

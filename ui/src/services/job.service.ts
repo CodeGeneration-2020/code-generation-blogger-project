@@ -10,8 +10,8 @@ class JobService {
       ...job,
     });
   }
-  editJob(job) {
-    return this.apiService.PUT(`job/${job._id}`, {
+  editJob(job, jobId) {
+    return this.apiService.PUT(`job/${jobId}`, {
       ...job,
     });
   }

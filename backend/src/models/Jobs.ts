@@ -5,6 +5,11 @@ export interface ITags{
     label:String;
 }
 
+export interface ILocation{
+    value:String;
+    label:String;
+}
+
 export type JobsDocumnet = mongoose.Document & {
     customerId:Number;
     status:boolean;
@@ -17,8 +22,8 @@ export type JobsDocumnet = mongoose.Document & {
         email: String;
     };
     location: {
-        country:string;
-        city:string;
+        countries:ILocation[];
+        cities:ILocation[];
     };
     additional_contacts: String;
     attachments: String[];
@@ -36,8 +41,8 @@ const JobsSchema = new mongoose.Schema({
         email: mongoose.Schema.Types.String,
     },
     location:{
-        country: mongoose.Schema.Types.String,
-        city: mongoose.Schema.Types.String
+        countries: Array,
+        cities: Array
     },
     additional_contacts: mongoose.Schema.Types.String,
     attachments: [{type: mongoose.Schema.Types.String}],
