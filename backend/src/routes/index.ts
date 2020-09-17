@@ -7,6 +7,7 @@ import users from './users.route';
 import user from './user.route';
 import job from './job.route';
 import tag from './tags.route';
+import location from './location.route';
 
 export default (app: Application) => {
     app.use(ROUTES.HOME, home);
@@ -15,4 +16,5 @@ export default (app: Application) => {
     app.use(ROUTES.USER, user);
     app.use(ROUTES.JOB, job);
     app.use(ROUTES.TAGS, tag);
+    app.use(ROUTES.LOCATION, location);
 };
