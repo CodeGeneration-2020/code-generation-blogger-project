@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import * as Styled from './list.styles';
 import { ActionCreators } from '../../../store/job/actions';
 import SideBar, { openSlideMenu } from '../sidebar/SideBar';
-import Job from '../Job/job.component';
 import { v4 as uuidv4 } from 'uuid';
+import JobContainer from '../../containers/JobContainer';
 
 const ListJob = ({ getAllJobs, jobs, loading }) => {
   const [jobId, toggleJobId] = React.useState<string>();
@@ -66,7 +66,7 @@ const ListJob = ({ getAllJobs, jobs, loading }) => {
         </Styled.ListJobsContainer>
       )}
       <SideBar>
-        <Job currentJobId={jobId} />
+        <JobContainer jobId={jobId} />
       </SideBar>
     </>
   );

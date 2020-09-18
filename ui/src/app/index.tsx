@@ -16,7 +16,7 @@ import { HomePage } from './containers/HomePage/Loadable';
 import { NotFoundPage } from './components/NotFoundPage/Loadable';
 import Filters from './components/List/list.component';
 import BloggerDetails from './components/blogger-details/BloggerDetails';
-import Job from './components/Job/job.component';
+import Job from './containers/JobContainer';
 import ListJob from './components/ListJob/list.component';
 
 export function App() {
