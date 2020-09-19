@@ -5,20 +5,17 @@ import { ActionCreators as JobAC } from '../../../store/job/actions';
 import { ActionCreators } from '../../../store/sharedData/actions';
 import { connect } from 'react-redux';
 import { Buttons } from '../../components/Job/job.styles';
+import { FormikValues } from 'formik';
 
 const JobContainer = props => {
   const isOwner = true;
 
-  let submitMyForm: any;
+  const formRef = React.useRef<FormikValues>();
 
-  const handleSubmitMyForm = e => {
-    if (submitMyForm) {
-      submitMyForm(e);
+  const handleSubmit = () => {
+    if (formRef.current) {
+      formRef.current.handleSubmit();
     }
-  };
-
-  const bindSubmitForm = submitForm => {
-    submitMyForm = submitForm;
   };
 
   useEffect(() => {
@@ -49,6 +46,7 @@ const JobContainer = props => {
           {props.editMode ? (
             <>
               <JobEdit
+                innerRef={formRef}
                 newJob={props.newJob}
                 job={props.job}
                 tags={props.tags}
@@ -56,15 +54,10 @@ const JobContainer = props => {
                 countries={props.countries}
                 createJob={props.createJob}
                 editJob={props.editJob}
-                bindSubmitForm={bindSubmitForm}
                 callBack={() => props.toggleEditMode(false)}
               />
               <Buttons>
-                <button
-                  className="save"
-                  type="submit"
-                  onClick={handleSubmitMyForm}
-                >
+                <button className="save" type="submit" onClick={handleSubmit}>
                   Save
                 </button>
 

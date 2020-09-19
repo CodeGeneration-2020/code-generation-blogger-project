@@ -4,7 +4,7 @@ import Input from '../../shared/Input/input.commponent';
 import Textarea from '../../shared/Textarea/textarea.component';
 import FormikSelect from '../../shared/FormikSelect/formik-select.component';
 import { ILocation, ITags, IJob } from '../../../../types';
-import { Formik, Field } from 'formik';
+import { Formik, Field, FormikValues } from 'formik';
 import { jobFormSchema } from '../../../helpers/validation';
 import { initDataJob } from '../../../../consts/initData';
 
@@ -16,8 +16,8 @@ const EditJob: React.FC<{
   newJob: boolean;
   createJob: any;
   editJob: any;
-  bindSubmitForm: any;
   callBack: any;
+  innerRef: FormikValues;
 }> = ({
   job,
   tags,
@@ -26,8 +26,8 @@ const EditJob: React.FC<{
   newJob,
   createJob,
   editJob,
-  bindSubmitForm,
   callBack,
+  innerRef,
 }) => {
   const saveJob = dataJob => {
     callBack();
@@ -40,6 +40,7 @@ const EditJob: React.FC<{
 
   return (
     <Formik
+      innerRef={innerRef}
       validationSchema={jobFormSchema}
       initialValues={initDataJob(job)}
       onSubmit={values => {
@@ -47,7 +48,6 @@ const EditJob: React.FC<{
       }}
     >
       {({ values, errors, touched, handleChange, handleBlur, submitForm }) => {
-        bindSubmitForm(submitForm);
         return (
           <Styled.JobContainer>
             <Styled.JobHeader>
