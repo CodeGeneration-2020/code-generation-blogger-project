@@ -1,20 +1,12 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import * as Styled from '../job.styles';
-import { ActionCreators } from '../../../../store/job/actions';
 import { v4 as uuidv4 } from 'uuid';
 import { IJob } from '../../../../types';
 
-const Job: React.FC<{
+const ViewJob: React.FC<{
   job: IJob;
-  loading: boolean;
-  toggleMode: any;
-}> = ({ job, loading, toggleMode }) => {
-  const isOwner = true;
-
-  return loading ? (
-    <div>Loading...</div>
-  ) : (
+}> = ({ job }) => {
+  return (
     <Styled.JobContainer>
       <Styled.JobHeader>
         <Styled.Description>
@@ -62,32 +54,12 @@ const Job: React.FC<{
       <Styled.Attachments>
         <div>Attachments +</div>
         <div>
-          {job.attachments.map(file => (
-            <div key={uuidv4()}>{file}</div>
-          ))}
+          {job.attachments &&
+            job.attachments.map(file => <div key={uuidv4()}>{file}</div>)}
         </div>
       </Styled.Attachments>
-      {isOwner && (
-        <Styled.Buttons>
-          <button className="edit" onClick={() => toggleMode(true)}>
-            Edit
-          </button>
-          <button className="close">Close</button>
-        </Styled.Buttons>
-      )}
     </Styled.JobContainer>
   );
 };
 
-export default connect(
-  (state: any) => {
-    const { JOB_REDUCER } = state;
-    return {
-      job: JOB_REDUCER.job,
-      loading: JOB_REDUCER.loading,
-    };
-  },
-  {
-    getJobById: ActionCreators.getJobById,
-  },
-)(Job);
+export default ViewJob;

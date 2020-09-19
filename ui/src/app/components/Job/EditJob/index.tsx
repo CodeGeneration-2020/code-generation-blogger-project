@@ -1,87 +1,53 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Formik, Field } from 'formik';
 import * as Styled from '../job.styles';
-import { ActionCreators } from '../../../../store/job/actions';
-import { jobFormSchema } from '../../../helpers/validation';
 import Input from '../../shared/Input/input.commponent';
 import Textarea from '../../shared/Textarea/textarea.component';
 import FormikSelect from '../../shared/FormikSelect/formik-select.component';
 import { ILocation, ITags, IJob } from '../../../../types';
+import { Formik, Field } from 'formik';
+import { jobFormSchema } from '../../../helpers/validation';
+import { initDataJob } from '../../../../consts/initData';
 
-const Job: React.FC<{
-  createJob: any;
-  editJob: any;
+const EditJob: React.FC<{
   job: IJob;
-  newJob?: boolean;
   tags: ITags[];
   countries: ILocation;
   cities: ILocation;
-  loading: boolean;
-  toggleMode: any;
+  newJob: boolean;
+  createJob: any;
+  editJob: any;
+  bindSubmitForm: any;
+  callBack: any;
 }> = ({
   job,
-  createJob,
-  editJob,
-  newJob,
   tags,
   countries,
   cities,
-  loading,
-  toggleMode,
+  newJob,
+  createJob,
+  editJob,
+  bindSubmitForm,
+  callBack,
 }) => {
-  const saveJob = values => {
-    toggleMode(false);
-    const currentJob = {
-      title: values.title,
-      budget: values.budget,
-      description: values.description,
-      contact: {
-        phone: values.phone,
-        email: values.email,
-      },
-      additional_contacts: values.additional_contacts,
-      location: {
-        countries: values.countries,
-        cities: values.cities,
-      },
-      tags: values.tags,
-    };
+  const saveJob = dataJob => {
+    callBack();
     if (newJob) {
-      createJob({ currentJob, userId: 1 });
+      createJob({ dataJob, userId: 1 });
     } else {
-      editJob({ currentJob, jobId: job._id });
+      editJob({ dataJob, jobId: job._id });
     }
   };
 
-  return loading ? (
-    <div>Loading...</div>
-  ) : (
+  return (
     <Formik
       validationSchema={jobFormSchema}
-      initialValues={{
-        title: job.title,
-        budget: job.budget,
-        description: job.description,
-        phone: job.contact.phone,
-        email: job.contact.email,
-        additional_contacts: job.additional_contacts,
-        cities: job.location.cities,
-        countries: job.location.countries,
-        tags: job.tags,
-      }}
+      initialValues={initDataJob(job)}
       onSubmit={values => {
         saveJob(values);
       }}
     >
-      {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-      }) => {
+      {({ values, errors, touched, handleChange, handleBlur, submitForm }) => {
+        bindSubmitForm(submitForm);
         return (
           <Styled.JobContainer>
             <Styled.JobHeader>
@@ -132,7 +98,7 @@ const Job: React.FC<{
                   <Field
                     name="tags"
                     component={FormikSelect}
-                    value={job.tags ? job.tags : values.tags}
+                    value={values.tags}
                     options={tags}
                     isMulti={true}
                     onBlur={handleBlur}
@@ -221,15 +187,6 @@ const Job: React.FC<{
               <div>Attachments +</div>
               <input type="file" />
             </Styled.Attachments>
-            <Styled.Buttons>
-              <button className="save" type="submit" onClick={handleSubmit}>
-                Save
-              </button>
-
-              <button className="close" onClick={() => toggleMode(false)}>
-                Close
-              </button>
-            </Styled.Buttons>
           </Styled.JobContainer>
         );
       }}
@@ -237,20 +194,4 @@ const Job: React.FC<{
   );
 };
 
-export default connect(
-  (state: any) => {
-    const { JOB_REDUCER, SHARED_DATA_REDUCER } = state;
-    return {
-      job: JOB_REDUCER.job,
-      tags: SHARED_DATA_REDUCER.tags,
-      countries: SHARED_DATA_REDUCER.country,
-      cities: SHARED_DATA_REDUCER.city,
-      editMode: JOB_REDUCER.editMode,
-      loading: JOB_REDUCER.loading,
-    };
-  },
-  {
-    createJob: ActionCreators.createJob,
-    editJob: ActionCreators.editJob,
-  },
-)(Job);
+export default EditJob;

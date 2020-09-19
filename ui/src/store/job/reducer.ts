@@ -49,6 +49,13 @@ const JOB_REDUCER = createSlice({
     [ActionCreators.getAllJobs.rejected as any]: state => {
       state.loading = false;
     },
+    [ActionCreators.editJob.pending as any]: state => {
+      state.loading = true;
+    },
+    [ActionCreators.editJob.fulfilled as any]: (state, action) => {
+      state.job = action.payload;
+      state.loading = false;
+    },
     [ActionTypes.TOGGLE_EDIT_MODE]: (state, action) => {
       return {
         ...state,

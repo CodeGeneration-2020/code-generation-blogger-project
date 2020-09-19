@@ -8,11 +8,11 @@ import { v4 as uuidv4 } from 'uuid';
 import JobContainer from '../../containers/JobContainer';
 
 const ListJob = ({ getAllJobs, jobs, loading }) => {
-  const [jobId, toggleJobId] = React.useState<string>();
+  const [jobId, setJobId] = React.useState<string>();
 
   const openSideBar = (e, id: string) => {
     e.preventDefault();
-    toggleJobId(id);
+    setJobId(id);
     openSlideMenu();
   };
 

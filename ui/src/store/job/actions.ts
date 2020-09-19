@@ -11,16 +11,17 @@ const ActionTypes = {
 
 const createJob = createAsyncThunk(
   ActionTypes.CREATE_JOB,
-  async ({ currentJob, userId }: any) => {
-    const response = await JobService.createJob(currentJob, userId);
+  async ({ dataJob, userId }: any) => {
+    debugger;
+    const response = await JobService.createJob(dataJob, userId);
     return response.data;
   },
 );
 
 const editJob = createAsyncThunk(
   ActionTypes.EDIT_JOB_BY_ID,
-  async ({ currentJob, jobId }: any) => {
-    const response = await JobService.editJob(currentJob, jobId);
+  async ({ dataJob, jobId }: any) => {
+    const response = await JobService.editJob(dataJob, jobId);
     return response.data;
   },
 );
