@@ -17,3 +17,32 @@ export interface IFiltersReducer {
   skip: number;
   limit: number;
 }
+
+export interface ILocation {
+  value: string;
+  label: string;
+}
+
+export interface ITags {
+  value: string;
+  label: string;
+}
+
+export interface IJob {
+  title: string;
+  budget: number;
+  description: string;
+  tags: ITags[];
+  contact: {
+    phone: string;
+    email: string;
+  };
+  additional_contacts: string;
+  location: {
+    countries: ILocation[];
+    cities: ILocation[];
+  };
+  attachments: [];
+  _id: string;
+  customerId: any;
+}

@@ -15,7 +15,9 @@ const SideBar = ({ children }) => {
   return (
     <Styled.SideBarContainer>
       <div id="menu" className="nav">
-        <div className="nav-items">{children}</div>
+        <div className="nav-items">
+          <div>{children}</div>
+        </div>
         <div className="nav-overlay" onClick={closeSlideMenu} />
       </div>
     </Styled.SideBarContainer>

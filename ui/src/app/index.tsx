@@ -16,6 +16,8 @@ import { HomePage } from './containers/HomePage/Loadable';
 import { NotFoundPage } from './components/NotFoundPage/Loadable';
 import Filters from './components/List/list.component';
 import BloggerDetails from './components/blogger-details/BloggerDetails';
+import Job from './containers/JobContainer';
+import ListJob from './components/ListJob/list.component';
 
 export function App() {
   return (
@@ -30,6 +32,9 @@ export function App() {
         <Route exact path="/" component={HomePage} />
         <Route path="/list" component={Filters} />
         <Route exact path="/blogger/details/:id" component={BloggerDetails} />
+        <Route path="/jobs" component={ListJob} />
+        <Route path="/job/details/:id" component={Job} />
+        <Route path="/job" render={() => <Job newJob={true} />} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

@@ -1,4 +1,4 @@
-import {Jobs,JobsDocumnet,ITags} from '../models/Jobs';
+import {Jobs,JobsDocumnet,ITags,ILocation} from '../models/Jobs';
 
 
 export interface ICreateJobBody{
@@ -6,16 +6,12 @@ export interface ICreateJobBody{
     budget: Number;
     tags: ITags[];
     description: String;
-    contact:{
-        phone: String;
-        email: String;
-    };
+    phone: String;
+    email: String;
     additional_contacts: String;
     attachments: String[];
-    location:{
-        country : String;
-        city: String;
-    };
+    countries : ILocation[];
+    cities: ILocation[];
 }
 
 export interface IJobService{
@@ -24,14 +20,13 @@ export interface IJobService{
     getAllJobs: () => Promise<JobsDocumnet[]>;
     getJobById: (id:string) => Promise<JobsDocumnet>;
     updateStatusJobById: (id:string,status:boolean) => Promise<JobsDocumnet>;
-    updateJobById: (id:string,body:JobsDocumnet) =>  Promise<JobsDocumnet>;
+    updateJobById: (id:string,body:ICreateJobBody) =>  Promise<JobsDocumnet>;
 }
 
 class JobService implements IJobService  {
   
     async createJob(id:number,body:ICreateJobBody){
-        console.log(body)
-        const jobs = new Jobs({
+        const job = new Jobs({
             customerId:id,
             status: true,
             title: body.title,
@@ -39,17 +34,17 @@ class JobService implements IJobService  {
             tags: body.tags,
             description: body.description,
             contact:{
-                phone: body.contact.phone,
-                email: body.contact.email,
+                phone: body.phone,
+                email: body.email,
             },
             additional_contacts: body.additional_contacts,
             attachments: body.attachments,
             location: {
-                country: body.location.country,
-                city: body.location.city,
+                countries: body.countries,
+                cities: body.cities,
             }
         });
-        await jobs.save();
+        await job.save();
     }
     
     async getJobsByCustomerId(id: number) {
@@ -68,8 +63,24 @@ class JobService implements IJobService  {
         return Jobs.findByIdAndUpdate(id,{status},{new:true});
     }
 
-    async updateJobById(id:string,body:JobsDocumnet){
-        return Jobs.findByIdAndUpdate(id,{...body},{new:true});
+    async updateJobById(id:string,body:ICreateJobBody){
+        const job = {
+            title: body.title,
+            budget: body.budget,
+            tags: body.tags,
+            description: body.description,
+            contact:{
+                phone: body.phone,
+                email: body.email,
+            },
+            additional_contacts: body.additional_contacts,
+            attachments: body.attachments,
+            location: {
+                countries: body.countries,
+                cities: body.cities,
+            }
+        };
+        return Jobs.findByIdAndUpdate(id,job,{new:true});
     }
 }
 
