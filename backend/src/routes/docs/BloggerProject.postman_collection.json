@@ -1,0 +1,545 @@
+{
+	"info": {
+		"_postman_id": "14701f9e-efd6-4556-be27-5418b268f3e0",
+		"name": "BloggerProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getBloggerComments",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:4200/user/blogger/2/comments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"user",
+						"blogger",
+						"2",
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createComment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"senderId\": \"2\",\r\n \"comment\": \"good comment\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4200/user/blogger/5/comment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"user",
+						"blogger",
+						"5",
+						"comment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createJob",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"title\": \"FRANCE JOB222\",\r\n \"budget\": \"99000\",\r\n \"description\": \"some adsasdsd\",\r\n \"tags\": [{\"value\":\"5f61c4cc64f72852e4b59f56\", \"label\":\"fitness\"}],\r\n \"additional_contacts\": \"connect with me, here is my instagram link - test.com\",\r\n \"attachments\": [\"citycente.s3com\",\"lalalal.c3com\"],\r\n   \"phone\": \"+380951252238\",\r\n   \"email\": \"mountains@mail.com\",\r\n        \"countries\": [\r\n            {\r\n               \"value\":\"5f622dc1c8d1db4188954287\",\r\n               \"label\":\"France\"\r\n            }\r\n        ],\r\n        \"cities\": [\r\n            {\r\n               \"value\":\"5f622dcac8d1db4188954288\",\r\n               \"label\":\"Paris\"\r\n            }\r\n        ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4200/job/customer/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"job",
+						"customer",
+						"1"
+					]
+				},
+				"description": "createJob"
+			},
+			"response": []
+		},
+		{
+			"name": "getJobsByCustomerId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4200/job/customer/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"job",
+						"customer",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllJobs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4200/job/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"job",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getJobById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4200/job/5f648843da95803a8ca653a6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"job",
+						"5f648843da95803a8ca653a6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateStatusJobById",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\":true\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4200/job/5f647c49da95803a8ca653a0/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"job",
+						"5f647c49da95803a8ca653a0",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateJobById",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"title\": \"FRANCE JOB\",\r\n \"budget\": \"9000\",\r\n \"description\": \"some adsasdsd\",\r\n \"tags\": [{\"value\":\"5f61c4cc64f72852e4b59f56\", \"label\":\"fitness\"}],\r\n \"additional_contacts\": \"connect with me, here is my instagram link - test.com\",\r\n \"attachments\": [\"citycente.s3com\",\"lalalal.c3com\"],\r\n   \"phone\": \"+3809512522401\",\r\n   \"email\": \"mountains@mail.com1\",\r\n        \"countries\": [\r\n            {\r\n               \"value\":\"5f622dc1c8d1db4188954287\",\r\n               \"label\":\"France\"\r\n            }\r\n        ],\r\n        \"cities\": [\r\n            {\r\n               \"value\":\"5f622dcac8d1db4188954288\",\r\n               \"label\":\"Paris\"\r\n            }\r\n        ]\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4200/job/5f648843da95803a8ca653a6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"job",
+						"5f648843da95803a8ca653a6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addTag",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"tag\":\"homework\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4200/tags/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"tags",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTags",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4200/tags/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"tags",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addCountry",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Poland\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4200/location/country",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"location",
+						"country"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addCity",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Varshava\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4200/location/city",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"location",
+						"city"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCity",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4200/location/city",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"location",
+						"city"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCountry",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4200/location/country",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"location",
+						"country"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBloggerById",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:4200/user/blogger/21001/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"user",
+						"blogger",
+						"21001",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBloggersPagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4200/users/bloggers?skip=5&limit=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"users",
+						"bloggers"
+					],
+					"query": [
+						{
+							"key": "skip",
+							"value": "5"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllBloggers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4200/users/bloggers/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"users",
+						"bloggers",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getBloggersByFilters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4200/users/filters/bloggers?storyPrice=150,1000000&postPrice=150,1000000&country=Ukraine&city=Kharkiv,Kiev&tags=it,sport&sex=male&followers=150,1000000&skip=0&limit=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"users",
+						"filters",
+						"bloggers"
+					],
+					"query": [
+						{
+							"key": "storyPrice",
+							"value": "150,1000000"
+						},
+						{
+							"key": "postPrice",
+							"value": "150,1000000"
+						},
+						{
+							"key": "country",
+							"value": "Ukraine"
+						},
+						{
+							"key": "city",
+							"value": "Kharkiv,Kiev"
+						},
+						{
+							"key": "tags",
+							"value": "it,sport"
+						},
+						{
+							"key": "sex",
+							"value": "male"
+						},
+						{
+							"key": "followers",
+							"value": "150,1000000"
+						},
+						{
+							"key": "skip",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addBlogger",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"id\": 17,\r\n        \"ig_id\": 77734432,\r\n        \"username\": \"Kapkan\",\r\n        \"name\": \"Blinik Vikirin\",\r\n        \"profile_picture_url\": \"instaPicture\",\r\n        \"biography\": \"my biography\",\r\n        \"website\": \"insta/www/221221\",\r\n        \"media_count\": 1231,\r\n        \"follows_count\": 1201,\r\n        \"followers_count\": 1002500,\r\n        \"storyPrice\": 118000,\r\n        \"postPrice\": 115200,\r\n        \"location\": {\"country\":\"Ukraine\",\"city\":\"Kiev\"},\r\n        \"tags\": [\"sport\", \"meetings\", \"travaling\"],\r\n        \"sex\": \"male\"\r\n}\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:4200/auth/blogger/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4200",
+					"path": [
+						"auth",
+						"blogger",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -19,10 +19,7 @@ class AuthController {
     }
     async authBlogger(req: Request, res: Response, next: NextFunction){
         try {
-            // const businessDiscovery = await this.instagramService.getBusinessDiscovery(ig_user_id);
-            // const insights =  await this.instagramService.getInsights(queryInsights);
-            // console.log(businessDiscovery,insights);
-            await this.authService.authBlogger(req.body.blogger);
+            await this.authService.authBlogger(req.body);
             res.json({succes:"Success authenticated"});
         } catch (e) {
             return next(e);
