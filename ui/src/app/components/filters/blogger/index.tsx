@@ -10,6 +10,7 @@ import TagsFilter from './tags';
 import { ActionCreators as SharedAC } from '../../../../store/sharedData/actions';
 import { ActionCreators as FiltersAC } from '../../../../store/filters/actions';
 import { connect } from 'react-redux';
+import Loader from '../../../../loader/component/loader.component';
 
 const BloggerFilters = props => {
   useEffect(() => {
@@ -18,81 +19,77 @@ const BloggerFilters = props => {
     // eslint-disable-next-line
   }, []);
 
-  const setFilter = (filter, filterName) => {
-    props.setFilter({
-      value: filter && filter,
-      title: filterName,
-    });
-  };
-
   return (
-    <>
-      {props.loading ? (
-        <>...Loading</>
-      ) : (
-        <Style.FiltersContainer>
-          <Search />
-          <Style.Filters>
-            <Style.SharedFilters>
-              <div className="quantitative-filters">
-                <div className="subscribers">
-                  <FilterCard title={'Subscribers'}>
-                    <SubscribersFilter
-                      subscribers={props.filters.subscribers}
-                      er={props.filters.er}
-                      setFilter={(value, title) => setFilter(value, title)}
-                    />
-                  </FilterCard>
-                </div>
-                <div className="price">
-                  <FilterCard title={'Price'}>
-                    <PriceFilter
-                      pricePost={props.filters.pricePost}
-                      priceStory={props.filters.priceStory}
-                      pricePS={props.filters.pricePS}
-                      setFilter={(value, title) => setFilter(value, title)}
-                    />
-                  </FilterCard>
-                </div>
-              </div>
-
-              <div className="person-filters">
-                <div className="gender">
-                  <FilterCard title={'Gender'}>
-                    <GenderFilter
-                      gender={props.filters.gender}
-                      setFilter={(value, title) => setFilter(value, title)}
-                    />
-                  </FilterCard>
-                </div>
-                <div className="location">
-                  <FilterCard title={'State and City'}>
-                    <LocationFilter
-                      countries={props.countries}
-                      cities={props.cities}
-                      selectedCountry={props.filters.country || []}
-                      selectedCity={props.filters.city || []}
-                      setFilter={(value, title) => setFilter(value, title)}
-                      getCityByCountryId={props.getCity}
-                      clearCityByCountryId={props.clearCityByCountryId}
-                    />
-                  </FilterCard>
-                </div>
-              </div>
-            </Style.SharedFilters>
-            <Style.Tags>
-              <FilterCard title={'Tags'}>
-                <TagsFilter
-                  tags={props.tags}
-                  selectedTags={props.filters.tags || []}
-                  setFilter={(value, title) => setFilter(value, title)}
+    <Style.FiltersContainer>
+      {props.loading && <Loader />}
+      <Search />
+      <Style.Filters>
+        <Style.SharedFilters>
+          <div className="quantitative-filters">
+            <div className="subscribers">
+              <FilterCard title={'Subscribers'}>
+                <SubscribersFilter
+                  subscribers={props.filters.subscribers}
+                  er={props.filters.er}
+                  setFilter={(value, title) =>
+                    props.setFilter({ value, title })
+                  }
                 />
               </FilterCard>
-            </Style.Tags>
-          </Style.Filters>
-        </Style.FiltersContainer>
-      )}
-    </>
+            </div>
+            <div className="price">
+              <FilterCard title={'Price'}>
+                <PriceFilter
+                  pricePost={props.filters.pricePost}
+                  priceStory={props.filters.priceStory}
+                  pricePS={props.filters.pricePS}
+                  setFilter={(value, title) =>
+                    props.setFilter({ value, title })
+                  }
+                />
+              </FilterCard>
+            </div>
+          </div>
+
+          <div className="person-filters">
+            <div className="gender">
+              <FilterCard title={'Gender'}>
+                <GenderFilter
+                  gender={props.filters.gender}
+                  setFilter={(value, title) =>
+                    props.setFilter({ value, title })
+                  }
+                />
+              </FilterCard>
+            </div>
+            <div className="location">
+              <FilterCard title={'State and City'}>
+                <LocationFilter
+                  countries={props.countries}
+                  cities={props.cities}
+                  selectedCountry={props.filters.country || []}
+                  selectedCity={props.filters.city || []}
+                  setFilter={(value, title) =>
+                    props.setFilter({ value, title })
+                  }
+                  getCityByCountryId={props.getCity}
+                  clearCityByCountryId={props.clearCityByCountryId}
+                />
+              </FilterCard>
+            </div>
+          </div>
+        </Style.SharedFilters>
+        <Style.Tags>
+          <FilterCard title={'Tags'}>
+            <TagsFilter
+              tags={props.tags}
+              selectedTags={props.filters.tags || []}
+              setFilter={(value, title) => props.setFilter({ value, title })}
+            />
+          </FilterCard>
+        </Style.Tags>
+      </Style.Filters>
+    </Style.FiltersContainer>
   );
 };
 

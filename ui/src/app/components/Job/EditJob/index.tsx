@@ -40,14 +40,14 @@ const EditJob: React.FC<{
 
   return (
     <Formik
-      innerRef={innerRef}
+      innerRef={innerRef as any}
       validationSchema={jobFormSchema}
       initialValues={initDataJob(job)}
       onSubmit={values => {
         saveJob(values);
       }}
     >
-      {({ values, errors, touched, handleChange, handleBlur, submitForm }) => {
+      {({ values, errors, touched, handleChange, handleBlur }) => {
         return (
           <Styled.JobContainer>
             <Styled.JobHeader>

@@ -37,11 +37,8 @@ const TagsFilter = props => {
         {props.selectedTags &&
           props.selectedTags.map(t => {
             return (
-              <span className="tag">
-                <BlueButton
-                  key={uuidv4()}
-                  onClick={() => removeOption(t.value)}
-                >
+              <span className="tag" key={uuidv4()}>
+                <BlueButton onClick={() => removeOption(t.value)}>
                   <>{t.label}</>
                 </BlueButton>
               </span>

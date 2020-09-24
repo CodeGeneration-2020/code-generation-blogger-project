@@ -18,7 +18,8 @@ class Users {
 
     async getBloggersByFilters(req: Request, res: Response, next: NextFunction) {
         try {
-            const users = await this.usersService.getBloggersByFilters(req.query);
+            const filters = JSON.parse(JSON.stringify(req.query));
+            const users = await this.usersService.getBloggersByFilters(filters);
             res.json(users);
         } catch (e) {
             return next(e);

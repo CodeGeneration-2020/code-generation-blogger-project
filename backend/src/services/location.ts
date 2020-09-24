@@ -1,9 +1,14 @@
 import csc from 'country-state-city';
-import { ICountry } from 'country-state-city';
+import { ICountry, ICity as IBaseCity } from 'country-state-city';
+
+interface ICity {
+    cities: IBaseCity[][],
+    countryId: String
+}
 
 export interface ILocationService {
     getCountry: () => Promise<ICountry[]>;
-    getCity: (countryId:string) => any;
+    getCity: (countryId:string) => Promise<ICity>;
 }
 
 class LocationService {

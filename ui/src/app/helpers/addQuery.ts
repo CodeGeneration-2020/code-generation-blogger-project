@@ -1,6 +1,6 @@
 export function addQuery(filter) {
   if (filter) {
-    return parseArrOfObjects(filter);
+    return JSON.stringify(parseArrOfObjects(filter));
   } else {
     return '';
   }
