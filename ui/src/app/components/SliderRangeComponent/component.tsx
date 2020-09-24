@@ -18,28 +18,30 @@ export const Handle: React.SFC<IHandleProps> = ({
   domain: [min, max],
   handle: { id, value, percent },
   getHandleProps,
-}) => (
-  <div
-    role="slider"
-    aria-valuemin={min}
-    aria-valuemax={max}
-    aria-valuenow={value}
-    style={{
-      left: `${percent}%`,
-      position: 'absolute',
-      marginLeft: '-11px',
-      marginTop: '-6px',
-      zIndex: 2,
-      width: 24,
-      height: 24,
-      cursor: 'pointer',
-      borderRadius: '50%',
-      boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.2)',
-      backgroundColor: '#34568f',
-    }}
-    {...getHandleProps(id)}
-  />
-);
+}) => {
+  return (
+    <div
+      className="handle"
+      role="slider"
+      aria-valuemin={min}
+      aria-valuemax={max}
+      aria-valuenow={value}
+      style={{
+        left: `${percent}%`,
+        position: 'absolute',
+        top: 5,
+        zIndex: 5,
+        width: 3,
+        height: 3,
+        opacity: 0.7,
+        cursor: 'pointer',
+        borderRadius: '50%',
+        backgroundColor: 'black',
+      }}
+      {...getHandleProps(id)}
+    />
+  );
+};
 
 // *******************************************************
 // TRACK COMPONENT
@@ -60,7 +62,7 @@ export const Track: React.SFC<ITrackProps> = ({
       position: 'absolute',
       height: 14,
       zIndex: 1,
-      backgroundColor: '#7aa0c4',
+      backgroundColor: '#40c4ff',
       borderRadius: 7,
       cursor: 'pointer',
       left: `${source.percent}%`,

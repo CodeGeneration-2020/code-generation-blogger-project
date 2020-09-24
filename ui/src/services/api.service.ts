@@ -14,6 +14,7 @@ export default class API implements IApi {
   }
 
   POST(url, data, options = {}) {
+    debugger;
     return axios.post(`${apiConfig.apiUrl}${url}`, data, options);
   }
 

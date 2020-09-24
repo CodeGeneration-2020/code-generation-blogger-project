@@ -14,10 +14,11 @@ import { GlobalStyle } from 'styles/global-styles';
 
 import { HomePage } from './containers/HomePage/Loadable';
 import { NotFoundPage } from './components/NotFoundPage/Loadable';
-import Filters from './components/List/list.component';
+import Filters from './components/ListBloggers/list.component';
 import BloggerDetails from './components/blogger-details/BloggerDetails';
 import Job from './containers/JobContainer';
-import ListJob from './components/ListJob/list.component';
+import ListJob from './components/ListJobs/list.component';
+import BloggerFilters from './components/filters/blogger';
 
 export function App() {
   return (
@@ -35,6 +36,7 @@ export function App() {
         <Route path="/jobs" component={ListJob} />
         <Route path="/job/details/:id" component={Job} />
         <Route path="/job" render={() => <Job newJob={true} />} />
+        <Route path="/filters" component={BloggerFilters} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

@@ -1,7 +1,7 @@
-import { Blogger } from '../models/Blogger';
+import { Blogger,BloggerDocument } from '../models/Blogger';
 
 export interface IAuthService{
-    authBlogger:(blogger: any) => Promise<void>;
+    authBlogger:(blogger: any) => Promise<BloggerDocument>;
 }
 
 class AuthService {
@@ -18,14 +18,19 @@ class AuthService {
                     media: blogger.media_count,
                     follows: blogger.follows_count,
                     followers: blogger.followers_count,
+                    er: blogger.er,
             },
             storyPrice: blogger.storyPrice,
             postPrice: blogger.postPrice,
-            location: "Kharkiv",
-            tags: ['sport','meetings'],
-            sex: 'male'
+            pricePS: blogger.pricePS,
+            location: {
+                country: blogger.location.country,
+                city: blogger.location.city,
+            },
+            tags: blogger.tags,
+            sex: blogger.sex
         })
-        await newBlogger.save();
+        return await newBlogger.save();
     }
 }
 

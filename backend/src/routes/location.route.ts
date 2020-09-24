@@ -10,16 +10,8 @@ location.get('/country', (req, res, next) => {
     locationControllerInstance.getCountry(req, res, next);
 });
 
-location.get('/city', (req, res, next) => {
+location.get('/city/:countryId', (req, res, next) => {
     locationControllerInstance.getCity(req, res, next);
-});
-
-location.post('/country', (req, res, next) => {
-    locationControllerInstance.addCountry(req, res, next);
-});
-
-location.post('/city', (req, res, next) => {
-    locationControllerInstance.addCity(req, res, next);
 });
 
 export default location;

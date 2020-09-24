@@ -1,5 +1,15 @@
 import mongoose, { Schema } from 'mongoose';
 
+export interface ILocation{
+        label:String;
+        value:String;
+}
+
+export interface ITags{
+        label:String;
+        value:String;
+}
+
 export type BloggerDocument = mongoose.Document & {
         _id: number;
         ig_id: number;
@@ -12,14 +22,16 @@ export type BloggerDocument = mongoose.Document & {
                 media: number;
                 follows: number;
                 followers: number;
+                er: number;
         };
         storyPrice: number|undefined;
         postPrice: number|undefined;
+        pricePS: number|undefined;
         location: {
-                country:string;
-                city:string;
+                country:ILocation[];
+                city:ILocation[];
         };
-        tags: string[];
+        tags: ITags[];
         sex: string|undefined;
         commentId: Number;
 };
@@ -37,14 +49,26 @@ const userSchema = new mongoose.Schema({
          media:Schema.Types.Number,
          follows:Schema.Types.Number,
          followers:Schema.Types.Number,
+         er:Schema.Types.Number,
         },
         storyPrice:Schema.Types.Number,
         postPrice:Schema.Types.Number,
+        pricePS:Schema.Types.Number,
         location:{
-         country:Schema.Types.String,
-         city:Schema.Types.String
+                country:{
+                        label:Schema.Types.String,
+                        value:Schema.Types.String
+                },
+                city:{
+                        label:Schema.Types.String,
+                        value:Schema.Types.String
+                }
         },
-        tags: [{type: Schema.Types.String}],
+        tags: [{
+                _id:false,
+                label:Schema.Types.String,
+                value:Schema.Types.String
+        }],
         sex:Schema.Types.String,
         commentId: {type:Number, ref: 'Comments'}
 }, { timestamps: true ,_id:false});
