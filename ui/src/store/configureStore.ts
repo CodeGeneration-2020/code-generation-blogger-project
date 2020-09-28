@@ -11,6 +11,7 @@ import FILTERS_REDUCER from './filters/reducer';
 import JOB_REDUCER from './job/reducer';
 import BLOGGER_REDUCER from './blogger/reducer';
 import SHARED_DATA_REDUCER from './sharedData/reducer';
+import LOCATION_SEARCH_REDUCER from './locationSearch/reducer';
 import CreateLoaderReducer from '../loader/store/reducer';
 
 const LOADER_REDUCER = CreateLoaderReducer({
@@ -40,6 +41,7 @@ export function configureAppStore() {
       FILTERS_REDUCER: FILTERS_REDUCER.reducer,
       JOB_REDUCER: JOB_REDUCER.reducer,
       SHARED_DATA_REDUCER: SHARED_DATA_REDUCER.reducer,
+      LOCATION_SEARCH_REDUCER: LOCATION_SEARCH_REDUCER.reducer,
       LOADER_REDUCER,
     }),
     middleware: [...getDefaultMiddleware(), ...middlewares],

@@ -1,14 +1,26 @@
 import React from 'react';
 import * as Styled from './card.styles';
+import PropTypes from 'prop-types';
 
-const FilterCard = props => {
+const FilterCard = ({ title, children, callback }) => {
   return (
-    <Styled.CardContainer>
-      <span className="title">{props.title}</span>
+    <Styled.CardContainer onClick={e => callback(e)}>
+      <span className="title">{title}</span>
       <Styled.HorizantalSep />
-      {props.children}
+      {children}
     </Styled.CardContainer>
   );
+};
+
+FilterCard.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.any,
+  onClick: PropTypes.func,
+};
+
+FilterCard.defaultProps = {
+  title: '',
+  callback: () => {},
 };
 
 export default FilterCard;

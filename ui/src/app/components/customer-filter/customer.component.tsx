@@ -5,7 +5,7 @@ import Select from 'react-select';
 import { connect } from 'react-redux';
 import * as FiltersActions from '../../../store/filters/actions';
 import * as BloggerActions from '../../../store/blogger/actions';
-import CustomSlider from '../SliderRangeComponent/Slider';
+import CustomSlider from '../slider-range-component/Slider';
 import { sexOptions, country, city, tagsOptions } from '../../../consts/lists';
 import useDebounce from '../../helpers/useDebounce';
 

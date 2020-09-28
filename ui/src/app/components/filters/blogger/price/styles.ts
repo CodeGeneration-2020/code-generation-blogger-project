@@ -4,29 +4,41 @@ export const Price = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
+  justify-content: center;
   font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  line-height: 20px;
+  @media screen and (max-width: 1150px) {
+    font-size: 10px;
+  }
+  @media screen and (max-width: 1000px) {
+    font-size: 8px;
+  }
   & > .slider {
-    padding: 0 2%;
-    width: 33%;
+    width: 23%;
     display: flex;
     flex-direction: column;
-    padding-bottom: 2em;
+    margin-right: 7.7%;
+    &:first-child {
+      margin-left: 7.7%;
+    }
     & > .info {
       display: flex;
-      justify-content: space-between;
-      margin-bottom: 1em;
+      margin-bottom: 12px;
+      font-weight: 700;
       & > .title {
         width: 50%;
-        font-size: 8px;
         text-align: center;
+        justify-content: flex-start;
         text-transform: uppercase;
         color: #fff;
       }
       & > .data {
         width: 50%;
-        font-size: 8px;
         display: flex;
-        color: #00b0ff;
+        justify-content: flex-end;
+        color: #28b5e1;
       }
     }
   }

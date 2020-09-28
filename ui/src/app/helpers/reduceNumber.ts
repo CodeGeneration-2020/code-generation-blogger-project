@@ -2,6 +2,10 @@ export const reduceNumber = num => {
   const stringNum = String(num);
   const numLengt = stringNum.length;
 
+  if (numLengt === 4) {
+    return `${stringNum.slice(0, 1)}k`;
+  }
+
   if (numLengt === 5) {
     return `${stringNum.slice(0, 2)}kk`;
   }

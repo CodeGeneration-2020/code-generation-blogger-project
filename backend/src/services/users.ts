@@ -38,7 +38,7 @@ class UsersService {
         const country = filters.country.length>2  && JSON.parse(filters.country);
         const city = filters.city.length>2 && JSON.parse(filters.city);
         const sex =  filters.sex && JSON.parse(filters.sex);
-    
+        
         return await Blogger.find({
             storyPrice: storyPrice ?  {$gte:+storyPrice[0], $lte:+storyPrice[1]} : {$ne:+storyPrice},
             postPrice: postPrice ? {$gte:+postPrice[0], $lte:+postPrice[1]} : {$ne:+postPrice},

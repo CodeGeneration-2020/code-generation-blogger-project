@@ -5,7 +5,7 @@ import Select from 'react-select';
 import * as FiltersActions from '../../../store/filters/actions';
 import { connect } from 'react-redux';
 
-import CustomSlider from '../SliderRangeComponent/Slider';
+import CustomSlider from '../slider-range-component/Slider';
 
 const Blogger = props => {
   const tagsOptions = [

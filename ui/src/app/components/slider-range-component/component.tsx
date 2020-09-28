@@ -31,12 +31,12 @@ export const Handle: React.SFC<IHandleProps> = ({
         position: 'absolute',
         top: 5,
         zIndex: 5,
-        width: 3,
-        height: 3,
-        opacity: 0.7,
+        width: 4,
+        height: 4,
         cursor: 'pointer',
         borderRadius: '50%',
-        backgroundColor: 'black',
+        background:
+          'linear-gradient(0deg, #30393E, #30393E), linear-gradient(0deg, #30393E, #30393E), #30393E',
       }}
       {...getHandleProps(id)}
     />
@@ -60,10 +60,10 @@ export const Track: React.SFC<ITrackProps> = ({
   <div
     style={{
       position: 'absolute',
-      height: 14,
+      height: 16,
       zIndex: 1,
-      backgroundColor: '#40c4ff',
-      borderRadius: 7,
+      background: `linear-gradient(360deg, #0496FF 0%, #28B5E0 100%)`,
+      borderRadius: '8px',
       cursor: 'pointer',
       left: `${source.percent}%`,
       width: `${target.percent - source.percent}%`,

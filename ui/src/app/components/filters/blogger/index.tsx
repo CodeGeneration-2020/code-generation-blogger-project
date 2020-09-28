@@ -9,7 +9,9 @@ import LocationFilter from './location';
 import TagsFilter from './tags';
 import { ActionCreators as SharedAC } from '../../../../store/sharedData/actions';
 import { ActionCreators as FiltersAC } from '../../../../store/filters/actions';
+import { ActionCreators as LocationAC } from '../../../../store/locationSearch/actions';
 import { connect } from 'react-redux';
+import closeSlider from '../../../helpers/closeSlider';
 import Loader from '../../../../loader/component/loader.component';
 
 const BloggerFilters = props => {
@@ -63,7 +65,12 @@ const BloggerFilters = props => {
               </FilterCard>
             </div>
             <div className="location">
-              <FilterCard title={'State and City'}>
+              <FilterCard
+                title={'State and city'}
+                callback={e => {
+                  closeSlider(e.target.parentNode.className, props.closeSlider);
+                }}
+              >
                 <LocationFilter
                   countries={props.countries}
                   cities={props.cities}
@@ -110,5 +117,6 @@ export default connect(
     getCity: SharedAC.getCity,
     clearCityByCountryId: SharedAC.clearCityByCountryId,
     setFilter: FiltersAC.setFilter,
+    closeSlider: LocationAC.setActiveSearch,
   },
 )(BloggerFilters);

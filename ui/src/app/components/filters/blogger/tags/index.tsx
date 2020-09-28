@@ -1,8 +1,9 @@
 import React from 'react';
 import * as Style from './styles';
 import { v4 as uuidv4 } from 'uuid';
+import Htag from '../../../../../img/htag.svg';
 import BlueButton from '../../../shared/BlueButton/button.component';
-import Select from '../../../shared/select/';
+import TagsSelect from '../../../shared/TagsSelect/select.component';
 
 const TagsFilter = props => {
   const removeOption = idtags => {
@@ -18,19 +19,16 @@ const TagsFilter = props => {
   return (
     <Style.Tags>
       <Style.SelectContainer>
-        <span className="icon">{'#'}</span>
+        <span className="icon">
+          <img src={Htag} alt="htag" />
+        </span>
         <div className="select">
-          <Select
-            changeHandler={option => setTagsFilter(option)}
-            title="tag"
+          <TagsSelect
+            placeholder={'tag'}
             options={props.tags}
+            changeHandler={option => setTagsFilter(option)}
             selected={props.selectedTags}
           />
-        </div>
-        <div className="button">
-          <BlueButton style={{ width: '100%', height: '100%' }}>
-            <span className="text-button">Search</span>
-          </BlueButton>
         </div>
       </Style.SelectContainer>
       <Style.ListTags>

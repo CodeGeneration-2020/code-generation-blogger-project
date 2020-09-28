@@ -3,27 +3,51 @@ import styled from 'styled-components';
 export const Subscribers = styled.div`
   width: 100%;
   height: 100%;
-  margin-bottom: 2.5em;
   display: flex;
-  font-size: 9px;
+  justify-content: center;
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  line-height: 20px;
+  font-weight: 700;
   text-transform: uppercase;
+  @media screen and (max-width: 1150px) {
+    font-size: 10px;
+  }
+  @media screen and (max-width: 1000px) {
+    font-size: 8px;
+  }
   & > .total {
-    width: 50%;
-    margin: 0 5%;
+    width: 33.3333%;
+    margin-right: 11.1111%;
+    display: flex;
+    flex-direction: column;
   }
   & > .engagement-rate {
-    margin: 0 5%;
-    width: 50%;
+    width: 33.3333%;
+    display: flex;
+    flex-direction: column;
+  }
+  .range-slider {
+    height: 16px;
   }
 
   .data-slider {
+    margin-top: 14px;
+    width: 100%;
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     & > .text {
+      width: 50%;
+      text-align: center;
       color: #fff;
     }
     & > .result {
-      color: #00b0ff;
+      width: 50%;
+      text-align: center;
+      text-transform: lowercase;
+      color: #28b5e1;
     }
+    padding-bottom: 36px;
   }
 `;

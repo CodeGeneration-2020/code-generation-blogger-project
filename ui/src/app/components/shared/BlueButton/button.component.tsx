@@ -11,6 +11,8 @@ const BlueButton = ({ children, onClick, link, type, style }) => {
         onClick={onClick}
         width={style.width}
         height={style.height}
+        boxShadow={style.boxShadow}
+        borderRadius={style.borderRadius || '8px'}
       >
         {children}
       </Styled.Button>

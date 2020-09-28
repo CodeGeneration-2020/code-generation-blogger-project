@@ -1,6 +1,7 @@
 import React from 'react';
 import * as Style from './styles';
-import CustomSlider from '../../../SliderRangeComponent/Slider';
+import CustomSlider from '../../../slider-range-component/Slider';
+import { reduceNumber } from '../../../../helpers/reduceNumber';
 
 const PriceFilter = props => {
   return (
@@ -10,7 +11,8 @@ const PriceFilter = props => {
           <span className="title">POSTS</span>
           {props.pricePost && (
             <span className="data">
-              {props.pricePost[0]}-{props.pricePost[1]}$
+              {reduceNumber(props.pricePost[0])}-
+              {reduceNumber(props.pricePost[1])}$
             </span>
           )}
         </div>
@@ -24,7 +26,8 @@ const PriceFilter = props => {
           <span className="title">STORIES</span>
           {props.priceStory && (
             <span className="data">
-              {props.priceStory[0]}-{props.priceStory[1]}$
+              {reduceNumber(props.priceStory[0])}-
+              {reduceNumber(props.priceStory[1])}$
             </span>
           )}
         </div>
@@ -38,7 +41,7 @@ const PriceFilter = props => {
           <span className="title">P+S</span>
           {props.pricePS && (
             <span className="data">
-              {props.pricePS[0]}-{props.pricePS[1]}$
+              {reduceNumber(props.pricePS[0])}-{reduceNumber(props.pricePS[1])}$
             </span>
           )}
         </div>

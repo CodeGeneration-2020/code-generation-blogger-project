@@ -5,50 +5,37 @@ export const Tags = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   box-sizing: border-box;
+  padding: 0 7.3%;
 `;
 
 export const SelectContainer = styled.div`
   display: flex;
-  width: 95%;
-  margin: 0 auto;
-  margin-bottom: 2rem;
+  width: 100%;
   align-items: center;
   & > .icon {
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 3%;
-    width: 5%;
-    font-size: 20px;
+    margin-right: 10px;
+    font-size: 25px;
     color: #0091ea;
     font-weight: 700;
   }
   & > .select {
-    width: 55%;
-    display: flex;
-    align-items: center;
-  }
-  & > .button {
-    width: 40%;
-    padding-left: 2%;
-    height: 25px;
-    & .text-button {
-      font-weight: 700;
-      font-size: 12px;
-      @media screen and (max-width: 850px) {
-        font-size: 10px;
-      }
-    }
+    width: 100%;
   }
 `;
 
 export const ListTags = styled.div`
+  margin-top: 40px;
+  width: 100%;
   display: flex;
-  margin: 0 auto;
-  width: 90%;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   & > .tag {
-    margin: 2px 1.5px;
+    margin-left: 5px;
+    margin-bottom: 5px;
+    &:first-child {
+      margin-left: none;
+    }
   }
 `;

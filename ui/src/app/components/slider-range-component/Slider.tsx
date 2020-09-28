@@ -12,10 +12,10 @@ const CustomSlider = props => {
   const railStyle: React.CSSProperties = {
     position: 'absolute',
     width: '100%',
-    height: 14,
-    borderRadius: 7,
+    height: 16,
+    borderRadius: 8,
     cursor: 'pointer',
-    backgroundColor: 'rgb(155,155,155)', // polosa
+    backgroundColor: '#30393E', // polosa
   };
 
   const domain: number[] = props.domain;

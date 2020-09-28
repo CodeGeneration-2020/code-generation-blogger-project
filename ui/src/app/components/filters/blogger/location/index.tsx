@@ -1,23 +1,12 @@
 import React from 'react';
 import * as Style from './styles';
-import Select from '../../../shared/select';
-import { v4 as uuidv4 } from 'uuid';
-import BlueButton from '../../../shared/BlueButton/button.component';
+import LocationSearch from './search/index';
+import { connect } from 'react-redux';
+import SelectionList from './selection-list';
+import SelectedList from './selected-list';
+import { ActionCreators } from '../../../../../store/locationSearch/actions';
 
 const LocationFilter = props => {
-  const removeOptionCity = optionId => {
-    const city = props.selectedCity.filter(c => c.value !== optionId);
-    props.setFilter(city, 'city');
-  };
-
-  const removeOptionCountry = optionId => {
-    const country = props.selectedCountry.filter(c => c.value !== optionId);
-    const city = props.selectedCity.filter(c => c.countryId !== optionId);
-    props.setFilter(country, 'country');
-    props.setFilter(city, 'city');
-    props.clearCityByCountryId(optionId);
-  };
-
   const setCountryFilter = option => {
     const country = [...props.selectedCountry, option];
     props.setFilter(country, 'country');
@@ -30,75 +19,74 @@ const LocationFilter = props => {
     props.setFilter(city, 'city');
   };
 
+  const removeCountry = optionId => {
+    const country = props.selectedCountry.filter(c => c.value !== optionId);
+    const city = props.selectedCity.filter(c => c.countryId !== optionId);
+    props.setFilter(country, 'country');
+    props.setFilter(city, 'city');
+    props.clearCityByCountryId(optionId);
+  };
+
+  const removeCity = optionId => {
+    const city = props.selectedCity.filter(c => c.value !== optionId);
+    props.setFilter(city, 'city');
+  };
+
   return (
     <Style.Location>
-      <div className="item">
-        <div className="select-box">
-          <div className="select">
-            <Select
-              changeHandler={option => setCountryFilter(option)}
-              title="state"
-              options={props.countries}
-              selected={props.selectedCountry}
-            />
-          </div>
-          <div className="button-plus">
-            <Style.ButtonPlus>
-              <span>+</span>
-            </Style.ButtonPlus>
-          </div>
+      <Style.Search>
+        <div className="item">
+          <LocationSearch
+            location={props.countries}
+            title={'state'}
+            selected={props.selectedCountry}
+          />
         </div>
-        <div className="options-list">
-          {props.selectedCountry &&
-            props.selectedCountry.map(c => {
-              return (
-                <span className="location-tag">
-                  <BlueButton
-                    key={uuidv4()}
-                    onClick={() => removeOptionCountry(c.value)}
-                  >
-                    {c.label}
-                  </BlueButton>
-                </span>
-              );
-            })}
-        </div>
-      </div>
 
-      <div className="item">
-        <div className="select-box">
-          <div className="select">
-            <Select
-              changeHandler={option => setCityFilter(option)}
-              title="city"
-              options={props.cities}
-              selected={props.selectedCity}
-            />
-          </div>
-          <div className="button-plus">
-            <Style.ButtonPlus>
-              <span>+</span>
-            </Style.ButtonPlus>
-          </div>
+        <div className="item">
+          <LocationSearch
+            location={props.cities}
+            title={'city'}
+            selected={props.selectedCity}
+          />
         </div>
-        <div className="options-list">
-          {props.selectedCity &&
-            props.selectedCity.map(c => {
-              return (
-                <span className="location-tag">
-                  <BlueButton
-                    key={uuidv4()}
-                    onClick={() => removeOptionCity(c.value)}
-                  >
-                    {c.label}
-                  </BlueButton>
-                </span>
-              );
-            })}
-        </div>
-      </div>
+      </Style.Search>
+
+      <Style.LocationList>
+        {props.active_search ? (
+          <SelectionList
+            active_search={props.active_search}
+            setActiveSearch={props.setActiveSearch}
+            selectedCountry={props.selectedCountry}
+            selectedCity={props.selectedCity}
+            setCountryFilter={setCountryFilter}
+            setCityFilter={setCityFilter}
+            searchCity={props.searchCity}
+            searchState={props.searchState}
+          />
+        ) : (
+          <SelectedList
+            selectedCountry={props.selectedCountry}
+            removeCountry={removeCountry}
+            selectedCity={props.selectedCity}
+            removeCity={removeCity}
+          />
+        )}
+      </Style.LocationList>
     </Style.Location>
   );
 };
 
-export default LocationFilter;
+export default connect(
+  (state: any) => {
+    const { LOCATION_SEARCH_REDUCER } = state;
+    return {
+      searchState: LOCATION_SEARCH_REDUCER.state,
+      searchCity: LOCATION_SEARCH_REDUCER.city,
+      active_search: LOCATION_SEARCH_REDUCER.active_search,
+    };
+  },
+  {
+    setActiveSearch: ActionCreators.setActiveSearch,
+  },
+)(LocationFilter);
