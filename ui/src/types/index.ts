@@ -23,6 +23,19 @@ export interface ILocation {
   label: string;
 }
 
+export interface IBloggerCard {
+  name: string;
+  surname: string;
+  country: string;
+  city: string;
+  followers: number;
+  engagement_rate: number;
+  postPrice: number | undefined;
+  storyPrice: number | undefined;
+  pricePS: number | undefined;
+  tags: Array<{ value: string; label: string }>;
+}
+
 export interface ITags {
   value: string;
   label: string;
