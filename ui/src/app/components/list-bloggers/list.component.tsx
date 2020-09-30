@@ -4,7 +4,7 @@ import * as BloggerActions from '../../../store/blogger/actions';
 import * as FiltersActions from '../../../store/filters/actions';
 import * as Styled from './list.styles';
 import { NavLink } from 'react-router-dom';
-import SideBar, { openSlideMenu } from '../../components/sidebar/SideBar';
+import SideBar, { openSlideMenu } from '../sidebar/SideBar';
 import { IBloggerInfo } from '../../../types/components/index';
 import { v4 as uuidv4 } from 'uuid';
 import UsersFiltersContainer from '../../containers/UsersFiltersContainer/UsersFilters';
@@ -19,11 +19,6 @@ const ListComponent = props => {
     toggleIdBlogger(id);
     openSlideMenu();
   };
-
-  React.useEffect(() => {
-    props.getBloggersByFilters(props.filters);
-    // eslint-disable-next-line
-  }, []);
 
   const getBloggersPagination = () => {
     props.getBloggersPagination({
@@ -49,7 +44,7 @@ const ListComponent = props => {
               props.bloggers.map((item: IBloggerInfo) => (
                 <NavLink
                   to={'/blogger/details/' + item.ig_id}
-                  key={item.ig_id}
+                  key={uuidv4()}
                   onClick={e => {
                     openSideBar(e, item.ig_id);
                   }}
@@ -67,7 +62,12 @@ const ListComponent = props => {
                     </Styled.DataCol>
                     <Styled.DataCol>
                       <h3>
-                        {item.location.country},{item.location.city}
+                        {item.location && (
+                          <>
+                            {item.location.country.label},
+                            {item.location.city.label}
+                          </>
+                        )}
                       </h3>
                       <p>Follovers: {item.metric.followers} / active?</p>
                       <p>Auditory: XXX</p>
@@ -75,7 +75,7 @@ const ListComponent = props => {
                     <Styled.TagBox>
                       {item.tags &&
                         item.tags.map(tag => (
-                          <span key={uuidv4()}>#{tag}</span>
+                          <span key={uuidv4()}>#{tag.label}</span>
                         ))}
                     </Styled.TagBox>
                   </Styled.BloggerItem>
@@ -103,7 +103,6 @@ export default connect(
     };
   },
   {
-    getBloggersByFilters: BloggerActions.ActionCreators.getBloggerByFilters,
     getBloggersPagination: BloggerActions.ActionCreators.getBloggersPagination,
     setSkip: FiltersActions.ActionCreators.setSkip,
   },

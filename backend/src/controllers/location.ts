@@ -16,24 +16,8 @@ class LocationController {
     }
     async getCity(req: Request, res: Response, next: NextFunction){
         try{
-            const city = await this.locationService.getCity();
+            const city = await this.locationService.getCity(req.params.countryId);
             res.json(city);
-        } catch (e) {
-            return next(e);
-        }
-    }
-    async addCountry(req: Request, res: Response, next: NextFunction){
-        try{
-            const response = await this.locationService.addCountry(req.body.name);
-            res.json(response);
-        } catch (e) {
-            return next(e);
-        }
-    }
-    async addCity(req: Request, res: Response, next: NextFunction){
-        try{
-            const response = await this.locationService.addCity(req.body.name);
-            res.json(response);
         } catch (e) {
             return next(e);
         }

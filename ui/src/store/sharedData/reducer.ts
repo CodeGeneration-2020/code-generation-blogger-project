@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ActionCreators } from './actions';
+import { ActionCreators, ActionTypes } from './actions';
 
 const initialState = {
   tags: [],
@@ -22,8 +22,10 @@ const SHARED_DATA_REDUCER = createSlice({
     [ActionCreators.getCountry.fulfilled as any]: (state, action) => {
       state.loading = false;
       state.countries = action.payload.map(country => ({
-        value: country._id,
+        value: country.id,
         label: country.name,
+        sortName: country.sortname,
+        phoneCode: country.phonecode,
       }));
     },
     [ActionCreators.getCountry.pending as any]: state => {
@@ -31,13 +33,23 @@ const SHARED_DATA_REDUCER = createSlice({
     },
     [ActionCreators.getCity.fulfilled as any]: (state, action) => {
       state.loading = false;
-      state.cities = action.payload.map(city => ({
-        value: city._id,
-        label: city.name,
-      }));
+      state.cities = [
+        ...state.cities,
+        ...action.payload.cities.flat().map(city => ({
+          value: city.id,
+          label: city.name,
+          countryId: action.payload.countryId,
+        })),
+      ];
     },
     [ActionCreators.getCity.pending as any]: state => {
       state.loading = true;
+    },
+    [ActionTypes.CLEAR_CITIES_BY_COUNTRY_ID]: (state, action) => {
+      return {
+        ...state,
+        cities: state.cities.filter(c => c.countryId !== action.payload),
+      };
     },
   },
 } as any);

@@ -1,26 +1,24 @@
 import React from 'react';
-import { Slider, Rail, Handles, Tracks, Ticks } from 'react-compound-slider';
-import { Handle, Track, Tick } from './component';
+import { Slider, Rail, Handles, Tracks } from 'react-compound-slider';
+import { Handle, Track } from './component';
 
 const CustomSlider = props => {
-  const [volume] = React.useState([150, 200]);
   const sliderStyle: React.CSSProperties = {
     position: 'relative',
     width: '100%',
-    height: '45px',
-    marginTop: '1em',
+    height: '100%',
   };
 
   const railStyle: React.CSSProperties = {
     position: 'absolute',
     width: '100%',
-    height: 14,
-    borderRadius: 7,
+    height: 16,
+    borderRadius: 8,
     cursor: 'pointer',
-    backgroundColor: 'rgb(155,155,155)',
+    backgroundColor: '#30393E', // polosa
   };
 
-  const domain: number[] = [100, 1000000];
+  const domain: number[] = props.domain;
   return (
     <Slider
       mode={1}
@@ -28,10 +26,9 @@ const CustomSlider = props => {
       domain={domain}
       rootStyle={sliderStyle}
       onChange={value => {
-        console.log('Value: ', value);
-        props.changeHandler({ value: value, title: props.title }, props.title);
+        props.changeHandler(value);
       }}
-      values={volume}
+      values={[0, domain[1] / 2]}
     >
       <Rail>
         {({ getRailProps }) => <div style={railStyle} {...getRailProps()} />}
@@ -64,15 +61,6 @@ const CustomSlider = props => {
           </div>
         )}
       </Tracks>
-      <Ticks count={10}>
-        {({ ticks }) => (
-          <div className="slider-ticks">
-            {ticks.map(tick => (
-              <Tick key={tick.id} tick={tick} count={ticks.length} />
-            ))}
-          </div>
-        )}
-      </Ticks>
     </Slider>
   );
 };

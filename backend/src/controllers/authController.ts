@@ -19,8 +19,8 @@ class AuthController {
     }
     async authBlogger(req: Request, res: Response, next: NextFunction){
         try {
-            await this.authService.authBlogger(req.body);
-            res.json({succes:"Success authenticated"});
+            const response = await this.authService.authBlogger(req.body);
+            res.json({succes:"Success authenticated",response});
         } catch (e) {
             return next(e);
         }

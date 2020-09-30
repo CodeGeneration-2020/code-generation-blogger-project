@@ -18,28 +18,30 @@ export const Handle: React.SFC<IHandleProps> = ({
   domain: [min, max],
   handle: { id, value, percent },
   getHandleProps,
-}) => (
-  <div
-    role="slider"
-    aria-valuemin={min}
-    aria-valuemax={max}
-    aria-valuenow={value}
-    style={{
-      left: `${percent}%`,
-      position: 'absolute',
-      marginLeft: '-11px',
-      marginTop: '-6px',
-      zIndex: 2,
-      width: 24,
-      height: 24,
-      cursor: 'pointer',
-      borderRadius: '50%',
-      boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.2)',
-      backgroundColor: '#34568f',
-    }}
-    {...getHandleProps(id)}
-  />
-);
+}) => {
+  return (
+    <div
+      className="handle"
+      role="slider"
+      aria-valuemin={min}
+      aria-valuemax={max}
+      aria-valuenow={value}
+      style={{
+        left: `${percent}%`,
+        position: 'absolute',
+        top: 5,
+        zIndex: 5,
+        width: 4,
+        height: 4,
+        cursor: 'pointer',
+        borderRadius: '50%',
+        background:
+          'linear-gradient(0deg, #30393E, #30393E), linear-gradient(0deg, #30393E, #30393E), #30393E',
+      }}
+      {...getHandleProps(id)}
+    />
+  );
+};
 
 // *******************************************************
 // TRACK COMPONENT
@@ -58,10 +60,10 @@ export const Track: React.SFC<ITrackProps> = ({
   <div
     style={{
       position: 'absolute',
-      height: 14,
+      height: 16,
       zIndex: 1,
-      backgroundColor: '#7aa0c4',
-      borderRadius: 7,
+      background: `linear-gradient(360deg, #0496FF 0%, #28B5E0 100%)`,
+      borderRadius: '8px',
       cursor: 'pointer',
       left: `${source.percent}%`,
       width: `${target.percent - source.percent}%`,
