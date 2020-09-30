@@ -11,8 +11,12 @@ const PriceFilter = props => {
           <span className="title">POSTS</span>
           {props.pricePost && (
             <span className="data">
-              {reduceNumber(props.pricePost[0])}-
-              {reduceNumber(props.pricePost[1])}$
+              {reduceNumber(props.pricePost[0]).value +
+                reduceNumber(props.pricePost[0]).unit}
+              -
+              {reduceNumber(props.pricePost[1]).value +
+                reduceNumber(props.pricePost[1]).unit}
+              $
             </span>
           )}
         </div>
@@ -26,8 +30,12 @@ const PriceFilter = props => {
           <span className="title">STORIES</span>
           {props.priceStory && (
             <span className="data">
-              {reduceNumber(props.priceStory[0])}-
-              {reduceNumber(props.priceStory[1])}$
+              {reduceNumber(props.priceStory[0]).value +
+                reduceNumber(props.priceStory[0]).unit}
+              -
+              {reduceNumber(props.priceStory[1]).value +
+                reduceNumber(props.priceStory[1]).unit}
+              $
             </span>
           )}
         </div>
@@ -41,7 +49,12 @@ const PriceFilter = props => {
           <span className="title">P+S</span>
           {props.pricePS && (
             <span className="data">
-              {reduceNumber(props.pricePS[0])}-{reduceNumber(props.pricePS[1])}$
+              {reduceNumber(props.pricePS[0]).value +
+                reduceNumber(props.pricePS[0]).unit}
+              -
+              {reduceNumber(props.pricePS[1]).value +
+                reduceNumber(props.pricePS[1]).unit}
+              $
             </span>
           )}
         </div>

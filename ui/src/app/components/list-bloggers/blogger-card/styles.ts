@@ -9,6 +9,7 @@ export const CardContainer = styled.div`
   border-radius: 16px;
   margin-bottom: 24px;
 `;
+
 export const PersonInfo = styled.div`
   width: 17.5%;
   margin: 0 6%;
@@ -185,8 +186,8 @@ export const PriceList = styled.div`
       margin-top: 27px;
       margin-bottom: 22px;
       & > img {
-        width: 18.2px;
-        height: 22.3px;
+        width: 18px;
+        height: 22px;
       }
     }
   }
@@ -197,8 +198,8 @@ export const PriceList = styled.div`
       margin-top: 23px;
       margin-bottom: 19px;
       & > img {
-        width: 18.2px;
-        height: 29.3px;
+        width: 18px;
+        height: 29px;
       }
     }
   }
@@ -209,8 +210,8 @@ export const PriceList = styled.div`
       margin-top: 23px;
       margin-bottom: 19px;
       & > img {
-        width: 51.2px;
-        height: 29.3px;
+        width: 51px;
+        height: 29px;
       }
     }
   }

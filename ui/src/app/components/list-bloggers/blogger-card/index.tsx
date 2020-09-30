@@ -8,10 +8,10 @@ import LineChart from '../../shared/line-chart';
 import Tag from '../../shared/Tag';
 import { reduceNumber } from '../../../helpers/reduceNumber';
 import { IBloggerCard } from '../../../../types/index';
+import parseFullName from '../../../helpers/parseFullName';
 
 const BloggerCard: React.FC<IBloggerCard> = ({
-  name,
-  surname,
+  full_name,
   country,
   city,
   followers,
@@ -29,8 +29,8 @@ const BloggerCard: React.FC<IBloggerCard> = ({
         </div>
         <div className="info">
           <div className="full-name">
-            <div className="name">{name}</div>
-            <div className="surname">{surname}</div>
+            <div className="name">{parseFullName.getName(full_name)}</div>
+            <div className="surname">{parseFullName.getSurname(full_name)}</div>
           </div>
           <div className="location">
             <span className="country">{country},</span>
@@ -41,8 +41,8 @@ const BloggerCard: React.FC<IBloggerCard> = ({
 
       <Style.Audience>
         <div className="result">
-          <span className="value">{reduceNumber(followers, true).value}</span>
-          <span className="unit">{reduceNumber(followers, true).unit}</span>
+          <span className="value">{reduceNumber(followers).value}</span>
+          <span className="unit">{reduceNumber(followers).unit}</span>
         </div>
         <div className="details">
           <div className="er">

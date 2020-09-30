@@ -56,8 +56,7 @@ const BloggerList = props => {
                     tags={item.tags || []}
                     followers={item.metric.followers}
                     engagement_rate={item.metric.er}
-                    name={item.full_name.split(' ')[0]}
-                    surname={item.full_name.split(' ')[1]}
+                    full_name={item.full_name}
                     country={item.location.country.label}
                     city={item.location.city.label}
                   />

@@ -24,8 +24,7 @@ export interface ILocation {
 }
 
 export interface IBloggerCard {
-  name: string;
-  surname: string;
+  full_name: string;
   country: string;
   city: string;
   followers: number;
