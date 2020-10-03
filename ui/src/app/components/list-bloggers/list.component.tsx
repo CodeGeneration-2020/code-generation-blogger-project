@@ -10,10 +10,10 @@ import { v4 as uuidv4 } from 'uuid';
 import UsersFiltersContainer from '../../containers/UsersFiltersContainer/UsersFilters';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import BloggerDetails from '../blogger-details/BloggerDetails';
+import BloggerCard from './blogger-card';
 
-const ListComponent = props => {
+const BloggerList = props => {
   const [idBlogger, toggleIdBlogger] = React.useState<number>();
-
   const openSideBar = (e, id: number) => {
     e.preventDefault();
     toggleIdBlogger(id);
@@ -49,36 +49,17 @@ const ListComponent = props => {
                     openSideBar(e, item.ig_id);
                   }}
                 >
-                  <Styled.BloggerItem>
-                    <Styled.Avatar>
-                      <img alt={item.full_name} src={item.profile_picture} />
-                    </Styled.Avatar>
-                    <Styled.DataCol>
-                      <h3>{item.full_name}</h3>
-                      <p>
-                        Post: {item.postPrice}$ Story: {item.storyPrice}$
-                      </p>
-                      <p>POst + Story price : XXX</p>
-                    </Styled.DataCol>
-                    <Styled.DataCol>
-                      <h3>
-                        {item.location && (
-                          <>
-                            {item.location.country.label},
-                            {item.location.city.label}
-                          </>
-                        )}
-                      </h3>
-                      <p>Follovers: {item.metric.followers} / active?</p>
-                      <p>Auditory: XXX</p>
-                    </Styled.DataCol>
-                    <Styled.TagBox>
-                      {item.tags &&
-                        item.tags.map(tag => (
-                          <span key={uuidv4()}>#{tag.label}</span>
-                        ))}
-                    </Styled.TagBox>
-                  </Styled.BloggerItem>
+                  <BloggerCard
+                    postPrice={item.postPrice}
+                    storyPrice={item.storyPrice}
+                    pricePS={item.pricePS}
+                    tags={item.tags || []}
+                    followers={item.metric.followers}
+                    engagement_rate={item.metric.er}
+                    full_name={item.full_name}
+                    country={item.location.country.label}
+                    city={item.location.city.label}
+                  />
                 </NavLink>
               ))}
           </InfiniteScroll>
@@ -106,4 +87,4 @@ export default connect(
     getBloggersPagination: BloggerActions.ActionCreators.getBloggersPagination,
     setSkip: FiltersActions.ActionCreators.setSkip,
   },
-)(ListComponent);
+)(BloggerList);

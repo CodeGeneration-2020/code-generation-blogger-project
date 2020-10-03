@@ -1,26 +1,26 @@
-export const reduceNumber = num => {
+export const reduceNumber = (num: number): { value: number; unit: string } => {
   const stringNum = String(num);
   const numLengt = stringNum.length;
 
   if (numLengt === 4) {
-    return `${stringNum.slice(0, 1)}k`;
+    return { value: Number(stringNum.slice(0, 1)), unit: 'k' };
   }
 
   if (numLengt === 5) {
-    return `${stringNum.slice(0, 2)}kk`;
+    return { value: Number(stringNum.slice(0, 2)), unit: 'k' };
   }
 
   if (numLengt === 6) {
-    return `${stringNum.slice(0, 3)}kk`;
+    return { value: Number(stringNum.slice(0, 3)), unit: 'k' };
   }
 
   if (numLengt === 7) {
-    return `${stringNum.slice(0, 1)}m`;
+    return { value: Number(stringNum.slice(0, 1)), unit: 'kk' };
   }
 
   if (numLengt === 8) {
-    return `${stringNum.slice(0, 2)}m`;
+    return { value: Number(stringNum.slice(0, 2)), unit: 'kk' };
   }
 
-  return num;
+  return { value: num, unit: '' };
 };

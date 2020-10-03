@@ -4,10 +4,10 @@ export const FiltersContainer = styled.div`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding: 2%;
   display: flex;
   flex-direction: column;
   background: #0d0b18;
+  margin-bottom: 100px;
 `;
 
 export const Filters = styled.div`
