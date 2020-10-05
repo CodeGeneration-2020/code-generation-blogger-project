@@ -17,13 +17,15 @@ class UsersService {
   getBloggersByFilters(filters, skip = 0, limit = LIMITQUERY) {
     return this.apiService.GET(
       `users/filters/bloggers?storyPrice=${addQuery(
-        filters.price,
-      )}&postPrice=${addQuery(filters.price)}&country=${addQuery(
-        filters.country,
-      )}&city=${addQuery(filters.city)}&tags=${addQuery(
-        filters.tags,
-      )}&sex=${addQuery(filters.sex)}&followers=${addQuery(
-        filters.subscribers,
+        filters.priceStory,
+      )}&postPrice=${addQuery(filters.pricePost)}&pricePS=${addQuery(
+        filters.pricePS,
+      )}&country=${addQuery(filters.country)}&city=${addQuery(
+        filters.city,
+      )}&tags=${addQuery(filters.tags)}&sex=${addQuery(
+        filters.gender,
+      )}&followers=${addQuery(filters.subscribers)}&er=${addQuery(
+        filters.er,
       )}&skip=${skip}&limit=${limit}`,
       {},
     );

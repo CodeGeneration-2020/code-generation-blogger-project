@@ -14,10 +14,7 @@ const BarChart: React.FC<{ data: Array<IBarChartData> }> = ({ data }) => {
     if (!dimensions) return;
     // sorting the data
     data.sort((a, b) => b.value - a.value);
-    const maxLengthLebel = max(
-      data,
-      entry => (entry.attribute.length * 10) as any,
-    );
+    const maxLengthLebel = max(data, entry => entry.attribute.length as any);
 
     const yScale = scaleBand()
       .paddingInner(0.1)
@@ -28,7 +25,7 @@ const BarChart: React.FC<{ data: Array<IBarChartData> }> = ({ data }) => {
       .domain([0, max(data, entry => entry.value)] as any) // [0, 65 (example)]
       .range([
         0,
-        dimensions.width - (dimensions.width / 100) * 15 - maxLengthLebel,
+        dimensions.width - (dimensions.width / 100) * 27 - maxLengthLebel,
       ]); // [0, 400 (example)]
 
     svg = svg.attr('transform', `translate(${maxLengthLebel})`);
@@ -46,40 +43,36 @@ const BarChart: React.FC<{ data: Array<IBarChartData> }> = ({ data }) => {
       .attr('width', entry => xScale(entry.value))
       .attr('y', (entry, index: any) => yScale(index) as any)
       .style('fill', (d: any): any => {
-        if (d.value >= 30) {
-          return like.blue_darken_3;
-        } else if (d.value < 30 && d.value >= 15) {
-          return like.blue;
-        } else if (d.value < 15 && d.value >= 1) {
-          return like.blue_lighten_3;
-        } else if (d.value < 1) {
-          return like.white;
-        }
+        let color = '';
+        Object.keys(like).forEach(l => {
+          if (d.attribute === l) color = like[l];
+        });
+        return color;
       });
     // draw the labels
-    svg
-      .selectAll('.label')
-      .data(data, (entry: any, index) => entry.attribute)
-      .join(enter =>
-        enter
-          .append('text')
-          .attr(
-            'y',
-            (entry, index: any) =>
-              (yScale(index) as any) + yScale.bandwidth() / 2 + 5,
-          ),
-      )
-      .text((entry: any) => `${entry.attribute}`)
-      .attr('class', 'label')
-      .attr('x', (entry: any) => {
-        return -maxLengthLebel;
-      })
-      .transition()
-      .attr(
-        'y',
-        (entry, index: any) =>
-          (yScale(index) as any) + yScale.bandwidth() / 2 + 5,
-      );
+    // svg
+    //   .selectAll('.label')
+    //   .data(data, (entry: any, index) => entry.attribute)
+    //   .join(enter =>
+    //     enter
+    //       .append('text')
+    //       .attr(
+    //         'y',
+    //         (entry, index: any) =>
+    //           (yScale(index) as any) + yScale.bandwidth() / 2 + 5,
+    //       ),
+    //   )
+    //   .text((entry: any) => `${entry.attribute}`)
+    //   .attr('class', 'label')
+    //   .attr('x', (entry: any) => {
+    //     return -maxLengthLebel;
+    //   })
+    //   .transition()
+    //   .attr(
+    //     'y',
+    //     (entry, index: any) =>
+    //       (yScale(index) as any) + yScale.bandwidth() / 2 + 5,
+    //   );
     //draw value
     svg
       .selectAll('.label_value')
@@ -97,14 +90,12 @@ const BarChart: React.FC<{ data: Array<IBarChartData> }> = ({ data }) => {
         (entry: any) =>
           `${entry.value < 1 ? 'меньше 1' : Math.trunc(entry.value)}%`,
       )
-      .style('fill', (data: any): any => {
-        if (data.value >= 30) {
-          return like.blue_darken_3;
-        } else if (data.value < 30 && data.value >= 15) {
-          return like.blue;
-        } else if (data.value < 15) {
-          return like.blue_lighten_3;
-        }
+      .style('fill', (d: any): any => {
+        let color = '';
+        Object.keys(like).forEach(l => {
+          if (d.attribute === l && d.value < 1) color = like[l];
+        });
+        return color;
       })
       .attr('class', 'label_value')
       .attr('x', (entry: any) => xScale(entry.value + 0.2))

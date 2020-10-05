@@ -1,33 +1,24 @@
-import {Country,CountryDocument} from '../models/Country';
-import {City,CityDocument} from '../models/City';
+import csc from 'country-state-city';
+import { ICountry, ICity as IBaseCity } from 'country-state-city';
+
+interface ICity {
+    cities: IBaseCity[][],
+    countryId: String
+}
 
 export interface ILocationService {
-    getCountry: () => Promise<CountryDocument[]>;
-    getCity: () => Promise<CityDocument[]>;
-    addCountry: (name:string) => Promise<string>;
-    addCity: (name:string) => Promise<string>;
+    getCountry: () => Promise<ICountry[]>;
+    getCity: (countryId:string) => Promise<ICity>;
 }
 
 class LocationService {
     async getCountry() {
-        return Country.find();
+        return csc.getAllCountries();
     }
-    async getCity() {
-        return City.find();
-    }
-    async addCountry(name:string) {
-        const country = new Country({
-            name
-        });
-        await country.save();
-        return "country created success";
-    }
-    async addCity(name:string) {
-        const city = new City({
-            name
-        });
-        await city.save();
-        return "city created success";
+    async getCity(countryId:string) {
+        const states = csc.getStatesOfCountry(countryId);
+        const cities = states.map(s=>csc.getCitiesOfState(s.id));
+        return {cities:cities,countryId}
     }
 }
 

@@ -13,11 +13,11 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { GlobalStyle } from 'styles/global-styles';
 
 import { HomePage } from './containers/HomePage/Loadable';
-import { NotFoundPage } from './components/NotFoundPage/Loadable';
-import Filters from './components/List/list.component';
+import { NotFoundPage } from './components/not-found-page/Loadable';
+import ListBloggers from './components/list-bloggers/list.component';
 import BloggerDetails from './components/blogger-details/BloggerDetails';
 import Job from './containers/JobContainer';
-import ListJob from './components/ListJob/list.component';
+import ListJob from './components/list-jobs/list.component';
 
 export function App() {
   return (
@@ -30,7 +30,7 @@ export function App() {
       </Helmet>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/list" component={Filters} />
+        <Route path="/list/bloggers" component={ListBloggers} />
         <Route exact path="/blogger/details/:id" component={BloggerDetails} />
         <Route path="/jobs" component={ListJob} />
         <Route path="/job/details/:id" component={Job} />

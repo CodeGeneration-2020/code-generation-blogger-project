@@ -28,7 +28,7 @@ const USER_REDUCER = createSlice({
         ...state,
         filters: {
           ...state.filters,
-          [action.payload.title]: { value: action.payload.value },
+          [action.payload.title]: action.payload.value,
         },
       };
     },

@@ -1,10 +1,11 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 import SharedDataService from '../../services/shared-data.service';
 
 const ActionTypes = {
   GET_TAGS: '[SHARED_DATA] get_tags',
   GET_COUNTRY: '[SHARED_DATA] get_country',
   GET_CITY: '[SHARED_DATA] get_city',
+  CLEAR_CITIES_BY_COUNTRY_ID: '[SHARED_DATA] clear_cities_by_country',
 };
 
 const getTags = createAsyncThunk(ActionTypes.GET_TAGS, async () => {
@@ -17,15 +18,20 @@ const getCountry = createAsyncThunk(ActionTypes.GET_COUNTRY, async () => {
   return response.data;
 });
 
-const getCity = createAsyncThunk(ActionTypes.GET_CITY, async () => {
-  const response = await SharedDataService.getCity();
+const getCity = createAsyncThunk(ActionTypes.GET_CITY, async countryId => {
+  const response = await SharedDataService.getCity(countryId);
   return response.data;
 });
+
+const clearCityByCountryId = createAction(
+  ActionTypes.CLEAR_CITIES_BY_COUNTRY_ID,
+);
 
 const ActionCreators = {
   getTags,
   getCountry,
   getCity,
+  clearCityByCountryId,
 };
 
 export { ActionTypes, ActionCreators };

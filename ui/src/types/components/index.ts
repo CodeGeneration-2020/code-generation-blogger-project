@@ -18,6 +18,11 @@ export interface IBarChartData {
   value: number;
 }
 
+export interface ITags {
+  label: string;
+  value: string;
+}
+
 export interface IBloggerInfo {
   _id: number;
   ig_id: number;
@@ -30,36 +35,21 @@ export interface IBloggerInfo {
     media: number;
     follows: number;
     followers: number;
+    er: number;
   };
   storyPrice: number | undefined;
   postPrice: number | undefined;
+  pricePS: number | undefined;
   location: {
-    country: string;
-    city: string;
+    country: {
+      label: string;
+      value: string;
+    };
+    city: {
+      label: string;
+      value: string;
+    };
   };
-  tags: string[];
+  tags: ITags[];
   sex: string | undefined;
-}
-
-export interface IBloggerData {
-  _id: number;
-  ig_id: number;
-  username: string;
-  full_name: string;
-  profile_picture: string;
-  biography: string;
-  website: string;
-  metric: {
-    media: number;
-    follows: number;
-    followers: number;
-  };
-  storyPrice: number;
-  postPrice: number;
-  location: {
-    country: string;
-    city: string;
-  };
-  tags: string[];
-  sex: string;
 }
