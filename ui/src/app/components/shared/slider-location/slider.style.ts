@@ -1,3 +1,4 @@
+import { IPropsTheme } from './../../../../types/index';
 import styled from 'styled-components';
 
 const imgSize = {
@@ -9,7 +10,7 @@ const Arrow = styled.div`
   position: absolute;
   width: ${imgSize.w} !important;
   height: ${imgSize.h} !important;
-  & img {
+  & svg {
     width: 100%;
     height: 100%;
   }
@@ -23,7 +24,7 @@ export const SliderNext = styled(Arrow)`
   right: -5% !important;
 `;
 
-export const SliderContainer = styled.div`
+export const SliderContainer = styled.div<IPropsTheme>`
   width: 100%;
   height: 74px;
   padding: 0 5%;
@@ -39,11 +40,11 @@ export const SliderContainer = styled.div`
       font-size: 12px;
       line-height: 20px;
       text-align: center;
-      color: #28b5e1;
+      color: ${({ theme }) => theme && theme.color};
       &:hover {
         cursor: pointer;
         color: #fff;
-        background: #28b5e1;
+        background: ${({ theme }) => theme && theme.background};
         border-radius: 8px;
       }
     }

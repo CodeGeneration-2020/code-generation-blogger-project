@@ -32,7 +32,7 @@ const BloggerList = props => {
   return (
     <>
       <Styled.Wrapper>
-        <UsersFiltersContainer />
+        <UsersFiltersContainer isBlogger={props.isBlogger} />
         <Styled.BloggerListWrap>
           <InfiniteScroll
             dataLength={props.bloggers.length}

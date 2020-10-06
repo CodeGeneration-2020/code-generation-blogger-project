@@ -1,6 +1,7 @@
+import { IPropsTheme } from '../../../../types';
 import styled from 'styled-components';
 
-export const CardContainer = styled('div')`
+export const CardContainer = styled('div')<IPropsTheme>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -11,7 +12,7 @@ export const CardContainer = styled('div')`
   box-shadow: 0px 1px 8px rgba(110, 110, 110, 0.1);
   border-radius: 16px;
   & > .title {
-    color: #28b5e1;
+    color: ${({ theme }) => theme && theme.color};
     font-size: 16px;
     line-height: 20px;
     font-family: 'Poppins', sans-serif;

@@ -52,6 +52,7 @@ const CustomSlider = props => {
           <div className="slider-tracks">
             {tracks.map(({ id, source, target }) => (
               <Track
+                theme={props.theme}
                 key={id}
                 source={source}
                 target={target}

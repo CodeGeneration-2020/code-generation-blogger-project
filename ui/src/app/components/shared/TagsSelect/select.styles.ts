@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { IPropsTheme } from '../../../../types';
 
-export const SelectContainer = styled.div`
+export const SelectContainer = styled.div<IPropsTheme>`
   & .react-select {
     & ::-webkit-scrollbar {
       width: 5px;
@@ -13,7 +14,7 @@ export const SelectContainer = styled.div`
 
     /* Handle */
     & ::-webkit-scrollbar-thumb {
-      background: #1dabea;
+      background: ${({ theme }) => theme && theme.background};
     }
   }
 `;
