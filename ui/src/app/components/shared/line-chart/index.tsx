@@ -12,7 +12,7 @@ const LineChart = ({ er }) => {
 };
 
 LineChart.propTypes = {
-  er: PropTypes.number,
+  er: PropTypes.number || PropTypes.string,
 };
 
 LineChart.defaultProps = {

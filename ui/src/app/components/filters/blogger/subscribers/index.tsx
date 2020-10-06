@@ -18,8 +18,11 @@ const Subscribers = props => {
           <span className="result">
             {props.subscribers && (
               <>
-                {reduceNumber(props.subscribers[0])}-
-                {reduceNumber(props.subscribers[1])}
+                {reduceNumber(props.subscribers[0]).value +
+                  reduceNumber(props.subscribers[0]).unit}
+                -
+                {reduceNumber(props.subscribers[1]).value +
+                  reduceNumber(props.subscribers[1]).unit}
               </>
             )}
           </span>

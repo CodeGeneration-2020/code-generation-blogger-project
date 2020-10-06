@@ -2,13 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { ActionTypes } from './actions';
 import { bloggerFilters, customerFilters } from '../../consts/lists';
 import { IFiltersReducer } from '../../types/index';
-import { LIMITQUERY } from '../../consts/lists';
 
 const initialState: IFiltersReducer = {
   type: '',
   pagination: {
     bloggers: { skip: 0, limit: 3 },
-    comments: { skip: 0, limit: 3 },
+    comments: { skip: 0, limit: 5 },
   },
   filters: {},
 };
@@ -38,12 +37,13 @@ const USER_REDUCER = createSlice({
       return {
         ...state,
         filters: {},
-        skip: 0,
-        limit: LIMITQUERY,
+        pagination: {
+          bloggers: { skip: 0, limit: 3 },
+          comments: { skip: 0, limit: 5 },
+        },
       };
     },
     [ActionTypes.SET_SKIP]: (state, action) => {
-      debugger;
       return {
         ...state,
         pagination: {

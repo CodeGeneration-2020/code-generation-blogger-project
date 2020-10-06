@@ -6,20 +6,13 @@ import {
 } from '../../../../../consts/age-categories';
 import { v4 as uuidv4 } from 'uuid';
 import BarChart from '../../../shared/bar-chart/BarChart';
+import { callculateCountUsersByAge } from '../../../../helpers/calculateCountUsers';
 
 const AgeChart = ({ data }) => {
-  const usersCount = data.reduce((sum, current) => {
-    return sum + current.users;
-  }, 0);
-  const ageData = data.map(c => ({
-    attribute: c.key,
-    value: Math.round((c.users * 100) / usersCount),
-  }));
-
   return (
     <Style.AgeChartContainer>
       <div className="chart">
-        <BarChart data={ageData} />
+        <BarChart data={callculateCountUsersByAge(data)} />
       </div>
       <div className="categories">
         <div className="first-group">

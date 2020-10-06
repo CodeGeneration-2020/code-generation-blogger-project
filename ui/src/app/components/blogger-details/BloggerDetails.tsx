@@ -14,6 +14,10 @@ import Rating from './rating';
 import Comments from './comments';
 import Loader from '../../../loader/component/loader.component';
 import Statistics from './statistics/statistics';
+// import {
+//   callculateAverageComing,
+//   callculateAverageScore,
+// } from '../../helpers/callculateAverageRating';
 
 const BloggerDetails: React.FC<{
   match?: any;
@@ -30,7 +34,6 @@ const BloggerDetails: React.FC<{
   skip: number;
   limit: number;
   setSkip: any;
-  resetSkip: any;
 }> = ({
   match,
   idBlogger,
@@ -46,17 +49,16 @@ const BloggerDetails: React.FC<{
   skip,
   limit,
   setSkip,
-  resetSkip,
 }) => {
   const ig_id = match ? match.params.id : idBlogger;
   const initBloggerInfo = id => {
     if (id) {
       getBlogger(id);
       clearComments();
-      resetSkip({ key: 'comments' });
+      setSkip({ key: 'comments', skip: 5, limit });
       getBloggerComments({
         bloggerId: id,
-        skip,
+        skip: 0,
         limit,
       });
     }
@@ -81,17 +83,20 @@ const BloggerDetails: React.FC<{
               ageInfo={ageInfo}
             />
           </Styled.StatisticsCharts>
-          <Rating />
+          <Rating
+            average_coming={comments.averageData.averageComing}
+            score={comments.averageData.averageScore}
+          />
           <Comments
-            comments={comments}
+            comments={comments.comments}
             loading={loading}
             getPaginationComments={() => {
               getBloggerComments({
                 bloggerId: ig_id,
-                skip: skip + 3,
-                limit: 3,
+                skip: skip + 5,
+                limit: 5,
               });
-              setSkip({ key: 'comments', skip: skip + 3, limit: 3 });
+              setSkip({ key: 'comments', skip: skip + 5, limit: 5 });
             }}
           />
         </>
@@ -119,6 +124,5 @@ export default connect(
     getBloggerComments: BloggerActions.ActionCreators.getBloggerComments,
     clearComments: BloggerActions.ActionCreators.clearBloggerComments,
     setSkip: FilterCreators.setSkip,
-    resetSkip: FilterCreators.resetSkip,
   },
 )(BloggerDetails);

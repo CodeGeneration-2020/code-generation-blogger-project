@@ -2,6 +2,23 @@ import styled from 'styled-components';
 
 export const CommentList = styled.div`
   width: 100%;
+  .infinite-scroll {
+    overflow: scroll;
+    ::-webkit-scrollbar {
+      width: 3px;
+      height: 3px;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: #414d55;
+    }
+    ::-webkit-scrollbar-track-piece {
+      background-color: #414d55;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #28b5e0;
+      border-radius: 3px;
+    }
+  }
 `;
 
 export const CommentCard = styled.div`

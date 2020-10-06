@@ -1,10 +1,10 @@
 import React from 'react';
 import * as Style from './styles';
 import LineChart from '../../../shared/line-chart';
-import callculateUsers from '../../../../helpers/calculateCountUsers';
+import { callculateCountUsersByCities } from '../../../../helpers/calculateCountUsers';
 
 const CityChart = ({ data }) => {
-  const cities = callculateUsers(data);
+  const cities = callculateCountUsersByCities(data);
   return (
     <Style.CityChartContainer>
       {cities.map(city => {

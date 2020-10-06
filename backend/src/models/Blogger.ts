@@ -1,11 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 
-export interface ILocation{
-        label:String;
-        value:String;
-}
-
-export interface ITags{
+export interface IOption {
         label:String;
         value:String;
 }
@@ -28,10 +23,10 @@ export type BloggerDocument = mongoose.Document & {
         postPrice: number|undefined;
         pricePS: number|undefined;
         location: {
-                country:ILocation[];
-                city:ILocation[];
+                country:IOption[];
+                city:IOption[];
         };
-        tags: ITags[];
+        tags: IOption[];
         sex: string|undefined;
         commentId: Number;
 };

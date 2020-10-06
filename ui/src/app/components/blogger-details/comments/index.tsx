@@ -5,19 +5,21 @@ import StarIcon from '../../../../img/star.svg';
 import { v4 as uuidv4 } from 'uuid';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-const CommentCard = ({ comments, loading, getPaginationComments }) => {
+const Comments = ({ comments, loading, getPaginationComments }) => {
   return (
     <Style.CommentList>
       <InfiniteScroll
+        className="infinite-scroll"
         dataLength={comments.length}
         next={() => getPaginationComments()}
         hasMore={true}
         loader={loading && <h4>Loading...</h4>}
+        height={300}
       >
         {comments &&
           comments.map(c => {
             return (
-              <Style.CommentCard>
+              <Style.CommentCard key={uuidv4()}>
                 <Style.UserInfo>
                   <div className="ava">
                     <img src={AvaComment} alt="ava-comment" />
@@ -25,16 +27,14 @@ const CommentCard = ({ comments, loading, getPaginationComments }) => {
                   <div className="info">
                     <span className="full_name">{c.customerId.full_name}</span>
                     <span className="score">
-                      {Array(c.score)
-                        .fill(' ')
-                        .map(_ => (
-                          <img
-                            src={StarIcon}
-                            alt="star"
-                            className="star"
-                            key={uuidv4()}
-                          />
-                        ))}
+                      {[...(Array(c.score).keys() as any)].map(_ => (
+                        <img
+                          src={StarIcon}
+                          alt="star"
+                          className="star"
+                          key={uuidv4()}
+                        />
+                      ))}
                     </span>
                   </div>
                 </Style.UserInfo>
@@ -54,4 +54,4 @@ const CommentCard = ({ comments, loading, getPaginationComments }) => {
   );
 };
 
-export default CommentCard;
+export default Comments;

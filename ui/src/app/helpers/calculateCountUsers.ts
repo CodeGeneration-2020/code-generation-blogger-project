@@ -1,4 +1,4 @@
-export default function callculateCountUsersInInterest(data) {
+export function callculateCountUsersByCities(data) {
   const usersCount = data.reduce((sum, current) => {
     return sum + current.users;
   }, 0);
@@ -20,4 +20,14 @@ function callculateOthersCity(data) {
     result += element.value;
   });
   return { attribute: 'Others', value: 100 - result };
+}
+
+export function callculateCountUsersByAge(data) {
+  const usersCount = data.reduce((sum, current) => {
+    return sum + current.users;
+  }, 0);
+  return data.map(c => ({
+    attribute: c.key,
+    value: Math.round((c.users * 100) / usersCount),
+  }));
 }
