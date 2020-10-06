@@ -18,8 +18,13 @@ import ListBloggers from './components/list-bloggers/list.component';
 import BloggerDetails from './components/blogger-details/BloggerDetails';
 import Job from './containers/JobContainer';
 import ListJob from './components/list-jobs/list.component';
+import { ActionCreators } from '../store/sharedData/actions';
+import { connect } from 'react-redux';
+import { bloggerTheme, customerTheme } from '../consts/theme';
 
-export function App() {
+function App({ setTheme }) {
+  const isBlogger = true;
+  setTheme(isBlogger ? bloggerTheme : customerTheme);
   return (
     <BrowserRouter>
       <Helmet
@@ -30,7 +35,7 @@ export function App() {
       </Helmet>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/list/bloggers" component={ListBloggers} />
+        <Route path="/list/bloggers" render={() => <ListBloggers />} />
         <Route exact path="/blogger/details/:id" component={BloggerDetails} />
         <Route path="/jobs" component={ListJob} />
         <Route path="/job/details/:id" component={Job} />
@@ -41,3 +46,5 @@ export function App() {
     </BrowserRouter>
   );
 }
+
+export default connect(null, { setTheme: ActionCreators.setTheme })(App);

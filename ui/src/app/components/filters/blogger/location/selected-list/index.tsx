@@ -15,7 +15,9 @@ const SelectionList = props => {
                 className="item"
                 onClick={() => props.removeCountry(c.value)}
               >
-                <BlueButton style={{ height: '100%' }}>{c.label}</BlueButton>
+                <BlueButton style={{ height: '100%' }} theme={props.theme}>
+                  {c.label}
+                </BlueButton>
               </span>
             );
           })}
@@ -29,7 +31,7 @@ const SelectionList = props => {
                 className="item"
                 onClick={() => props.removeCity(c.value)}
               >
-                <BlueButton style={{ height: '100%' }}>
+                <BlueButton style={{ height: '100%' }} theme={props.theme}>
                   <span className="city">{c.label}</span>
                 </BlueButton>
               </span>

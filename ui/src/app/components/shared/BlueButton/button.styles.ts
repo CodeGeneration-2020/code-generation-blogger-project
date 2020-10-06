@@ -1,3 +1,4 @@
+import { ITheme } from './../../../../types/index';
 import styled from 'styled-components';
 
 interface Props {
@@ -5,6 +6,7 @@ interface Props {
   height: string;
   boxShadow: string;
   borderRadius: string;
+  theme: ITheme;
 }
 
 export const Button = styled.button<Props>`
@@ -16,10 +18,9 @@ export const Button = styled.button<Props>`
   font-style: normal;
   line-height: 20px;
   padding: 6px 12px;
-  background: linear-gradient(360deg, #0496ff 0%, #28b5e0 100%);
+  background: ${({ theme }) => theme && theme.background};
   box-shadow: ${({ boxShadow }) => boxShadow && boxShadow};
   border-radius: ${({ borderRadius }) => borderRadius && borderRadius};
-  border: 1px solid #0091ea;
   color: #fff;
   &:hover {
     cursor: pointer;

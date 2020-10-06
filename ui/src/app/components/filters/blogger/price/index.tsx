@@ -5,7 +5,7 @@ import { reduceNumber } from '../../../../helpers/reduceNumber';
 
 const PriceFilter = props => {
   return (
-    <Style.Price>
+    <Style.Price theme={props.theme}>
       <div className="slider">
         <div className="info">
           <span className="title">POSTS</span>
@@ -21,6 +21,7 @@ const PriceFilter = props => {
           )}
         </div>
         <CustomSlider
+          theme={props.theme}
           domain={[0, 2000]}
           changeHandler={data => props.setFilter(data, 'pricePost')}
         />
@@ -40,6 +41,7 @@ const PriceFilter = props => {
           )}
         </div>
         <CustomSlider
+          theme={props.theme}
           domain={[0, 2000]}
           changeHandler={data => props.setFilter(data, 'priceStory')}
         />
@@ -59,6 +61,7 @@ const PriceFilter = props => {
           )}
         </div>
         <CustomSlider
+          theme={props.theme}
           domain={[0, 5000]}
           changeHandler={data => props.setFilter(data, 'pricePS')}
         />

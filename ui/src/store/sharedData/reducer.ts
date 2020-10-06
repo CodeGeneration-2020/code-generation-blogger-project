@@ -5,6 +5,7 @@ const initialState = {
   tags: [],
   countries: [],
   cities: [],
+  theme: {},
   loading: false,
 };
 
@@ -49,6 +50,12 @@ const SHARED_DATA_REDUCER = createSlice({
       return {
         ...state,
         cities: state.cities.filter(c => c.countryId !== action.payload),
+      };
+    },
+    [ActionTypes.SET_THEME]: (state, action) => {
+      return {
+        ...state,
+        theme: action.payload,
       };
     },
   },

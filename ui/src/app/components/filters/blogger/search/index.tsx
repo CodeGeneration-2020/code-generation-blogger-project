@@ -2,7 +2,7 @@ import React from 'react';
 import * as Style from './styles';
 import BlueButton from '../../../../components/shared/BlueButton/button.component';
 
-const Search = () => {
+const Search = ({ theme }) => {
   return (
     <Style.SearchContainer>
       <div className="input">
@@ -10,6 +10,7 @@ const Search = () => {
       </div>
       <div className="button">
         <BlueButton
+          theme={theme}
           type="btn"
           style={{
             width: '100%',

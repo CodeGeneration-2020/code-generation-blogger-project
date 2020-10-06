@@ -62,3 +62,12 @@ export interface IJob {
   _id: string;
   customerId: any;
 }
+
+export interface ITheme {
+  background: string;
+  color: string;
+}
+
+export interface IPropsTheme {
+  theme: { background: string; color: string };
+}

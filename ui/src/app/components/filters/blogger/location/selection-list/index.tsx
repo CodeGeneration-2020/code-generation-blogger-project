@@ -7,6 +7,7 @@ const SelectionList = props => {
     <Style.SelectionContainer className="selection-list">
       {props.active_search === 'state' ? (
         <Slider
+          theme={props.theme}
           location={props.searchState.filters || []}
           setLocation={location => {
             props.setCountryFilter(location);
@@ -15,6 +16,7 @@ const SelectionList = props => {
         />
       ) : props.selectedCountry.length ? (
         <Slider
+          theme={props.theme}
           location={props.searchCity.filters || []}
           setLocation={location => {
             props.setCityFilter(location);

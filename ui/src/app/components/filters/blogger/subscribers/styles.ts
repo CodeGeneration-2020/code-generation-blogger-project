@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { IPropsTheme } from '../../../../../types';
 
-export const Subscribers = styled.div`
+export const Subscribers = styled.div<IPropsTheme>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -46,7 +47,7 @@ export const Subscribers = styled.div`
       width: 50%;
       text-align: center;
       text-transform: lowercase;
-      color: #28b5e1;
+      color: ${({ theme }) => theme && theme.color};
     }
     padding-bottom: 36px;
   }

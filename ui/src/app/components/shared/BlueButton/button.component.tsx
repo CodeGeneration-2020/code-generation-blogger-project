@@ -3,10 +3,11 @@ import * as Styled from './button.styles';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const BlueButton = ({ children, onClick, link, type, style }) => {
+const BlueButton = ({ children, onClick, link, type, style, theme }) => {
   return (
     <Link to={link}>
       <Styled.Button
+        theme={theme}
         type={type}
         onClick={onClick}
         width={style.width}
@@ -21,6 +22,7 @@ const BlueButton = ({ children, onClick, link, type, style }) => {
 };
 
 BlueButton.propTypes = {
+  theme: PropTypes.object,
   link: PropTypes.string,
   type: PropTypes.string,
   style: PropTypes.object,
@@ -29,6 +31,7 @@ BlueButton.propTypes = {
 };
 
 BlueButton.defaultProps = {
+  theme: {},
   link: '#',
   type: 'button',
   style: {},

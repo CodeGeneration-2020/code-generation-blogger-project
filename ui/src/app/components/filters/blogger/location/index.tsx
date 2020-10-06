@@ -55,6 +55,7 @@ const LocationFilter = props => {
       <Style.LocationList>
         {props.active_search ? (
           <SelectionList
+            theme={props.theme}
             active_search={props.active_search}
             setActiveSearch={props.setActiveSearch}
             selectedCountry={props.selectedCountry}
@@ -66,6 +67,7 @@ const LocationFilter = props => {
           />
         ) : (
           <SelectedList
+            theme={props.theme}
             selectedCountry={props.selectedCountry}
             removeCountry={removeCountry}
             selectedCity={props.selectedCity}
