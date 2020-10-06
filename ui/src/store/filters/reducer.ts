@@ -6,8 +6,10 @@ import { LIMITQUERY } from '../../consts/lists';
 
 const initialState: IFiltersReducer = {
   type: '',
-  skip: 0,
-  limit: LIMITQUERY,
+  pagination: {
+    bloggers: { skip: 0, limit: 3 },
+    comments: { skip: 0, limit: 3 },
+  },
   filters: {},
 };
 
@@ -40,16 +42,26 @@ const USER_REDUCER = createSlice({
         limit: LIMITQUERY,
       };
     },
-    [ActionTypes.SET_SKIP]: state => {
+    [ActionTypes.SET_SKIP]: (state, action) => {
+      debugger;
       return {
         ...state,
-        skip: state.skip + state.limit,
+        pagination: {
+          ...state.pagination,
+          [action.payload.key]: {
+            skip: action.payload.skip,
+            limit: action.payload.limit,
+          },
+        },
       };
     },
-    [ActionTypes.RESET_SKIP]: state => {
+    [ActionTypes.RESET_SKIP]: (state, action) => {
       return {
         ...state,
-        skip: 0,
+        pagination: {
+          ...state.pagination,
+          [action.payload.key]: { skip: 0, limit: 3 },
+        },
       };
     },
   },

@@ -3,8 +3,10 @@ import {Blogger,BloggerDocument} from '../models/Blogger';
 import {Comments,CommentsDocumnet} from '../models/Comments';
 
 export interface ICreateCommentBody{
-    senderId:Number;
-    comment:String;
+    senderId: Number;
+    comment: String;
+    score: Number;
+    subs_came: Number;
 }
 
 export interface IUserService{
@@ -24,6 +26,8 @@ class UserService implements IUserService  {
             customerId:body.senderId,
             bloggerId:id,
             comment:body.comment,
+            score: body.score,
+            subs_came: body.subs_came
         })
         await comment.save();
         return {createComment:'success'};

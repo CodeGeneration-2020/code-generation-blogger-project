@@ -23,10 +23,11 @@ const ListComponent = props => {
   const getBloggersPagination = () => {
     props.getBloggersPagination({
       filters: props.filters,
-      skip: props.skip + props.limit,
+      skip: props.skip,
       limit: props.limit,
     });
-    props.setSkip();
+
+    props.setSkip({ key: 'bloggers', skip: props.skip + 3, limit: 3 });
   };
 
   return (
@@ -98,8 +99,8 @@ export default connect(
       bloggers: BLOGGER_REDUCER.bloggers,
       loading: BLOGGER_REDUCER.loading,
       filters: FILTERS_REDUCER.filters,
-      skip: FILTERS_REDUCER.skip,
-      limit: FILTERS_REDUCER.limit,
+      skip: FILTERS_REDUCER.pagination.bloggers.skip,
+      limit: FILTERS_REDUCER.pagination.bloggers.limit,
     };
   },
   {

@@ -1,9 +1,17 @@
 import styled from 'styled-components';
 
+export const CommentList = styled.div`
+  width: 100%;
+`;
+
 export const CommentCard = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 50px;
+  &:last-child {
+    margin-bottom: 0px;
+  }
 `;
 
 export const UserInfo = styled.div`
@@ -126,6 +134,11 @@ export const Comment = styled.p`
   font-size: 10px;
   line-height: 15px;
   color: #28b5e1;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow-y: hidden;
   @media screen and (max-width: 900px) {
     font-size: 9px;
     width: 200px;
