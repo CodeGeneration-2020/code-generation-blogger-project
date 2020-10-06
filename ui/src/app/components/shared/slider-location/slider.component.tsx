@@ -8,7 +8,6 @@ import { ITheme } from '../../../../types';
 
 function SampleNextArrow(props) {
   const { className, onClick, color } = props;
-  debugger;
   return (
     <Styled.SliderNext className={className} onClick={onClick}>
       <svg viewBox="0 0 29 18" fill="none" xmlns="http://www.w3.org/2000/svg">

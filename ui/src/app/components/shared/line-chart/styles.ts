@@ -1,10 +1,12 @@
+import { ITheme } from './../../../../types/index';
 import styled from 'styled-components';
 
-interface Props {
+interface IProps {
   er: string;
+  theme: ITheme;
 }
 
-export const LineChartContainer = styled.div<Props>`
+export const LineChartContainer = styled.div<IProps>`
   width: 100%;
   height: 100%;
   background: #30393e;
@@ -12,7 +14,7 @@ export const LineChartContainer = styled.div<Props>`
   display: flex;
   & > .left-part {
     width: ${({ er }) => er && er}%;
-    background: linear-gradient(360deg, #0496ff 0%, #28b5e0 100%);
+    background: ${({ theme }) => theme && theme.background};
     border-radius: 2px;
   }
   & > .right-part {
