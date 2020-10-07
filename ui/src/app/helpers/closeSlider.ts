@@ -1,5 +1,7 @@
 export default function closeLocationSlider(match, callback) {
-  debugger;
+  if (typeof match !== 'string') {
+    return;
+  }
   const classes = [
     'selection-list',
     'slick-list',
