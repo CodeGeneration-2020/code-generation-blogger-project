@@ -1,13 +1,15 @@
+import { PAGINATION } from './../../consts/lists';
 import { createSlice } from '@reduxjs/toolkit';
 import { ActionTypes } from './actions';
 import { bloggerFilters, customerFilters } from '../../consts/lists';
 import { IFiltersReducer } from '../../types/index';
-import { LIMITQUERY } from '../../consts/lists';
 
 const initialState: IFiltersReducer = {
   type: '',
-  skip: 0,
-  limit: LIMITQUERY,
+  pagination: {
+    bloggers: PAGINATION,
+    comments: PAGINATION,
+  },
   filters: {},
 };
 
@@ -36,20 +38,31 @@ const USER_REDUCER = createSlice({
       return {
         ...state,
         filters: {},
-        skip: 0,
-        limit: LIMITQUERY,
+        pagination: {
+          bloggers: PAGINATION,
+          comments: PAGINATION,
+        },
       };
     },
-    [ActionTypes.SET_SKIP]: state => {
+    [ActionTypes.SET_SKIP]: (state, action) => {
       return {
         ...state,
-        skip: state.skip + state.limit,
+        pagination: {
+          ...state.pagination,
+          [action.payload.key]: {
+            skip: action.payload.skip,
+            limit: PAGINATION.limit,
+          },
+        },
       };
     },
-    [ActionTypes.RESET_SKIP]: state => {
+    [ActionTypes.RESET_SKIP]: (state, action) => {
       return {
         ...state,
-        skip: 0,
+        pagination: {
+          ...state.pagination,
+          [action.payload.key]: { skip: 0, limit: PAGINATION.limit },
+        },
       };
     },
   },

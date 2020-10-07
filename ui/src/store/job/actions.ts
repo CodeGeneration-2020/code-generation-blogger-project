@@ -12,7 +12,6 @@ const ActionTypes = {
 const createJob = createAsyncThunk(
   ActionTypes.CREATE_JOB,
   async ({ dataJob, userId }: any) => {
-    debugger;
     const response = await JobService.createJob(dataJob, userId);
     return response.data;
   },

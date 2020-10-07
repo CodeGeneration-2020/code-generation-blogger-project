@@ -18,7 +18,7 @@ class LocationService {
     async getCity(countryId:string) {
         const states = csc.getStatesOfCountry(countryId);
         const cities = states.map(s=>csc.getCitiesOfState(s.id));
-        return {cities:cities,countryId}
+        return {cities,countryId}
     }
 }
 

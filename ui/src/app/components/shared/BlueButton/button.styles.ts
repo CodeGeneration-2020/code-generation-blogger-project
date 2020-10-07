@@ -22,6 +22,7 @@ export const Button = styled.button<Props>`
   border: 1px solid #0091ea;
   color: #fff;
   &:hover {
+    cursor: pointer;
     background: #fff;
     color: black;
   }

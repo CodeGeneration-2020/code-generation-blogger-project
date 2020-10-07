@@ -16,7 +16,7 @@ const UsersFilters = props => {
   React.useEffect(
     () => {
       if (Object.keys(props.filters).length) {
-        props.resetSkip();
+        props.resetSkip({ key: 'bloggers' });
         props.getBloggersByFilters(debounceSearch);
       }
     },

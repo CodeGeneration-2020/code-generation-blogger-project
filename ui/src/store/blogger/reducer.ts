@@ -4,7 +4,7 @@ import { ActionCreators, ActionTypes } from './actions';
 const initialState = {
   loading: false,
   bloggerInfo: {},
-  bloggerComments: [],
+  bloggerComments: { comments: [], averageData: {} },
   bloggers: [],
   error: {},
 };
@@ -16,7 +16,7 @@ const BLOGGER_REDUCER = createSlice({
     [ActionTypes.CLEAR_BLOGGER_COMMENTS]: state => {
       return {
         ...state,
-        bloggerComments: [],
+        bloggerComments: { comments: [], averageData: {} },
       };
     },
     [ActionTypes.CLEAR_BLOGGER_INFO]: state => {
@@ -49,8 +49,14 @@ const BLOGGER_REDUCER = createSlice({
     },
     [ActionCreators.getBloggerComments.fulfilled as any]: (state, action) => {
       state.error = {};
+      state.bloggerComments.comments = state.bloggerComments.comments.concat(
+        action.payload.comments,
+      );
+
+      if (action.payload.averageData) {
+        state.bloggerComments.averageData = action.payload.averageData;
+      }
       state.loading = false;
-      state.bloggerComments = [...state.bloggerComments, ...action.payload];
     },
   },
 } as any);
