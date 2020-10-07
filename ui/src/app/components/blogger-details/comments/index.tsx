@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Style from './styles';
 import AvaComment from '../../../../img/ava-comment.svg';
-import StarIcon from '../../../../img/star.svg';
+import DrawStars from '../../shared/draw-stars';
 import { v4 as uuidv4 } from 'uuid';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -27,14 +27,7 @@ const Comments = ({ comments, loading, getPaginationComments }) => {
                   <div className="info">
                     <span className="full_name">{c.customerId.full_name}</span>
                     <span className="score">
-                      {[...(Array(c.score).keys() as any)].map(_ => (
-                        <img
-                          src={StarIcon}
-                          alt="star"
-                          className="star"
-                          key={uuidv4()}
-                        />
-                      ))}
+                      <DrawStars count={c.score} />
                     </span>
                   </div>
                 </Style.UserInfo>

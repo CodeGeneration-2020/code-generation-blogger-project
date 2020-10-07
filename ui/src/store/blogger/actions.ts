@@ -32,7 +32,6 @@ const getBloggerByFilters = createAsyncThunk(
 const getBloggerComments = createAsyncThunk(
   ActionTypes.GET_BLOGGER_COMMENTS,
   async (data: any) => {
-    debugger;
     const response = await UsersService.getComments(
       'blogger',
       data.bloggerId,

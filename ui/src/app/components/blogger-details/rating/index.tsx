@@ -1,7 +1,6 @@
 import React from 'react';
 import * as Style from './styles';
-import StarIcon from '../../../../img/star.svg';
-import { v4 as uuidv4 } from 'uuid';
+import DrawStars from '../../shared/draw-stars';
 
 const Rating = ({ average_coming, score }) => {
   return (
@@ -12,9 +11,7 @@ const Rating = ({ average_coming, score }) => {
         <span className="text">subscribers</span>
       </div>
       <div className="stars">
-        {[...(Array(score).keys() as any)].map(_ => (
-          <img src={StarIcon} alt="star" className="star" key={uuidv4()} />
-        ))}
+        <DrawStars count={score} />
       </div>
     </Style.Rating>
   );

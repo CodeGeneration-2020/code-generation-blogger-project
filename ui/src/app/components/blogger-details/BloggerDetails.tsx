@@ -14,10 +14,7 @@ import Rating from './rating';
 import Comments from './comments';
 import Loader from '../../../loader/component/loader.component';
 import Statistics from './statistics/statistics';
-// import {
-//   callculateAverageComing,
-//   callculateAverageScore,
-// } from '../../helpers/callculateAverageRating';
+import { PAGINATION } from '../../../consts/lists';
 
 const BloggerDetails: React.FC<{
   match?: any;
@@ -32,7 +29,6 @@ const BloggerDetails: React.FC<{
   comments: any;
   loading: boolean;
   skip: number;
-  limit: number;
   setSkip: any;
 }> = ({
   match,
@@ -47,7 +43,6 @@ const BloggerDetails: React.FC<{
   comments,
   loading,
   skip,
-  limit,
   setSkip,
 }) => {
   const ig_id = match ? match.params.id : idBlogger;
@@ -55,11 +50,11 @@ const BloggerDetails: React.FC<{
     if (id) {
       getBlogger(id);
       clearComments();
-      setSkip({ key: 'comments', skip: 5, limit });
+      setSkip({ key: 'comments', skip: PAGINATION.limit });
       getBloggerComments({
         bloggerId: id,
         skip: 0,
-        limit,
+        limit: PAGINATION.limit,
       });
     }
   };
@@ -93,10 +88,10 @@ const BloggerDetails: React.FC<{
             getPaginationComments={() => {
               getBloggerComments({
                 bloggerId: ig_id,
-                skip: skip + 5,
-                limit: 5,
+                skip: skip + PAGINATION.limit,
+                limit: PAGINATION.limit,
               });
-              setSkip({ key: 'comments', skip: skip + 5, limit: 5 });
+              setSkip({ key: 'comments', skip: skip + PAGINATION.limit });
             }}
           />
         </>
@@ -116,7 +111,6 @@ export default connect(
       bloggerData: BLOGGER_REDUCER.bloggerInfo.bloggerData,
       comments: BLOGGER_REDUCER.bloggerComments,
       skip: FILTERS_REDUCER.pagination.comments.skip,
-      limit: FILTERS_REDUCER.pagination.comments.limit,
     };
   },
   {

@@ -11,6 +11,7 @@ import UsersFiltersContainer from '../../containers/UsersFiltersContainer/UsersF
 import InfiniteScroll from 'react-infinite-scroll-component';
 import BloggerDetails from '../blogger-details/BloggerDetails';
 import BloggerCard from './blogger-card';
+import { PAGINATION } from '../../../consts/lists';
 
 const BloggerList = props => {
   const [idBlogger, toggleIdBlogger] = React.useState<number>();
@@ -27,7 +28,7 @@ const BloggerList = props => {
       limit: props.limit,
     });
 
-    props.setSkip({ key: 'bloggers', skip: props.skip + 3, limit: 3 });
+    props.setSkip({ key: 'bloggers', skip: props.skip + PAGINATION.limit });
   };
 
   return (
@@ -81,7 +82,6 @@ export default connect(
       loading: BLOGGER_REDUCER.loading,
       filters: FILTERS_REDUCER.filters,
       skip: FILTERS_REDUCER.pagination.bloggers.skip,
-      limit: FILTERS_REDUCER.pagination.bloggers.limit,
     };
   },
   {

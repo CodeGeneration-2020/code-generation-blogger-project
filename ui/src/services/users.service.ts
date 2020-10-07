@@ -1,6 +1,6 @@
 import API from './api.service';
 import { IApi } from './api.service';
-import { LIMITQUERY } from '../consts/lists';
+import { PAGINATION } from '../consts/lists';
 import { addQuery } from '../app/helpers/addQuery';
 
 class UsersService {
@@ -14,7 +14,7 @@ class UsersService {
   getUsers(user) {
     return this.apiService.GET(`users/${user}?&skip=0&limit=5`, {});
   }
-  getBloggersByFilters(filters, skip = 0, limit = LIMITQUERY) {
+  getBloggersByFilters(filters, skip = 0, limit = PAGINATION.limit) {
     return this.apiService.GET(
       `users/filters/bloggers?storyPrice=${addQuery(
         filters.priceStory,

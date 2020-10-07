@@ -61,5 +61,7 @@ export const tagsOptions = [
   { value: 'kk', label: 'kk' },
 ];
 
-export const LIMITQUERY = 3;
-export const limitComments = 5;
+export const PAGINATION = {
+  skip: 0,
+  limit: 5,
+};
