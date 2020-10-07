@@ -13,6 +13,7 @@ export const Button = styled.button<Props>`
   width: ${({ width }) => width && width};
   height: ${({ height }) => height && height};
   outline: none;
+  border: none;
   font-size: 14px;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
