@@ -10,6 +10,7 @@ const Subscribers = props => {
       <div className="total">
         <div className="range-slider">
           <CustomSlider
+            theme={props.theme}
             domain={[0, 10000000]}
             changeHandler={data => props.setFilter(data, 'subscribers')}
           />
@@ -32,6 +33,7 @@ const Subscribers = props => {
       <div className="engagement-rate">
         <div className="range-slider">
           <CustomSlider
+            theme={props.theme}
             domain={[0, 100]}
             changeHandler={data => props.setFilter(data, 'er')}
           />

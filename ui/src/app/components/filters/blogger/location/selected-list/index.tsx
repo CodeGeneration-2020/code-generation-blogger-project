@@ -15,7 +15,9 @@ const SelectedList = props => {
                 className="item"
                 onClick={() => props.removeCountry(c.value)}
               >
-                <BlueButton style={{ height: '100%' }}>{c.label}</BlueButton>
+                <BlueButton style={{ height: '100%' }} theme={props.theme}>
+                  {c.label}
+                </BlueButton>
               </span>
             );
           })}

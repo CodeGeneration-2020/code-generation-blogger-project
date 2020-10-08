@@ -22,6 +22,7 @@ const PriceFilter = props => {
           )}
         </div>
         <CustomSlider
+          theme={props.theme}
           domain={[0, 2000]}
           changeHandler={data => props.setFilter(data, 'pricePost')}
         />
@@ -41,6 +42,7 @@ const PriceFilter = props => {
           )}
         </div>
         <CustomSlider
+          theme={props.theme}
           domain={[0, 2000]}
           changeHandler={data => props.setFilter(data, 'priceStory')}
         />
@@ -60,6 +62,7 @@ const PriceFilter = props => {
           )}
         </div>
         <CustomSlider
+          theme={props.theme}
           domain={[0, 5000]}
           changeHandler={data => props.setFilter(data, 'pricePS')}
         />

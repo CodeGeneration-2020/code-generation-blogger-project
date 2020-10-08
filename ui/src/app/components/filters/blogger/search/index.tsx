@@ -11,7 +11,6 @@ const Search = props => {
       </div>
       <div className="button">
         <BlueButton
-          theme={props.theme}
           type="btn"
           style={{
             width: '100%',

@@ -23,7 +23,7 @@ import { connect } from 'react-redux';
 import { bloggerTheme, customerTheme } from '../consts/theme';
 
 function App({ setTheme }) {
-  const isBlogger = !true;
+  const isBlogger = true;
   setTheme(isBlogger ? bloggerTheme : customerTheme);
   return (
     <BrowserRouter>
@@ -35,7 +35,7 @@ function App({ setTheme }) {
       </Helmet>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/list/bloggers" component={ListBloggers} />
+        <Route path="/list/bloggers" render={() => <ListBloggers />} />
         <Route exact path="/blogger/details/:id" component={BloggerDetails} />
         <Route path="/jobs" component={ListJob} />
         <Route path="/job/details/:id" component={Job} />
