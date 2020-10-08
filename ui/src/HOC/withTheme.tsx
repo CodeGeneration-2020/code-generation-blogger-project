@@ -5,7 +5,7 @@ import { ComponentType } from 'react';
 type Props = {};
 type Omit<T, K extends string> = Pick<T, Exclude<keyof T, K>>;
 
-function ThemeHOC<P extends Props>(
+function withTheme<P extends Props>(
   Component: ComponentType<P>,
 ): ComponentType<Omit<P, keyof Props>> {
   const Child = (props: any) => {
@@ -17,4 +17,4 @@ function ThemeHOC<P extends Props>(
   }, null)(Child);
 }
 
-export default ThemeHOC;
+export default withTheme;
