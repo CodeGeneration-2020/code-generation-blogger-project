@@ -2,6 +2,7 @@ import React from 'react';
 import * as Style from './styles';
 import CustomSlider from '../../../slider-range-component/Slider';
 import { reduceNumber } from '../../../../helpers/reduceNumber';
+import withTheme from '../../../../../HOC/withTheme';
 
 const Subscribers = props => {
   return (
@@ -9,7 +10,6 @@ const Subscribers = props => {
       <div className="total">
         <div className="range-slider">
           <CustomSlider
-            theme={props.theme}
             domain={[0, 10000000]}
             changeHandler={data => props.setFilter(data, 'subscribers')}
           />
@@ -32,7 +32,6 @@ const Subscribers = props => {
       <div className="engagement-rate">
         <div className="range-slider">
           <CustomSlider
-            theme={props.theme}
             domain={[0, 100]}
             changeHandler={data => props.setFilter(data, 'er')}
           />
@@ -50,4 +49,4 @@ const Subscribers = props => {
   );
 };
 
-export default Subscribers;
+export default withTheme(Subscribers);

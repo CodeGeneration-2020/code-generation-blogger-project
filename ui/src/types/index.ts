@@ -71,3 +71,10 @@ export interface ITheme {
 export interface IPropsTheme {
   theme: { background: string; color: string };
 }
+
+export interface IButtonStyle {
+  width?: string;
+  height?: string;
+  boxShadow?: string;
+  borderRadius?: string;
+}

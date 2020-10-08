@@ -24,6 +24,7 @@ export const Button = styled.button<Props>`
   border-radius: ${({ borderRadius }) => borderRadius && borderRadius};
   color: #fff;
   &:hover {
+    cursor: pointer;
     background: #fff;
     color: black;
   }

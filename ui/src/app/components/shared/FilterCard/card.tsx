@@ -1,13 +1,14 @@
 import React from 'react';
 import * as Styled from './card.styles';
 import PropTypes from 'prop-types';
+import withTheme from '../../../../HOC/withTheme';
 
-const FilterCard = ({ title, children, theme, callback }) => {
+const FilterCard = props => {
   return (
-    <Styled.CardContainer theme={theme} onClick={e => callback(e)}>
-      <span className="title">{title}</span>
+    <Styled.CardContainer theme={props.theme} onClick={e => props.callback(e)}>
+      <span className="title">{props.title}</span>
       <Styled.HorizantalSep />
-      {children}
+      {props.children}
     </Styled.CardContainer>
   );
 };
@@ -25,4 +26,4 @@ FilterCard.defaultProps = {
   callback: () => {},
 };
 
-export default FilterCard;
+export default withTheme(FilterCard);

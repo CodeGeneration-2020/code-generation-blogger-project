@@ -6,12 +6,12 @@ import CityChart from './city';
 import AgeChart from './age';
 import AverageRates from './average-rates';
 
-const Statistics = ({ sexInfo, cityInfo, ageInfo, theme }) => {
+const Statistics = ({ sexInfo, cityInfo, ageInfo }) => {
   const [showCharts, toggleShow] = React.useState<boolean>(false);
   return (
     <Style.StatisticsContainer>
       <div className="btn-show" onClick={() => toggleShow(!showCharts)}>
-        <BlueButton style={{ width: '100%', height: '100%' }} theme={theme}>
+        <BlueButton style={{ width: '100%', height: '100%' }}>
           <span className="btn-text">
             {showCharts ? 'Hide statistics' : 'Show more statistics'}
           </span>
@@ -21,11 +21,11 @@ const Statistics = ({ sexInfo, cityInfo, ageInfo, theme }) => {
       {showCharts && (
         <>
           <div className="first-line-charts">
-            <CityChart data={cityInfo} theme={theme} />
-            <GenderChart data={sexInfo} theme={theme} />
+            <CityChart data={cityInfo} />
+            <GenderChart data={sexInfo} />
           </div>
           <AgeChart data={ageInfo} />
-          <AverageRates data={{}} theme={theme} />
+          <AverageRates data={{}} />
         </>
       )}
     </Style.StatisticsContainer>

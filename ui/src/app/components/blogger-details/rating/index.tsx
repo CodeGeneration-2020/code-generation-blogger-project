@@ -1,9 +1,13 @@
 import React from 'react';
 import * as Style from './styles';
-import StarIcon from '../../../../img/star.svg';
-import { v4 as uuidv4 } from 'uuid';
+import withTheme from '../../../../HOC/withTheme';
+import DrawStars from '../../shared/draw-stars';
 
-const Rating = ({ average_coming, score, theme }) => {
+const Rating: React.FC<{ average_coming; score; theme? }> = ({
+  average_coming,
+  score,
+  theme,
+}) => {
   return (
     <Style.Rating theme={theme}>
       <div className="rating-info">
@@ -12,12 +16,10 @@ const Rating = ({ average_coming, score, theme }) => {
         <span className="text">subscribers</span>
       </div>
       <div className="stars">
-        {[...(Array(score).keys() as any)].map(_ => (
-          <img src={StarIcon} alt="star" className="star" key={uuidv4()} />
-        ))}
+        <DrawStars count={score} />
       </div>
     </Style.Rating>
   );
 };
 
-export default Rating;
+export default withTheme(Rating);

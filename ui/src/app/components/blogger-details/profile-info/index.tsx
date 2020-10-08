@@ -5,8 +5,12 @@ import Ava from '../../../../img/ava.svg';
 import Icon from '../../../../img/insta-icon.svg';
 import LineChart from '../../shared/line-chart';
 import parseFullName from '../../../helpers/parseFullName';
+import withTheme from '../../../../HOC/withTheme';
 
-const ProfileInfo = ({ bloggerInfo, theme }) => {
+const ProfileInfo: React.FC<{ bloggerInfo; theme? }> = ({
+  bloggerInfo,
+  theme,
+}) => {
   return (
     <Style.ProfileInfo>
       <Style.HeaderProfile theme={theme}>
@@ -220,10 +224,7 @@ const ProfileInfo = ({ bloggerInfo, theme }) => {
               <span className="text">ER</span>
             </div>
             <div className="chart">
-              <LineChart
-                er={bloggerInfo && bloggerInfo.metric.er}
-                theme={theme}
-              />
+              <LineChart er={bloggerInfo && bloggerInfo.metric.er} />
             </div>
           </div>
         </Style.Audience>
@@ -232,4 +233,4 @@ const ProfileInfo = ({ bloggerInfo, theme }) => {
   );
 };
 
-export default ProfileInfo;
+export default withTheme(ProfileInfo);

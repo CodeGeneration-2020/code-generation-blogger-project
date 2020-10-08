@@ -1,8 +1,15 @@
 import React from 'react';
 import Select from 'react-select';
 import { SelectContainer } from './select.styles';
+import withTheme from '../../../../HOC/withTheme';
 
-const RSelect = ({ options, changeHandler, selected, placeholder, theme }) => {
+const RSelect: React.FC<{
+  options;
+  changeHandler;
+  selected;
+  placeholder;
+  theme?;
+}> = ({ options, changeHandler, selected, placeholder, theme }) => {
   const selectStyles = {
     input: provided => ({
       ...provided,
@@ -89,4 +96,4 @@ const RSelect = ({ options, changeHandler, selected, placeholder, theme }) => {
   );
 };
 
-export default RSelect;
+export default withTheme(RSelect);

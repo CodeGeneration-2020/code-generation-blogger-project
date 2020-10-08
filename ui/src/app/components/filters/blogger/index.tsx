@@ -24,14 +24,13 @@ const BloggerFilters = props => {
   return (
     <Style.FiltersContainer>
       {props.loading && <Loader />}
-      <Search theme={props.theme} />
+      <Search />
       <Style.Filters>
         <Style.SharedFilters>
           <div className="quantitative-filters">
             <div className="subscribers">
-              <FilterCard title={'Subscribers'} theme={props.theme}>
+              <FilterCard title={'Subscribers'}>
                 <SubscribersFilter
-                  theme={props.theme}
                   subscribers={props.filters.subscribers}
                   er={props.filters.er}
                   setFilter={(value, title) =>
@@ -41,9 +40,8 @@ const BloggerFilters = props => {
               </FilterCard>
             </div>
             <div className="price">
-              <FilterCard title={'Price'} theme={props.theme}>
+              <FilterCard title={'Price'}>
                 <PriceFilter
-                  theme={props.theme}
                   pricePost={props.filters.pricePost}
                   priceStory={props.filters.priceStory}
                   pricePS={props.filters.pricePS}
@@ -57,7 +55,7 @@ const BloggerFilters = props => {
 
           <div className="person-filters">
             <div className="gender">
-              <FilterCard title={'Gender'} theme={props.theme}>
+              <FilterCard title={'Gender'}>
                 <GenderFilter
                   gender={props.filters.gender}
                   setFilter={(value, title) =>
@@ -68,14 +66,12 @@ const BloggerFilters = props => {
             </div>
             <div className="location">
               <FilterCard
-                theme={props.theme}
                 title={'State and city'}
                 callback={e => {
                   closeSlider(e.target.parentNode.className, props.closeSlider);
                 }}
               >
                 <LocationFilter
-                  theme={props.theme}
                   countries={props.countries}
                   cities={props.cities}
                   selectedCountry={props.filters.country || []}
@@ -91,9 +87,8 @@ const BloggerFilters = props => {
           </div>
         </Style.SharedFilters>
         <Style.Tags>
-          <FilterCard title={'Tags'} theme={props.theme}>
+          <FilterCard title={'Tags'}>
             <TagsFilter
-              theme={props.theme}
               tags={props.tags}
               selectedTags={props.filters.tags || []}
               setFilter={(value, title) => props.setFilter({ value, title })}
@@ -114,7 +109,6 @@ export default connect(
       tags: SHARED_DATA_REDUCER.tags,
       loading: SHARED_DATA_REDUCER.loading,
       filters: FILTERS_REDUCER.filters,
-      theme: SHARED_DATA_REDUCER.theme,
     };
   },
   {

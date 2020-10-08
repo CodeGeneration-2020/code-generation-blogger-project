@@ -7,7 +7,6 @@ import {
   ISexDetails,
   IBloggerInfo,
 } from '../../../types/components';
-import { ITheme } from '../../../types';
 import * as BloggerActions from '../../../store/blogger/actions';
 import { ActionCreators as FilterCreators } from '../../../store/filters/actions';
 import ProfileInfo from './profile-info';
@@ -15,6 +14,7 @@ import Rating from './rating';
 import Comments from './comments';
 import Loader from '../../../loader/component/loader.component';
 import Statistics from './statistics/statistics';
+import { PAGINATION } from '../../../consts/lists';
 
 const BloggerDetails: React.FC<{
   match?: any;
@@ -29,9 +29,7 @@ const BloggerDetails: React.FC<{
   comments: any;
   loading: boolean;
   skip: number;
-  limit: number;
   setSkip: any;
-  theme: ITheme;
 }> = ({
   match,
   idBlogger,
@@ -45,20 +43,18 @@ const BloggerDetails: React.FC<{
   comments,
   loading,
   skip,
-  limit,
   setSkip,
-  theme,
 }) => {
   const ig_id = match ? match.params.id : idBlogger;
   const initBloggerInfo = id => {
     if (id) {
       getBlogger(id);
       clearComments();
-      setSkip({ key: 'comments', skip: 5, limit });
+      setSkip({ key: 'comments', skip: PAGINATION.limit });
       getBloggerComments({
         bloggerId: id,
         skip: 0,
-        limit,
+        limit: PAGINATION.limit,
       });
     }
   };
@@ -74,31 +70,28 @@ const BloggerDetails: React.FC<{
         <Loader />
       ) : (
         <>
-          <ProfileInfo bloggerInfo={bloggerData || ''} theme={theme} />
+          <ProfileInfo bloggerInfo={bloggerData || ''} />
           <Styled.StatisticsCharts>
             <Statistics
-              theme={theme}
               sexInfo={sexInfo}
               cityInfo={cityInfo}
               ageInfo={ageInfo}
             />
           </Styled.StatisticsCharts>
           <Rating
-            theme={theme}
             average_coming={comments.averageData.averageComing}
             score={comments.averageData.averageScore}
           />
           <Comments
-            theme={theme}
             comments={comments.comments}
             loading={loading}
             getPaginationComments={() => {
               getBloggerComments({
                 bloggerId: ig_id,
-                skip: skip + 5,
-                limit: 5,
+                skip: skip + PAGINATION.limit,
+                limit: PAGINATION.limit,
               });
-              setSkip({ key: 'comments', skip: skip + 5, limit: 5 });
+              setSkip({ key: 'comments', skip: skip + PAGINATION.limit });
             }}
           />
         </>
@@ -109,12 +102,7 @@ const BloggerDetails: React.FC<{
 
 export default connect(
   state => {
-    const {
-      BLOGGER_REDUCER,
-      LOADER_REDUCER,
-      FILTERS_REDUCER,
-      SHARED_DATA_REDUCER,
-    }: any = state;
+    const { BLOGGER_REDUCER, LOADER_REDUCER, FILTERS_REDUCER }: any = state;
     return {
       loading: LOADER_REDUCER.loading,
       cityInfo: BLOGGER_REDUCER.bloggerInfo.dataCity,
@@ -123,8 +111,6 @@ export default connect(
       bloggerData: BLOGGER_REDUCER.bloggerInfo.bloggerData,
       comments: BLOGGER_REDUCER.bloggerComments,
       skip: FILTERS_REDUCER.pagination.comments.skip,
-      limit: FILTERS_REDUCER.pagination.comments.limit,
-      theme: SHARED_DATA_REDUCER.theme,
     };
   },
   {

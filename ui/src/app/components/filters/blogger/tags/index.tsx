@@ -34,7 +34,6 @@ const TagsFilter = props => {
         </span>
         <div className="select">
           <TagsSelect
-            theme={props.theme}
             placeholder={'tag'}
             options={props.tags}
             changeHandler={option => setTagsFilter(option)}
@@ -47,10 +46,7 @@ const TagsFilter = props => {
           props.selectedTags.map(t => {
             return (
               <span className="tag" key={uuidv4()}>
-                <BlueButton
-                  onClick={() => removeOption(t.value)}
-                  theme={props.theme}
-                >
+                <BlueButton onClick={() => removeOption(t.value)}>
                   <>{t.label}</>
                 </BlueButton>
               </span>

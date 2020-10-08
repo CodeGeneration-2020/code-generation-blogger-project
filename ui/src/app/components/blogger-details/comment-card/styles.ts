@@ -1,35 +1,9 @@
 import styled from 'styled-components';
-import { IPropsTheme } from './../../../../types/index';
-
-export const CommentList = styled.div<IPropsTheme>`
-  width: 100%;
-  .infinite-scroll {
-    overflow: scroll;
-    ::-webkit-scrollbar {
-      width: 3px;
-      height: 3px;
-    }
-    ::-webkit-scrollbar-track {
-      background-color: #414d55;
-    }
-    ::-webkit-scrollbar-track-piece {
-      background-color: #414d55;
-    }
-    ::-webkit-scrollbar-thumb {
-      background-color: ${({ theme }) => theme && theme.color};
-      border-radius: 3px;
-    }
-  }
-`;
 
 export const CommentCard = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
-  &:last-child {
-    margin-bottom: 0px;
-  }
 `;
 
 export const UserInfo = styled.div`
@@ -97,8 +71,8 @@ export const UserInfo = styled.div`
   }
 `;
 
-export const Rating = styled.div<IPropsTheme>`
-  margin: 0 5px 0 2px;
+export const Rating = styled.div`
+  margin: 0 5px 0 2px; /*27 24 */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -110,7 +84,7 @@ export const Rating = styled.div<IPropsTheme>`
     font-size: 40px;
     line-height: 40px;
     text-align: center;
-    color: ${({ theme }) => theme && theme.color};
+    color: #28b5e1;
     @media screen and (max-width: 1100px) {
       font-size: 32px;
     }
@@ -125,7 +99,7 @@ export const Rating = styled.div<IPropsTheme>`
     display: flex;
 
     & > .left-part {
-      color: ${({ theme }) => theme && theme.color};
+      color: #28b5e1;
       margin-right: 4px;
     }
     & > .right-part {
@@ -140,7 +114,7 @@ export const Rating = styled.div<IPropsTheme>`
   }
 `;
 
-export const Comment = styled.p<IPropsTheme>`
+export const Comment = styled.p`
   width: 220px;
   margin-top: 3px;
   margin-bottom: 1px;
@@ -151,12 +125,7 @@ export const Comment = styled.p<IPropsTheme>`
   font-weight: normal;
   font-size: 10px;
   line-height: 15px;
-  color: ${({ theme }) => theme && theme.color};
-
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow-y: hidden;
+  color: #28b5e1;
   @media screen and (max-width: 900px) {
     font-size: 9px;
     width: 200px;

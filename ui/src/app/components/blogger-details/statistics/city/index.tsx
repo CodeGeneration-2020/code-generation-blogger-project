@@ -2,8 +2,10 @@ import React from 'react';
 import * as Style from './styles';
 import LineChart from '../../../shared/line-chart';
 import { callculateCountUsersByCities } from '../../../../helpers/calculateCountUsers';
+import withTheme from '../../../../../HOC/withTheme';
+import { ITheme } from '../../../../../types';
 
-const CityChart = ({ data, theme }) => {
+const CityChart: React.FC<{ data; theme?: ITheme }> = ({ data, theme }) => {
   const cities = callculateCountUsersByCities(data);
   return (
     <Style.CityChartContainer>
@@ -15,7 +17,7 @@ const CityChart = ({ data, theme }) => {
               <span className="city">{city.attribute}</span>
             </div>
             <div className="line-chart">
-              <LineChart er={city.value} theme={theme} />
+              <LineChart er={city.value} />
             </div>
           </Style.Chart>
         );
@@ -24,4 +26,4 @@ const CityChart = ({ data, theme }) => {
   );
 };
 
-export default CityChart;
+export default withTheme(CityChart);

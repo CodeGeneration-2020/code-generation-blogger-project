@@ -1,8 +1,9 @@
 import React from 'react';
 import * as Style from './styles';
 import BlueButton from '../../../../components/shared/BlueButton/button.component';
+import withTheme from '../../../../../HOC/withTheme';
 
-const Search = ({ theme }) => {
+const Search = props => {
   return (
     <Style.SearchContainer>
       <div className="input">
@@ -10,7 +11,7 @@ const Search = ({ theme }) => {
       </div>
       <div className="button">
         <BlueButton
-          theme={theme}
+          theme={props.theme}
           type="btn"
           style={{
             width: '100%',
@@ -26,4 +27,4 @@ const Search = ({ theme }) => {
   );
 };
 
-export default Search;
+export default withTheme(Search);

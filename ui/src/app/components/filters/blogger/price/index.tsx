@@ -2,6 +2,7 @@ import React from 'react';
 import * as Style from './styles';
 import CustomSlider from '../../../slider-range-component/Slider';
 import { reduceNumber } from '../../../../helpers/reduceNumber';
+import withTheme from '../../../../../HOC/withTheme';
 
 const PriceFilter = props => {
   return (
@@ -21,7 +22,6 @@ const PriceFilter = props => {
           )}
         </div>
         <CustomSlider
-          theme={props.theme}
           domain={[0, 2000]}
           changeHandler={data => props.setFilter(data, 'pricePost')}
         />
@@ -41,7 +41,6 @@ const PriceFilter = props => {
           )}
         </div>
         <CustomSlider
-          theme={props.theme}
           domain={[0, 2000]}
           changeHandler={data => props.setFilter(data, 'priceStory')}
         />
@@ -61,7 +60,6 @@ const PriceFilter = props => {
           )}
         </div>
         <CustomSlider
-          theme={props.theme}
           domain={[0, 5000]}
           changeHandler={data => props.setFilter(data, 'pricePS')}
         />
@@ -70,4 +68,4 @@ const PriceFilter = props => {
   );
 };
 
-export default PriceFilter;
+export default withTheme(PriceFilter);

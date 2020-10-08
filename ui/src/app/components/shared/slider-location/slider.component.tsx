@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { v4 as uuidv4 } from 'uuid';
 import { ITheme } from '../../../../types';
+import withTheme from '../../../../HOC/withTheme';
 
 function SampleNextArrow(props) {
   const { className, onClick, color } = props;
@@ -37,13 +38,13 @@ function SamplePrevArrow(props) {
 const SliderComponent: React.FC<{
   location: any;
   setLocation: any;
-  theme: ITheme;
+  theme?: ITheme;
 }> = ({ location, setLocation, theme }) => {
   let settings = {
     slidesToShow: 6,
     slidesToScroll: 6,
-    nextArrow: <SampleNextArrow color={theme.color} />,
-    prevArrow: <SamplePrevArrow color={theme.color} />,
+    nextArrow: <SampleNextArrow color={theme && theme.color} />,
+    prevArrow: <SamplePrevArrow color={theme && theme.color} />,
     responsive: [
       {
         breakpoint: 1150,
@@ -82,4 +83,4 @@ const SliderComponent: React.FC<{
   );
 };
 
-export default SliderComponent;
+export default withTheme(SliderComponent);

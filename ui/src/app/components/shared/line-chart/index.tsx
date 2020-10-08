@@ -1,9 +1,9 @@
 import React from 'react';
 import * as Styled from './styles';
-import { customerTheme } from '../../../../consts/theme';
 import PropTypes from 'prop-types';
+import withTheme from '../../../../HOC/withTheme';
 
-const LineChart = ({ er, theme }) => {
+const LineChart: React.FC<{ er; theme? }> = ({ er, theme }) => {
   return (
     <Styled.LineChartContainer er={er} theme={theme}>
       <span className="left-part" />
@@ -19,7 +19,7 @@ LineChart.propTypes = {
 
 LineChart.defaultProps = {
   er: 0,
-  theme: customerTheme,
+  theme: {},
 };
 
-export default LineChart;
+export default withTheme(LineChart);

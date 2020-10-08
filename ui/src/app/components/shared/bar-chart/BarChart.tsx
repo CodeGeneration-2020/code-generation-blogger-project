@@ -43,9 +43,7 @@ const BarChart: React.FC<{ data: Array<IBarChartData> }> = ({ data }) => {
       .attr('width', entry => xScale(entry.value))
       .attr('y', (entry, index: any) => yScale(index) as any)
       .style('fill', (d: any): any => {
-        return Object.keys(like)
-          .map(l => d.attribute === l && like[l])
-          .find(e => e);
+        return like[Object.keys(like).find(c => d.attribute === c) as any];
       });
     // draw the labels
     // svg
