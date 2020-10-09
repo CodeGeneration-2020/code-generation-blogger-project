@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as Styled from './list.styles';
 import { ActionCreators } from '../../../store/job/actions';
@@ -30,46 +29,15 @@ const ListJob = ({ getAllJobs, jobs, loading }) => {
       ) : (
         <Styled.ListJobsContainer>
           {jobs.map(job => (
-            <NavLink
-              to={'/job/details/' + job._id}
+            <JobCard
+              openSideBar={openSideBar}
+              id={job._id}
+              title={job.title}
+              budget={job.budget}
+              location={job.location}
+              tags={job.tags}
               key={uuidv4()}
-              onClick={e => {
-                openSideBar(e, job._id);
-              }}
-            >
-              <JobCard
-                title={job.title}
-                budget={job.budget}
-                location={job.location}
-                tags={job.tags}
-              />
-              {/* <Styled.JobCard>
-                <div className="description">
-                  <div className="title">{job.title}</div>
-                  <div className="budget">{job.budget}</div>
-                  <div className="location">
-                    <div>Предпочтительная локация:</div>
-                    <span className="country">
-                      {job.location.countries.map(c => (
-                        <span key={uuidv4()}>{c.label},</span>
-                      ))}
-                    </span>
-                    <div className="city">
-                      {job.location.cities.map(c => (
-                        <span key={uuidv4()}>{c.label},</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-                <div className="tags">
-                  {job.tags.map(tag => (
-                    <div className="tag" key={uuidv4()}>
-                      {tag.label}
-                    </div>
-                  ))}
-                </div>
-              </Styled.JobCard> */}
-            </NavLink>
+            />
           ))}
         </Styled.ListJobsContainer>
       )}
