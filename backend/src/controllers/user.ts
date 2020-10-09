@@ -12,13 +12,12 @@ const dataCity = [
     { city: 'London', users: 452 },
   ];
   const dataAge = [
-    { age: '13-17', users: 1 },
-    { age: '18-24', users: 706 },
-    { age: '25-34', users: 902 },
-    { age: '35-44', users: 290 },
-    { age: '45-54', users: 80 },
-    { age: '55-64', users: 1 },
-    { age: '64+', users: 20 },
+    { catergory: '<=17', users: 122, key:'a' },
+    { catergory: '18-24', users: 706,  key:'b'},
+    { catergory: '25-34', users: 902, key:'c'},
+    { catergory: '35-44', users: 290, key:'d'},
+    { catergory: '45-54', users: 80, key:'e'},
+    { catergory: '>=55', users: 1, key:'f' },
   ];
   
   const dataSex = {

@@ -8,7 +8,7 @@ export const SideBarContainer = styled.div`
     z-index: 200;
     height: 100%;
     width: 70%;
-    background: #e0f7fa;
+    background: #0d0b18;
     transform: translateX(100%);
     transition: transform 0.3s;
     /* scroll style */

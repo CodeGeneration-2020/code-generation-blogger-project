@@ -11,11 +11,15 @@ export interface IFilters {
   tags: Array<string>;
 }
 
+export interface IPagination {
+  skip: number;
+  limit: number;
+}
+
 export interface IFiltersReducer {
   filters: IFilters | {};
   type: string;
-  skip: number;
-  limit: number;
+  pagination: any;
 }
 
 export interface IOption {
