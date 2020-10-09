@@ -3,6 +3,7 @@ import * as Style from './styles';
 import { v4 as uuidv4 } from 'uuid';
 import BlueButton from '../../../shared/BlueButton/button.component';
 import TagsSelect from '../../../shared/TagsSelect/select.component';
+import withTheme from '../../../../../HOC/withTheme';
 
 const TagsFilter = props => {
   const removeOption = idtags => {
@@ -34,7 +35,6 @@ const TagsFilter = props => {
         </span>
         <div className="select">
           <TagsSelect
-            theme={props.theme}
             placeholder={'tag'}
             options={props.tags}
             changeHandler={option => setTagsFilter(option)}
@@ -47,10 +47,7 @@ const TagsFilter = props => {
           props.selectedTags.map(t => {
             return (
               <span className="tag" key={uuidv4()}>
-                <BlueButton
-                  onClick={() => removeOption(t.value)}
-                  theme={props.theme}
-                >
+                <BlueButton onClick={() => removeOption(t.value)}>
                   <>{t.label}</>
                 </BlueButton>
               </span>
@@ -61,4 +58,4 @@ const TagsFilter = props => {
   );
 };
 
-export default TagsFilter;
+export default withTheme(TagsFilter);

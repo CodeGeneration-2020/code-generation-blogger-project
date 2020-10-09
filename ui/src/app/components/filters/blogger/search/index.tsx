@@ -1,7 +1,6 @@
 import React from 'react';
 import * as Style from './styles';
 import BlueButton from '../../../../components/shared/BlueButton/button.component';
-import withTheme from '../../../../../HOC/withTheme';
 
 const Search = props => {
   return (
@@ -26,4 +25,4 @@ const Search = props => {
   );
 };
 
-export default withTheme(Search);
+export default Search;

@@ -4,10 +4,8 @@ import maleIcon from '../../../../../img/male.svg';
 import femaleIcon from '../../../../../img/female.svg';
 import { PieContainer } from './styles';
 import calculatePercent from '../../../../helpers/calculatePercent';
-import withTheme from '../../../../../HOC/withTheme';
-import { ITheme } from '../../../../../types';
 
-const Gender: React.FC<{ data; theme?: ITheme }> = ({ data, theme }) => {
+const Gender: React.FC<{ data }> = ({ data }) => {
   return (
     <PieContainer>
       <div className="statistic">
@@ -24,9 +22,9 @@ const Gender: React.FC<{ data; theme?: ITheme }> = ({ data, theme }) => {
           </span>
         </div>
       </div>
-      <PieChart first_value={600} second_value={900} theme={theme} />
+      <PieChart first_value={600} second_value={900} />
     </PieContainer>
   );
 };
 
-export default withTheme(Gender);
+export default Gender;
