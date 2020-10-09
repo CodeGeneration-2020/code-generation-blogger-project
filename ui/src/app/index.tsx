@@ -30,7 +30,7 @@ export function App() {
       </Helmet>
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route path="/list/bloggers" component={ListBloggers} />
+        <Route path="/list/bloggers" render={() => <ListBloggers />} />
         <Route path="/list/jobs" component={ListJob} />
         <Route exact path="/blogger/details/:id" component={BloggerDetails} />
         <Route path="/job/details/:id" component={Job} />
