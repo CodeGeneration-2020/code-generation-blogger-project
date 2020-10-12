@@ -112,7 +112,7 @@ export const JobCardContainer = styled.div`
       width: 100%;
       display: flex;
       justify-content: center;
-      overflow-x: scroll;
+      overflow-x: auto;
       padding-bottom: 15px;
       .item {
         &:first-child {
@@ -149,7 +149,7 @@ export const JobCardContainer = styled.div`
       margin-top: 40px;
       width: 100%;
       display: flex;
-      overflow-x: scroll;
+      overflow-x: auto;
       padding-bottom: 15px;
       ::-webkit-scrollbar {
         width: 200px;

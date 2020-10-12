@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Style from './styles';
-import Slider from '../../../../shared/slider-location/slider.component';
+import Slider from '../../../shared/slider-location/slider.component';
 
 const SelectionList = props => {
   return (

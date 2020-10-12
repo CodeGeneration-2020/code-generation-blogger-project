@@ -1,23 +1,32 @@
-import {Jobs,JobsDocumnet,ITags,ILocation} from '../models/Jobs';
+import {Jobs,JobsDocumnet,IOption} from '../models/Jobs';
 
 
 export interface ICreateJobBody{
     title: String;
     budget: Number;
-    tags: ITags[];
+    tags: IOption[];
     description: String;
     phone: String;
     email: String;
     additional_contacts: String;
     attachments: String[];
-    countries : ILocation[];
-    cities: ILocation[];
+    countries : IOption[];
+    cities: IOption[];
+}
+
+export interface IFilters {
+    budget: string;
+    tags: string;
+    cities: string;
+    countries:  string;
+    skip: number;
+    limit: number;
 }
 
 export interface IJobService{
     createJob: (id: number, body: ICreateJobBody) => void;
     getJobsByCustomerId: (id: number) => Promise<JobsDocumnet[]>;
-    getAllJobs: () => Promise<JobsDocumnet[]>;
+    getJobs: (filters: IFilters) => Promise<JobsDocumnet[]>;
     getJobById: (id:string) => Promise<JobsDocumnet>;
     updateStatusJobById: (id:string,status:boolean) => Promise<JobsDocumnet>;
     updateJobById: (id:string,body:ICreateJobBody) =>  Promise<JobsDocumnet>;
@@ -51,8 +60,17 @@ class JobService implements IJobService  {
         return Jobs.find({customerId:id});
     }
 
-    async getAllJobs() {
-        return Jobs.find();
+    async getJobs(filters:IFilters) {
+        const budget = filters.budget && JSON.parse(filters.budget);
+        const tags = filters.tags.length>2 && JSON.parse(filters.tags);
+        const countries = filters.countries.length>2  && JSON.parse(filters.countries);
+        const cities = filters.cities.length>2 && JSON.parse(filters.cities);
+        return await Jobs.find({
+            budget: budget ? {$gte:+budget[0], $lte:+budget[1]} : {$ne:+budget},
+            'tags.value': tags ? { $in: tags } : {$ne:+tags},
+            'location.countries.value': countries ? {$in:countries} : {$ne:countries},
+            'location.cities.value': cities ? {$in:cities} : {$ne:cities},
+        }).skip(+filters.skip).limit(+filters.limit);
     }
 
     async getJobById(id:string){

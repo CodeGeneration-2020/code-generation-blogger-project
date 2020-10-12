@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Style from './styles';
 import { v4 as uuidv4 } from 'uuid';
-import BlueButton from '../../../../shared/BlueButton/button.component';
+import BlueButton from '../../../shared/BlueButton/button.component';
 
 const SelectionList = props => {
   return (
@@ -15,7 +15,7 @@ const SelectionList = props => {
                 className="item"
                 onClick={() => props.removeCountry(c.value)}
               >
-                <BlueButton style={{ height: '100%' }}>{c.label}</BlueButton>
+                <BlueButton style={{ height: '32px' }}>{c.label}</BlueButton>
               </span>
             );
           })}
@@ -29,7 +29,7 @@ const SelectionList = props => {
                 className="item"
                 onClick={() => props.removeCity(c.value)}
               >
-                <BlueButton style={{ height: '100%' }}>
+                <BlueButton style={{ height: '32px' }}>
                   <span className="city">{c.label}</span>
                 </BlueButton>
               </span>

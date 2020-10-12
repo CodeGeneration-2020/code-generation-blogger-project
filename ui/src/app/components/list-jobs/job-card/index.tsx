@@ -31,14 +31,16 @@ const JobCard: React.FC<{
       </NavLink>
       <div className="location">
         <div className="country">
-          {location.countries.map(c => (
-            <Tag key={uuidv4()} title={c.label} className="item" />
-          ))}
+          {location &&
+            location.countries.map(c => (
+              <Tag key={uuidv4()} title={c.label} className="item" />
+            ))}
         </div>
         <div className="city">
-          {[...location.cities, ...location.cities].map(c => (
-            <Tag key={uuidv4()} title={c.label} className="item" />
-          ))}
+          {location &&
+            [...location.cities, ...location.cities].map(c => (
+              <Tag key={uuidv4()} title={c.label} className="item" />
+            ))}
         </div>
       </div>
       <div className="tags">

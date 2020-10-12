@@ -6,8 +6,8 @@ const job = Router();
 
 const jobControllerInstance = new JobController(new JobService());
 
-job.get('/', (req, res, next) => {
-    jobControllerInstance.getAllJobs(req, res, next);
+job.get('/filters', (req, res, next) => {
+    jobControllerInstance.getJobs(req, res, next);
 });
 
 job.post('/customer/:id', (req, res, next) => {

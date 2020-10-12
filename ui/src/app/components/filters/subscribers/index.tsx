@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Style from './styles';
-import CustomSlider from '../../../slider-range-component/Slider';
-import { reduceNumber } from '../../../../helpers/reduceNumber';
+import CustomSlider from '../../slider-range-component/Slider';
+import { reduceNumber } from '../../../helpers/reduceNumber';
 
 const Subscribers = props => {
   return (

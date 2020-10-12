@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Style from './styles';
-import BlueButton from '../../../../components/shared/BlueButton/button.component';
+import BlueButton from '../../../components/shared/BlueButton/button.component';
 
 const Search = () => {
   return (
