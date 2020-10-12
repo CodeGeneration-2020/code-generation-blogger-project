@@ -4,7 +4,7 @@ import {
   GetHandleProps,
   GetTrackProps,
 } from 'react-compound-slider';
-
+import { ITheme } from '../../../types';
 // *******************************************************
 // HANDLE COMPONENT
 // *******************************************************
@@ -49,12 +49,14 @@ export const Handle: React.SFC<IHandleProps> = ({
 interface ITrackProps {
   source: SliderItem;
   target: SliderItem;
+  theme: ITheme;
   getTrackProps: GetTrackProps;
 }
 
 export const Track: React.SFC<ITrackProps> = ({
   source,
   target,
+  theme,
   getTrackProps,
 }) => (
   <div
@@ -62,7 +64,7 @@ export const Track: React.SFC<ITrackProps> = ({
       position: 'absolute',
       height: 16,
       zIndex: 1,
-      background: `linear-gradient(360deg, #0496FF 0%, #28B5E0 100%)`,
+      background: theme && theme.background,
       borderRadius: '8px',
       cursor: 'pointer',
       left: `${source.percent}%`,

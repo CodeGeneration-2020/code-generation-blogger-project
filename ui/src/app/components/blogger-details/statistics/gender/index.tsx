@@ -5,7 +5,7 @@ import femaleIcon from '../../../../../img/female.svg';
 import { PieContainer } from './styles';
 import calculatePercent from '../../../../helpers/calculatePercent';
 
-const Gender = ({ data }) => {
+const Gender: React.FC<{ data }> = ({ data }) => {
   return (
     <PieContainer>
       <div className="statistic">

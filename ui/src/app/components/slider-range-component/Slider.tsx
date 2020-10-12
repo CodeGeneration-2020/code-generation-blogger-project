@@ -1,6 +1,7 @@
 import React from 'react';
 import { Slider, Rail, Handles, Tracks } from 'react-compound-slider';
 import { Handle, Track } from './component';
+import withTheme from '../../../HOC/withTheme';
 
 const CustomSlider = props => {
   const sliderStyle: React.CSSProperties = {
@@ -52,6 +53,7 @@ const CustomSlider = props => {
           <div className="slider-tracks">
             {tracks.map(({ id, source, target }) => (
               <Track
+                theme={props.theme}
                 key={id}
                 source={source}
                 target={target}
@@ -65,4 +67,4 @@ const CustomSlider = props => {
   );
 };
 
-export default CustomSlider;
+export default withTheme(CustomSlider);

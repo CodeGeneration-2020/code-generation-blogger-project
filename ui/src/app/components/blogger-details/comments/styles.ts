@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { IPropsTheme } from './../../../../types/index';
 
-export const CommentList = styled.div`
+export const CommentList = styled.div<IPropsTheme>`
   width: 100%;
   .infinite-scroll {
     overflow: scroll;
@@ -15,7 +16,7 @@ export const CommentList = styled.div`
       background-color: #414d55;
     }
     ::-webkit-scrollbar-thumb {
-      background-color: #28b5e0;
+      background-color: ${({ theme }) => theme && theme.color};
       border-radius: 3px;
     }
   }
@@ -96,8 +97,8 @@ export const UserInfo = styled.div`
   }
 `;
 
-export const Rating = styled.div`
-  margin: 0 5px 0 2px; /*27 24 */
+export const Rating = styled.div<IPropsTheme>`
+  margin: 0 5px 0 2px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -109,7 +110,7 @@ export const Rating = styled.div`
     font-size: 40px;
     line-height: 40px;
     text-align: center;
-    color: #28b5e1;
+    color: ${({ theme }) => theme && theme.color};
     @media screen and (max-width: 1100px) {
       font-size: 32px;
     }
@@ -124,7 +125,7 @@ export const Rating = styled.div`
     display: flex;
 
     & > .left-part {
-      color: #28b5e1;
+      color: ${({ theme }) => theme && theme.color};
       margin-right: 4px;
     }
     & > .right-part {
@@ -139,7 +140,7 @@ export const Rating = styled.div`
   }
 `;
 
-export const Comment = styled.p`
+export const Comment = styled.p<IPropsTheme>`
   width: 220px;
   margin-top: 3px;
   margin-bottom: 1px;
@@ -150,7 +151,7 @@ export const Comment = styled.p`
   font-weight: normal;
   font-size: 10px;
   line-height: 15px;
-  color: #28b5e1;
+  color: ${({ theme }) => theme && theme.color};
 
   display: -webkit-box;
   -webkit-line-clamp: 4;

@@ -2,10 +2,11 @@ import React from 'react';
 import * as Style from './styles';
 import CustomSlider from '../../../slider-range-component/Slider';
 import { reduceNumber } from '../../../../helpers/reduceNumber';
+import withTheme from '../../../../../HOC/withTheme';
 
 const PriceFilter = props => {
   return (
-    <Style.Price>
+    <Style.Price theme={props.theme}>
       <div className="slider">
         <div className="info">
           <span className="title">POSTS</span>
@@ -67,4 +68,4 @@ const PriceFilter = props => {
   );
 };
 
-export default PriceFilter;
+export default withTheme(PriceFilter);

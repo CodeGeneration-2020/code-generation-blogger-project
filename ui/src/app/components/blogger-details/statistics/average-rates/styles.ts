@@ -1,6 +1,7 @@
+import { IPropsTheme } from './../../../../../types/index';
 import styled from 'styled-components';
 
-export const AverageRatesContainer = styled.div`
+export const AverageRatesContainer = styled.div<IPropsTheme>`
   width: 100%;
   padding: 0 64px;
   @media screen and (max-width: 900px) {
@@ -27,7 +28,7 @@ export const AverageRatesContainer = styled.div`
     }
   }
   .block {
-    background: linear-gradient(360deg, #0496ff 0%, #28b5e0 100%);
+    background: ${({ theme }) => theme && theme.background};
     border-radius: 8px;
     width: 189px;
     @media screen and (max-width: 900px) {

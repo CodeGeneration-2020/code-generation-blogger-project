@@ -40,7 +40,7 @@ const Pie = props => {
 
     path
       .attr('class', 'arc')
-      .attr('fill', (d, i) => (i ? '#1DABEA' : '#30393E'))
+      .attr('fill', (d, i) => (i ? `${props.theme.color}` : '#30393E'))
       .attr('transform', 'rotate(-35)')
       .style('stroke', '1A1E24')
       .style('stroke-width', 7)
@@ -48,7 +48,7 @@ const Pie = props => {
       .attrTween('d', arcTween);
 
     cache.current = props.data;
-  }, [colors, createArc, createPie, format, props.data]);
+  }, [colors, createArc, createPie, format, props.data, props.theme.color]);
 
   return (
     <svg width={props.width} height={props.height}>

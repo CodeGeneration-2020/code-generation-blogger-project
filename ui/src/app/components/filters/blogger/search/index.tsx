@@ -2,7 +2,7 @@ import React from 'react';
 import * as Style from './styles';
 import BlueButton from '../../../../components/shared/BlueButton/button.component';
 
-const Search = () => {
+const Search = props => {
   return (
     <Style.SearchContainer>
       <div className="input">
