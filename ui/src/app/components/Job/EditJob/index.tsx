@@ -3,16 +3,16 @@ import * as Styled from '../job.styles';
 import Input from '../../shared/Input/input.commponent';
 import Textarea from '../../shared/Textarea/textarea.component';
 import FormikSelect from '../../shared/FormikSelect/formik-select.component';
-import { ILocation, ITags, IJob } from '../../../../types';
+import { IOption, IJob } from '../../../../types';
 import { Formik, Field, FormikValues } from 'formik';
 import { jobFormSchema } from '../../../helpers/validation';
 import { initDataJob } from '../../../../consts/initData';
 
 const EditJob: React.FC<{
   job: IJob;
-  tags: ITags[];
-  countries: ILocation;
-  cities: ILocation;
+  tags: IOption[];
+  countries: IOption[];
+  cities: IOption[];
   newJob: boolean;
   createJob: any;
   editJob: any;

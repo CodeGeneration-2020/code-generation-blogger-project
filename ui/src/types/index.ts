@@ -22,9 +22,14 @@ export interface IFiltersReducer {
   pagination: any;
 }
 
-export interface ILocation {
+export interface IOption {
   value: string;
   label: string;
+}
+
+export interface ILocation {
+  countries: IOption[];
+  cities: IOption[];
 }
 
 export interface IBloggerCard {
@@ -39,24 +44,19 @@ export interface IBloggerCard {
   tags: Array<{ value: string; label: string }>;
 }
 
-export interface ITags {
-  value: string;
-  label: string;
-}
-
 export interface IJob {
   title: string;
   budget: number;
   description: string;
-  tags: ITags[];
+  tags: IOption[];
   contact: {
     phone: string;
     email: string;
   };
   additional_contacts: string;
   location: {
-    countries: ILocation[];
-    cities: ILocation[];
+    countries: IOption[];
+    cities: IOption[];
   };
   attachments: [];
   _id: string;
