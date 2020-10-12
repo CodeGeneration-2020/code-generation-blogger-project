@@ -8,7 +8,7 @@ import { Buttons } from '../../components/Job/job.styles';
 import { FormikValues } from 'formik';
 
 const JobContainer = props => {
-  const isOwner = true;
+  const isOwner = !true;
 
   const formRef = React.useRef<FormikValues>();
 
