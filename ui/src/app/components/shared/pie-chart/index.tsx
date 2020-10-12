@@ -1,7 +1,13 @@
 import React from 'react';
 import AnimatedPieHooks from './animated-pie-hooks';
+import withTheme from '../../../../HOC/withTheme';
+import { ITheme } from '../../../../types';
 
-const PieChart = ({ first_value, second_value }) => {
+const PieChart: React.FC<{
+  first_value: number;
+  second_value: number;
+  theme?: ITheme;
+}> = ({ first_value, second_value, theme }) => {
   return (
     <AnimatedPieHooks
       data={[
@@ -12,8 +18,9 @@ const PieChart = ({ first_value, second_value }) => {
       height={200}
       innerRadius={65}
       outerRadius={100}
+      theme={theme}
     />
   );
 };
 
-export default PieChart;
+export default withTheme(PieChart);

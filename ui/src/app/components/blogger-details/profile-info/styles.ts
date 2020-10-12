@@ -1,6 +1,7 @@
+import { IPropsTheme } from './../../../../types/index';
 import styled from 'styled-components';
 
-export const ProfileInfo = styled.div`
+export const ProfileInfo = styled.div<IPropsTheme>`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -77,7 +78,7 @@ export const HeaderProfile = styled.div`
         font-weight: normal;
         font-size: 24px;
         line-height: 20px;
-        color: #28b5e1;
+        color: ${({ theme }) => theme && theme.color};
         display: flex;
         max-width: 220px;
         @media screen and (max-width: 1100px) {
@@ -175,7 +176,7 @@ export const Metric = styled.div`
   }
 `;
 
-export const Audience = styled.div`
+export const Audience = styled.div<IPropsTheme>`
   display: flex;
   flex-direction: column;
   font-family: 'Poppins', sans-serif;
@@ -188,7 +189,7 @@ export const Audience = styled.div`
     font-size: 44px;
     line-height: 63px;
     text-align: center;
-    color: #28b5e1;
+    color: ${({ theme }) => theme && theme.color};
     margin-bottom: 5px;
     @media screen and (max-width: 1100px) {
       font-size: 38px;
@@ -221,7 +222,7 @@ export const Audience = styled.div`
       justify-content: flex-start;
       margin-right: 10px;
       & > .count {
-        color: #28b5e1;
+        color: ${({ theme }) => theme && theme.color};
         margin-right: 3px;
       }
       & > .text {

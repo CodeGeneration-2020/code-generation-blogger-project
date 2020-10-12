@@ -3,7 +3,7 @@ import * as Style from './styles';
 import { v4 as uuidv4 } from 'uuid';
 import BlueButton from '../../../shared/BlueButton/button.component';
 
-const SelectionList = props => {
+const SelectedList = props => {
   return (
     <Style.SelectedContainer>
       <div className="countries">
@@ -40,4 +40,4 @@ const SelectionList = props => {
   );
 };
 
-export default SelectionList;
+export default SelectedList;

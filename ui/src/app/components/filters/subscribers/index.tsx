@@ -2,10 +2,11 @@ import React from 'react';
 import * as Style from './styles';
 import CustomSlider from '../../slider-range-component/Slider';
 import { reduceNumber } from '../../../helpers/reduceNumber';
+import withTheme from '../../../../HOC/withTheme';
 
 const Subscribers = props => {
   return (
-    <Style.Subscribers>
+    <Style.Subscribers theme={props.theme}>
       <div className="total">
         <div className="range-slider">
           <CustomSlider
@@ -48,4 +49,4 @@ const Subscribers = props => {
   );
 };
 
-export default Subscribers;
+export default withTheme(Subscribers);

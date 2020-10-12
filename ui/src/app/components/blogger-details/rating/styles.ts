@@ -1,6 +1,7 @@
+import { IPropsTheme } from './../../../../types/index';
 import styled from 'styled-components';
 
-export const Rating = styled.div`
+export const Rating = styled.div<IPropsTheme>`
   width: 100%;
   border: 1px solid #414d55;
   border-radius: 8px;
@@ -27,12 +28,12 @@ export const Rating = styled.div`
     & > .count {
       font-size: 40px;
       line-height: 40px;
-      color: #28b5e1;
+      color: ${({ theme }) => theme && theme.color};
     }
     & > .text {
       font-size: 15px;
       line-height: 20px;
-      color: #28b5e1;
+      color: ${({ theme }) => theme && theme.color};
     }
   }
 

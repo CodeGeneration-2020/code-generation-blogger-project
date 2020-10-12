@@ -1,8 +1,9 @@
+import { IPropsTheme } from './../../../../../types/index';
 import styled from 'styled-components';
 
 export const CityChartContainer = styled.div``;
 
-export const Chart = styled.div`
+export const Chart = styled.div<IPropsTheme>`
   display: flex;
   flex-direction: column;
   & > .data {
@@ -20,7 +21,7 @@ export const Chart = styled.div`
     & > .city {
       font-weight: 500;
       font-size: 12.1237px;
-      color: #28b5e1;
+      color: ${({ theme }) => theme && theme.color};
     }
   }
   & > .line-chart {

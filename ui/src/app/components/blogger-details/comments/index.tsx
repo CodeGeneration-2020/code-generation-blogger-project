@@ -4,10 +4,17 @@ import AvaComment from '../../../../img/ava-comment.svg';
 import DrawStars from '../../shared/draw-stars';
 import { v4 as uuidv4 } from 'uuid';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import withTheme from '../../../../HOC/withTheme';
+import { ITheme } from '../../../../types';
 
-const Comments = ({ comments, loading, getPaginationComments }) => {
+const Comments: React.FC<{
+  comments;
+  loading;
+  getPaginationComments;
+  theme?: ITheme;
+}> = ({ comments, loading, getPaginationComments, theme }) => {
   return (
-    <Style.CommentList>
+    <Style.CommentList theme={theme}>
       <InfiniteScroll
         className="infinite-scroll"
         dataLength={comments.length}
@@ -31,14 +38,14 @@ const Comments = ({ comments, loading, getPaginationComments }) => {
                     </span>
                   </div>
                 </Style.UserInfo>
-                <Style.Rating>
+                <Style.Rating theme={theme}>
                   <span className="count">{c.subs_came}</span>
                   <div className="text">
                     <span className="left-part">subs</span>
                     <span className="right-part">came</span>
                   </div>
                 </Style.Rating>
-                <Style.Comment>{c.comment}</Style.Comment>
+                <Style.Comment theme={theme}>{c.comment}</Style.Comment>
               </Style.CommentCard>
             );
           })}
@@ -47,4 +54,4 @@ const Comments = ({ comments, loading, getPaginationComments }) => {
   );
 };
 
-export default Comments;
+export default withTheme(Comments);

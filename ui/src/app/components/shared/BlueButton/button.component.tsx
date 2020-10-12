@@ -1,17 +1,33 @@
 import React from 'react';
 import * as Styled from './button.styles';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import withTheme from '../../../../HOC/withTheme';
+import { ITheme, IButtonStyle } from '../../../../types';
 
-const BlueButton = ({ children, onClick, link, type, style }) => {
+const BlueButton: React.FC<{
+  children?;
+  onClick?;
+  link?: string;
+  type?;
+  style?: IButtonStyle;
+  theme?: ITheme;
+}> = ({
+  children,
+  onClick = () => {},
+  link = '#',
+  type = 'button',
+  style = {},
+  theme,
+}) => {
   return (
     <Link to={link}>
       <Styled.Button
+        theme={theme}
         type={type}
         onClick={onClick}
-        width={style.width}
-        height={style.height}
-        boxShadow={style.boxShadow}
+        width={style.width || ''}
+        height={style.height || ''}
+        boxShadow={style.boxShadow || ''}
         borderRadius={style.borderRadius || '8px'}
       >
         {children}
@@ -20,19 +36,4 @@ const BlueButton = ({ children, onClick, link, type, style }) => {
   );
 };
 
-BlueButton.propTypes = {
-  link: PropTypes.string,
-  type: PropTypes.string,
-  style: PropTypes.object,
-  children: PropTypes.any,
-  onClick: PropTypes.func,
-};
-
-BlueButton.defaultProps = {
-  link: '#',
-  type: 'button',
-  style: {},
-  onClick: () => {},
-};
-
-export default BlueButton;
+export default withTheme(BlueButton);

@@ -1,10 +1,11 @@
 import React from 'react';
 import * as Style from './styles';
-//import { v4 as uuidv4 } from 'uuid';
+import withTheme from '../../../../../HOC/withTheme';
+import { ITheme } from '../../../../../types';
 
-const AverageRates = ({ data }) => {
+const AverageRates: React.FC<{ data; theme?: ITheme }> = ({ data, theme }) => {
   return (
-    <Style.AverageRatesContainer>
+    <Style.AverageRatesContainer theme={theme}>
       <div className="coverage">
         <div className="story">
           <div className="block">
@@ -37,4 +38,4 @@ const AverageRates = ({ data }) => {
   );
 };
 
-export default AverageRates;
+export default withTheme(AverageRates);

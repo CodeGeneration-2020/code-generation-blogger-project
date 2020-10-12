@@ -1,13 +1,20 @@
 import React from 'react';
 import Select from 'react-select';
 import { SelectContainer } from './select.styles';
+import withTheme from '../../../../HOC/withTheme';
 
-const RSelect = ({ options, changeHandler, selected, placeholder }) => {
+const RSelect: React.FC<{
+  options;
+  changeHandler;
+  selected;
+  placeholder;
+  theme?;
+}> = ({ options, changeHandler, selected, placeholder, theme }) => {
   const selectStyles = {
     input: provided => ({
       ...provided,
       minHeight: '1px',
-      color: '#1DABEA',
+      color: theme && theme.color,
       fontFamily: 'Roboto,sans-serif',
       fontStyle: 'normal',
       fontSize: '14px',
@@ -36,11 +43,11 @@ const RSelect = ({ options, changeHandler, selected, placeholder }) => {
     option: (styles, { isFocused }) => {
       return {
         ...styles,
-        backgroundColor: isFocused ? `#0496FF` : '#1A1E24',
+        backgroundColor: isFocused ? theme && theme.color : '#1A1E24',
         borderRadius: isFocused ? `15px` : 'none',
         width: '80%',
         marginLeft: '10px',
-        color: isFocused ? 'white' : '#1DABEA',
+        color: isFocused ? 'white' : theme && theme.color,
         fontFamily: '"KhulaRegular", sans-serif',
         cursor: 'pointer',
         borderBottom: '1px solid #414D55',
@@ -66,10 +73,6 @@ const RSelect = ({ options, changeHandler, selected, placeholder }) => {
     }),
   };
 
-  // const getValue = () => {
-  //   return [];
-  // };
-
   const getOptions = options => {
     return options.filter(
       option => selected.every(e => e.value !== option.value) && option,
@@ -77,7 +80,7 @@ const RSelect = ({ options, changeHandler, selected, placeholder }) => {
   };
 
   return (
-    <SelectContainer>
+    <SelectContainer theme={theme}>
       <Select
         className="react-select"
         placeholder={placeholder}
@@ -93,4 +96,4 @@ const RSelect = ({ options, changeHandler, selected, placeholder }) => {
   );
 };
 
-export default RSelect;
+export default withTheme(RSelect);

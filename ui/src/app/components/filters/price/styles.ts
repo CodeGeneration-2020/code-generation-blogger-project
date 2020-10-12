@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { IPropsTheme } from '../../../../types';
 
-export const Price = styled.div`
+export const Price = styled.div<IPropsTheme>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -38,7 +39,7 @@ export const Price = styled.div`
         width: 50%;
         display: flex;
         justify-content: flex-end;
-        color: #28b5e1;
+        color: ${({ theme }) => theme && theme.color};
       }
     }
   }
