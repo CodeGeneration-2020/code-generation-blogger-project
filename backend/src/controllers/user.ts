@@ -65,7 +65,25 @@ class User {
         } catch (e) {
             return next(e);
         }
-    }    
+    }
+    
+    async getCustomerComments(req: Request, res: Response, next: NextFunction) {
+        try {
+            const customerComments = await this.userService.getCustomerComments(+req.params.id,+req.query.skip,+req.query.limit);
+            res.json(customerComments);
+        } catch (e) {
+            return next(e);
+        }
+    }
+
+    async createCommentForCustomer(req: Request, res: Response, next: NextFunction) {
+        try {
+            const response = await this.userService.createCommentForCustomer(+req.params.id,req.body);
+            res.json(response);
+        } catch (e) {
+            return next(e);
+        }
+    }
 }
 
 export default User;
