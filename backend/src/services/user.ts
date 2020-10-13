@@ -13,7 +13,6 @@ export interface ICreateCommentBlogger{
 export interface ICreateCommentCustomer{
     senderId: Number;
     comment: String;
-    score: Number;
 }
 
 export interface IAverageDataBlogger {
@@ -26,8 +25,8 @@ export interface IUserService{
     createCommentForBlogger: (id: number, body: ICreateCommentBlogger) => object;
     getBloggerComments: (id:number,skip: number,limit: number) => Promise<{ comments: BloggerCD[]; averageData: IAverageDataBlogger; }>;
     getCustomer: (id: number) =>  Promise<CustomerDocument>;
-    createCommentForCustomer: (id: number, body: ICreateCommentCustomer) => object;
-    getCustomerComments: (id:number,skip: number,limit: number) => Promise<{ comments: CustomerCD[]; averageData: Number }>;
+    createCommentForCustomer: (id: number, body: ICreateCommentCustomer) => Promise<any>
+    getCustomerComments: (id:number, skip: number,limit: number) => Promise <CustomerCD[]>;
 }
 
 function callculateAvg (data:Number[]) {
@@ -35,17 +34,11 @@ function callculateAvg (data:Number[]) {
     return Math.round(countData / data.length);
 }
 
-async function calculateAverageDataBlogger (id:number,skip:number): Promise<IAverageDataBlogger> {
+async function calculateAverageDataBlogger (id:number): Promise<IAverageDataBlogger> {
     const allCommnets = await BlogerComments.find({bloggerId:id});
     const subsCame = allCommnets.map(e => e.subs_came);
     const score = allCommnets.map(e => e.score);
     return {averageComing:callculateAvg(subsCame),averageScore:callculateAvg(score)};
-}
-
-async function calculateAverageDataCustomer(id:number,skip:number): Promise<Number> {
-    const allCommnets = await CustomerComments.find({customerId:id});
-    const score = allCommnets.map(e => e.score);
-    return callculateAvg(score);
 }
 
 class UserService implements IUserService  {
@@ -66,7 +59,7 @@ class UserService implements IUserService  {
     }
 
     async getBloggerComments(id:number,skip: number,limit: number){
-        const averageData = !skip ? await calculateAverageDataBlogger(id,skip) : null;
+        const averageData = !skip ? await calculateAverageDataBlogger(id) : null;
         const comments = await BlogerComments.find({bloggerId:id}).populate('customerId').skip(+skip).limit(+limit);
         return {comments, averageData};
     }
@@ -80,16 +73,13 @@ class UserService implements IUserService  {
             customerId: id,
             bloggerId: body.senderId,
             comment: body.comment,
-            score: body.score,
-        })
-        await comment.save();
-        return {createComment:'Create comment for customer success'};
+        });
+        const newComment = await comment.save();
+        return await CustomerComments.findById(newComment._id).populate('bloggerId');
     }
 
     async getCustomerComments(id:number,skip: number,limit: number){
-        const averageData =  !skip ? await calculateAverageDataCustomer(id,skip) : null;
-        const comments = await CustomerComments.find({customerId:id}).populate('bloggerId').skip(+skip).limit(+limit);
-        return {comments, averageData};
+        return await CustomerComments.find({customerId:id}).sort({createdAt:-1}).populate('bloggerId').skip(+skip).limit(+limit);
     }
 }
 

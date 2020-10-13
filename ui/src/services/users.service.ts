@@ -30,8 +30,8 @@ class UsersService {
       {},
     );
   }
-  createComment(userType, senderId, receiverId, comment) {
-    return this.apiService.POST(`user/${userType}/${receiverId}/comment`, {
+  createCommentForCustomer(senderId, receiverId, comment) {
+    return this.apiService.POST(`user/customer/${receiverId}/comment`, {
       senderId,
       comment,
     });

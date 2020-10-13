@@ -41,9 +41,6 @@ export const UserInfo = styled.div`
       width: 60px;
       height: 60px;
     }
-    @media screen and (max-width: 1000px) {
-      margin-right: 10px;
-    }
   }
   & > .info {
     display: flex;
@@ -57,37 +54,8 @@ export const UserInfo = styled.div`
       font-size: 16px;
       color: #ffffff;
       margin-bottom: 3px;
-      @media screen and (max-width: 1100px) {
+      @media screen and (max-width: 900px) {
         font-size: 14px;
-      }
-      @media screen and (max-width: 900px) {
-        font-size: 12px;
-      }
-    }
-    & > .text {
-      font-weight: normal;
-      font-size: 14px;
-      color: #28b5e1;
-      @media screen and (max-width: 1100px) {
-        font-size: 13px;
-      }
-      @media screen and (max-width: 900px) {
-        font-size: 11px;
-      }
-    }
-    & > .score {
-      & > .star {
-        width: 13px;
-        height: 12px;
-        margin-right: 5px;
-        &:last-child {
-          margin-right: 0;
-        }
-        @media screen and (max-width: 1100px) {
-          width: 11px;
-          height: 10px;
-          margin-right: 3px;
-        }
       }
     }
   }
@@ -95,10 +63,7 @@ export const UserInfo = styled.div`
 
 export const Comment = styled.p`
   width: 222px;
-  margin-top: 3px;
-  margin-bottom: 1px;
-  display: flex;
-  align-items: center;
+  margin: auto;
   font-family: 'Roboto' sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -111,15 +76,15 @@ export const Comment = styled.p`
   -webkit-box-orient: vertical;
   overflow-y: hidden;
   @media screen and (max-width: 900px) {
-    font-size: 9px;
     width: 200px;
   }
 `;
 
 export const AddComment = styled.div`
+  position: relative;
   width: 80%;
   margin: 0 auto;
-  padding: 10px;
+  padding: 10px 10px 30px;
   background: #1a1e24;
   border-radius: 16px;
   box-shadow: 0px 1px 8px rgba(110, 110, 110, 0.1);
@@ -132,10 +97,13 @@ export const AddComment = styled.div`
     width: 100%;
     height: 70px;
     border-radius: 8px;
-    color: #a4a9ab;
     background: #1a1e24;
-    font-size: 16px;
-    line-height: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 15px;
+    color: #d022ed;
     ::-webkit-scrollbar {
       width: 3px;
       height: 3px;
@@ -150,5 +118,11 @@ export const AddComment = styled.div`
       background-color: #d022ed;
       border-radius: 3px;
     }
+  }
+
+  button {
+    position: absolute;
+    bottom: 3px;
+    right: 10px;
   }
 `;

@@ -38,7 +38,7 @@ function App({ setTheme }) {
         <Route path="/list/bloggers" render={() => <ListBloggers />} />
         <Route path="/list/jobs" component={ListJob} />
         <Route exact path="/blogger/details/:id" component={BloggerDetails} />
-        <Route path="/job/details/:id" component={Job} />
+        <Route path="/job/details/:jobId/:customerId" component={Job} />
         <Route path="/job" render={() => <Job newJob={true} />} />
         <Route component={NotFoundPage} />
       </Switch>

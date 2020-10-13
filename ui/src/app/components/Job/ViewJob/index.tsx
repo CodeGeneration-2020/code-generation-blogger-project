@@ -14,7 +14,11 @@ import Comments from './comments';
 
 const ViewJob: React.FC<{
   job: IJob;
-}> = ({ job }) => {
+  getComments: any;
+  createComment: any;
+  comments: any;
+  loading: boolean;
+}> = ({ job, comments, getComments, createComment, loading }) => {
   return (
     <Styled.JobContainer>
       <Styled.JobInfo>
@@ -46,14 +50,7 @@ const ViewJob: React.FC<{
 
       <Styled.Description>
         <span className="title">About the job</span>
-        <p className="text">
-          {job.description}
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamcolaboris nisi ut aliquip
-          ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu.
-        </p>
+        <p className="text">{job.description}</p>
       </Styled.Description>
 
       <Styled.Connection>
@@ -75,7 +72,7 @@ const ViewJob: React.FC<{
             <div className="icon">
               <img src={InstaIcon} width="21" height="21" alt="insta" />
             </div>
-            <div className="content">test_com</div>
+            <div className="content">{job.additional_contacts}</div>
           </div>
         </div>
       </Styled.Connection>
@@ -119,11 +116,16 @@ const ViewJob: React.FC<{
         </div>
 
         <div className="score">
-          <DrawStars count={3} className="star" />
+          <DrawStars count={5} className="star" />
         </div>
       </Styled.Rating>
       <Styled.Comments>
-        <Comments />
+        <Comments
+          loading={loading}
+          comments={comments}
+          createComment={comment => createComment(comment)}
+          getComments={getComments}
+        />
       </Styled.Comments>
     </Styled.JobContainer>
   );

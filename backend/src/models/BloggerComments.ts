@@ -15,6 +15,6 @@ const commentsSchema = new mongoose.Schema({
     comment:mongoose.Schema.Types.String,
     score: mongoose.Schema.Types.Number,
     subs_came: mongoose.Schema.Types.Number,
-});
+},{timestamps: true});
 
 export const Comments = mongoose.model<CommentsDocumnet>('Comments', commentsSchema);

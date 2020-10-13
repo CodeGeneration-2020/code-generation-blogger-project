@@ -10,17 +10,18 @@ const JobCard: React.FC<{
   budget: number;
   location: ILocation;
   tags: IOption[];
-  id: number;
+  jobId: number;
+  customerId: number;
   openSideBar;
-}> = ({ title, budget, location, tags, id, openSideBar }) => {
+}> = ({ title, budget, location, tags, jobId, customerId, openSideBar }) => {
   return (
     <Style.JobCardContainer>
       <NavLink
         className="job-info"
-        to={'/job/details/' + id}
+        to={`/job/details/${jobId}/${customerId}`}
         key={uuidv4()}
         onClick={e => {
-          openSideBar(e, id);
+          openSideBar(e, jobId);
         }}
       >
         <div className="short-title">{title}</div>
@@ -36,7 +37,7 @@ const JobCard: React.FC<{
           ))}
         </div>
         <div className="city">
-          {[...location.cities, ...location.cities].map(c => (
+          {location.cities.map(c => (
             <Tag key={uuidv4()} title={c.label} className="item" />
           ))}
         </div>
