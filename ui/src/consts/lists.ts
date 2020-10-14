@@ -65,3 +65,8 @@ export const PAGINATION = {
   skip: 0,
   limit: 5,
 };
+
+export const TABS = {
+  feedbacks: 'feedbacks',
+  jobs: 'jobs',
+};

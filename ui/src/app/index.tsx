@@ -18,12 +18,13 @@ import ListBloggers from './components/list-bloggers/list.component';
 import BloggerDetails from './components/blogger-details/BloggerDetails';
 import Job from './containers/JobContainer';
 import ListJob from './components/list-jobs/list.component';
+import CustomerProfile from './components/customer-profile';
 import { ActionCreators } from '../store/sharedData/actions';
 import { connect } from 'react-redux';
 import { bloggerTheme, customerTheme } from '../consts/theme';
 
 function App({ setTheme }) {
-  const isBlogger = true;
+  const isBlogger = !true;
   setTheme(isBlogger ? bloggerTheme : customerTheme);
   return (
     <BrowserRouter>
@@ -39,6 +40,7 @@ function App({ setTheme }) {
         <Route path="/list/jobs" component={ListJob} />
         <Route exact path="/blogger/details/:id" component={BloggerDetails} />
         <Route path="/job/details/:jobId/:customerId" component={Job} />
+        <Route path="/customer/profile/:id" component={CustomerProfile} />
         <Route path="/job" render={() => <Job newJob={true} />} />
         <Route component={NotFoundPage} />
       </Switch>
