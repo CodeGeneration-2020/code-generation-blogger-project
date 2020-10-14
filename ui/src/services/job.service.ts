@@ -19,7 +19,7 @@ class JobService {
   }
   getJobsByFilters(filters, skip = 0, limit = PAGINATION.limit) {
     return this.apiService.GET(
-      `job/filters?budget=${addQuery([300, 1000000])}&countries=${addQuery(
+      `job/filters?budget=${addQuery(filters.budget)}&countries=${addQuery(
         filters.country,
       )}&cities=${addQuery(filters.city)}&tags=${addQuery(
         filters.tags,

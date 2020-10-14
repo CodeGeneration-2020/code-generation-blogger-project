@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import * as Style from './styles';
 import FilterCard from '../../shared/FilterCard/card';
 import Search from '../search';
-import PriceFilter from '../price';
 import LocationFilter from '../location';
 import TagsFilter from '../tags';
+import BudgetFilter from '../budget';
 import { ActionCreators as SharedAC } from '../../../../store/sharedData/actions';
 import { ActionCreators as FiltersAC } from '../../../../store/filters/actions';
 import { ActionCreators as LocationAC } from '../../../../store/locationSearch/actions';
@@ -26,11 +26,9 @@ const BloggerFilters = props => {
       <Style.Filters>
         <Style.SharedFilters>
           <div className="price">
-            <FilterCard title={'Price'}>
-              <PriceFilter
-                pricePost={props.filters.pricePost}
-                priceStory={props.filters.priceStory}
-                pricePS={props.filters.pricePS}
+            <FilterCard title={'Budget'}>
+              <BudgetFilter
+                budget={props.filters.budget}
                 setFilter={(value, title) => props.setFilter({ value, title })}
               />
             </FilterCard>

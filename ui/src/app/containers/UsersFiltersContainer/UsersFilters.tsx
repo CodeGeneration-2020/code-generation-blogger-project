@@ -8,7 +8,7 @@ import * as JobActions from '../../../store/job/actions';
 import * as FiltersActions from '../../../store/filters/actions';
 
 const UsersFilters = props => {
-  const isBlogger = !true;
+  const isBlogger = true;
   const Filters = isBlogger ? JobFilters : BloggerFilters;
   const getUsers = isBlogger
     ? props.getJobsByFilters
