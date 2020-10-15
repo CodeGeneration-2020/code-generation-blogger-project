@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as Style from './styles';
-import Ava from '../../../img/ava.svg';
-import { contactsIcons } from '../../../img';
-import withTheme from '../../../HOC/withTheme';
-import { TABS } from '../../../consts/lists';
-import InfiniteScroll from 'react-infinite-scroll-component';
-import Comments from '../shared/customer-comments';
+import Ava from '../../../../img/ava.svg';
+import { contactsIcons } from '../../../../img';
+import withTheme from '../../../../HOC/withTheme';
+// import { TABS } from '../../../../consts/lists';
+// import Comments from '../../customer-comments';
 
 const CustomerProfile = props => {
-  const [activeTab, setTab] = useState(TABS.feedbacks);
-  const setActiveTab = tab => {
-    setTab(tab);
-  };
+  // const [activeTab, setTab] = useState(TABS.feedbacks);
+  // const setActiveTab = tab => {
+  //   setTab(tab);
+  // };
   return (
     <Style.ProfileContainer>
       <Style.CustomerInfo theme={props.theme}>
@@ -20,12 +19,16 @@ const CustomerProfile = props => {
         </div>
         <div className="info">
           <div className="fullname">
-            <span className="name">Ralph</span>
-            <span className="surname">Siccone</span>
+            <span className="name">{props.customerInfo.name}</span>
+            <span className="surname">{props.customerInfo.surname}</span>
           </div>
           <div className="location">
-            <span className="country">Ukraine,</span>
-            <span className="city">Kharkiv</span>
+            <span className="country">
+              {props.customerInfo.location.country.label},
+            </span>
+            <span className="city">
+              {props.customerInfo.location.city.label}
+            </span>
           </div>
         </div>
       </Style.CustomerInfo>
@@ -40,7 +43,7 @@ const CustomerProfile = props => {
               alt="mail"
               className="icon"
             />
-            <span className="content">ralph@gmail.com</span>
+            <span className="content">{props.customerInfo.contact.mail}</span>
           </div>
           <div className="item">
             <img
@@ -50,7 +53,7 @@ const CustomerProfile = props => {
               alt="phone"
               className="icon"
             />
-            <span className="content">+3809754333</span>
+            <span className="content">{props.customerInfo.contact.phone}</span>
           </div>
           <div className="item">
             <img
@@ -60,11 +63,11 @@ const CustomerProfile = props => {
               alt="link"
               className="icon"
             />
-            <span className="content">test_com</span>
+            <span className="content">{props.customerInfo.contact.link}</span>
           </div>
         </div>
       </Style.ContactInfo>
-      <Style.Edit theme={props.theme}>
+      {/* <Style.Edit theme={props.theme}>
         <span className="text">Edit</span>
       </Style.Edit>
       <Style.Tabs>
@@ -82,24 +85,15 @@ const CustomerProfile = props => {
         >
           Jobs
         </Style.RightTab>
-      </Style.Tabs>
+      </Style.Tabs> */}
 
-      {activeTab === TABS.feedbacks ? (
+      {/* {activeTab === TABS.feedbacks ? (
         <Style.Feedbacks theme={props.theme}>
-          <InfiniteScroll
-            className="infinite-scroll"
-            dataLength={3}
-            next={() => {}}
-            hasMore={true}
-            loader={props.loading && <h4>Loading...</h4>}
-            height={300}
-          >
-            <Comments />
-          </InfiniteScroll>
+
         </Style.Feedbacks>
       ) : (
         <Style.ListJobs theme={props.theme}></Style.ListJobs>
-      )}
+      )} */}
     </Style.ProfileContainer>
   );
 };

@@ -18,7 +18,7 @@ import ListBloggers from './components/list-bloggers/list.component';
 import BloggerDetails from './components/blogger-details/BloggerDetails';
 import Job from './containers/JobContainer';
 import ListJob from './components/list-jobs/list.component';
-import CustomerProfile from './components/customer-profile';
+import CustomerProfile from './containers/CustomerProfileContainer';
 import { ActionCreators } from '../store/sharedData/actions';
 import { connect } from 'react-redux';
 import { bloggerTheme, customerTheme } from '../consts/theme';

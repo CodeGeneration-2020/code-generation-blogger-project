@@ -10,7 +10,7 @@ import UserAva from '../../../../img/jobCardAva.svg';
 import { attachmentsIcons } from '../../../../img';
 import parseFullName from '../../../helpers/parseFullName';
 import DrawStars from '../../shared/draw-stars';
-import Comments from './comments';
+import Comments from '../../customer-comments';
 
 const ViewJob: React.FC<{
   job: IJob;
@@ -18,7 +18,8 @@ const ViewJob: React.FC<{
   createComment: any;
   comments: any;
   loading: boolean;
-}> = ({ job, comments, getComments, createComment, loading }) => {
+  averageScore: number;
+}> = ({ job, comments, getComments, createComment, loading, averageScore }) => {
   return (
     <Styled.JobContainer>
       <Styled.JobInfo>
@@ -116,14 +117,14 @@ const ViewJob: React.FC<{
         </div>
 
         <div className="score">
-          <DrawStars count={5} className="star" />
+          <DrawStars count={averageScore} className="star" />
         </div>
       </Styled.Rating>
       <Styled.Comments>
         <Comments
           loading={loading}
           comments={comments}
-          createComment={comment => createComment(comment)}
+          createComment={(comment, score) => createComment(comment, score)}
           getComments={getComments}
         />
       </Styled.Comments>

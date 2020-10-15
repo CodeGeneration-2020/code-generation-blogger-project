@@ -70,3 +70,4 @@ export const TABS = {
   feedbacks: 'feedbacks',
   jobs: 'jobs',
 };
+export const FILLSTARS = { grey: '#90A1AC', score: '#FFD800' };
