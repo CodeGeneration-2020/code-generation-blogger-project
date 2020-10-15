@@ -65,3 +65,5 @@ export const PAGINATION = {
   skip: 0,
   limit: 5,
 };
+
+export const FILLSTARS = { grey: '#90A1AC', score: '#FFD800' };

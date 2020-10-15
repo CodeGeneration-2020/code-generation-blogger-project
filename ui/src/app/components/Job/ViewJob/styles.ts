@@ -276,6 +276,7 @@ export const Rating = styled.div`
 export const Comments = styled.div`
   margin: 50px auto 0;
   width: 440px;
+  min-height: 300px;
   @media screen and (max-width: 850px) {
     width: 380px;
   }

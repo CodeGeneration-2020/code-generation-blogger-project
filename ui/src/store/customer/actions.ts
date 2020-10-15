@@ -27,6 +27,7 @@ const createCommentForCustomer = createAsyncThunk(
       data.bloggerId | 246572,
       data.customerId,
       data.comment,
+      data.score,
     );
     return response.data;
   },

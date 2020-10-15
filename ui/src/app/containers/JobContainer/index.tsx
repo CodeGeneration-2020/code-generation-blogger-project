@@ -99,11 +99,13 @@ const JobContainer = props => {
             <JobView
               job={props.job}
               comments={props.comments}
+              averageScore={props.averageScore}
               loading={props.loading}
-              createComment={comment => {
+              createComment={(comment, score) => {
                 props.createComment({
                   customerId: props.job.customerId._id,
                   comment,
+                  score,
                 });
                 props.setSkip({
                   key: 'customerComments',
@@ -146,6 +148,7 @@ export default connect(
     return {
       job: JOB_REDUCER.job,
       comments: CUSTOMER_REDUCER.customerComments,
+      averageScore: CUSTOMER_REDUCER.averageScore,
       cities: SHARED_DATA_REDUCER.cities,
       countries: SHARED_DATA_REDUCER.countries,
       tags: SHARED_DATA_REDUCER.tags,
