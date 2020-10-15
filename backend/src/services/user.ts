@@ -26,6 +26,7 @@ export interface IUserService{
     createCommentForBlogger: (id: number, body: ICreateCommentBlogger) => object;
     getBloggerComments: (id: number,skip: number,limit: number) => Promise<{ comments: BloggerCD[]; averageData: IAverageDataBlogger; }>;
     createCustomer: (data: CustomerDocument) => Promise<CustomerDocument>;
+    updateCustomerById: (_id: number, data: CustomerDocument) => Promise<CustomerDocument>;
     getCustomerById: (id: number) =>  Promise<CustomerDocument>;
     createCommentForCustomer: (id: number, body: ICreateCommentCustomer) => Promise<any>
     getCustomerComments: (id: number, skip: number,limit: number) => Promise <{comments: CustomerCD[],averageScore: Number}>;
@@ -77,7 +78,6 @@ class UserService implements IUserService  {
     async createCustomer(data: CustomerDocument){
         const lastCustomer = await Customer.findOne({}).sort({createdAt:-1});
         const _id = lastCustomer ? lastCustomer._id + 1 : 1;
-        console.log(lastCustomer);
         const newCustomer = new Customer({
             _id ,
             name: data.name,
@@ -89,6 +89,10 @@ class UserService implements IUserService  {
         return await newCustomer.save();
     }
 
+    async updateCustomerById(_id:number,data: CustomerDocument){
+        return await Customer.findOneAndUpdate({_id}, data, {new:true});
+    }
+    
     async getCustomerById(id: number) {
         return Customer.findById(id);
     }

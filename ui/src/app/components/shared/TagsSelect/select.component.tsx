@@ -14,12 +14,20 @@ const RSelect: React.FC<{
     input: provided => ({
       ...provided,
       minHeight: '1px',
-      color: theme && theme.color,
-      fontFamily: 'Roboto,sans-serif',
+      color: '#90A1AC',
+      fontFamily: 'Roboto',
       fontStyle: 'normal',
       fontSize: '14px',
       lineHeight: '20px',
-      paddingTop: '-5px',
+      paddingTop: '-3px',
+    }),
+    placeholder: base => ({
+      ...base,
+      color: '#90A1AC',
+      fontFamily: 'Roboto',
+      fontStyle: 'normal',
+      fontSize: '14px',
+      lineHeight: '20px',
     }),
     control: base => ({
       ...base,

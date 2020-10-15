@@ -26,6 +26,10 @@ user.get('/customer/:id', (req, res, next) => {
     userControllerInstance.getCustomerById(req, res, next);
 });
 
+user.put('/customer/:id', (req, res, next) => {
+    userControllerInstance.updateCustomerById(req, res, next);
+});
+
 user.get('/customer/:id/comments', (req, res, next) => {
     userControllerInstance.getCustomerComments(req, res, next);
 });

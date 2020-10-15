@@ -66,7 +66,14 @@ class User {
             return next(e);
         }
     }
-
+    async updateCustomerById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const response = await this.userService.updateCustomerById(+req.params.id,req.body);
+            res.json(response);
+        } catch (e) {
+            return next(e);
+        }
+    }
     async getCustomerById(req: Request, res: Response, next: NextFunction) {
         try {
             const users = await this.userService.getCustomerById(+req.params.id);

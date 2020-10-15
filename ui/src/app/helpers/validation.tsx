@@ -57,3 +57,41 @@ export const jobFormSchema = yup.object().shape({
   cities: citySchema,
   tags: tagsSchema,
 });
+
+//CustomerInfo
+
+export const nameSchema = yup.string().trim().required('Please enter name');
+
+export const surNameSchema = yup
+  .string()
+  .trim()
+  .required('Please enter surname');
+
+export const linkSchema = yup
+  .string()
+  .trim()
+  .required('Please enter instagram link');
+
+export const countryCustomerInfoSchema = yup
+  .object()
+  .required('Please select country');
+
+export const cityCustomerInfoSchema = yup
+  .object()
+  .required('Please select city');
+
+export const profilePictureSchema = yup
+  .string()
+  .trim()
+  .required('Please select profile picture');
+
+export const customerInfoFormSchema = yup.object().shape({
+  name: nameSchema,
+  surname: surNameSchema,
+  profile_picture: profilePictureSchema,
+  country: countryCustomerInfoSchema,
+  city: cityCustomerInfoSchema,
+  mail: emailSchema,
+  phone: phoneSchema,
+  link: linkSchema,
+});

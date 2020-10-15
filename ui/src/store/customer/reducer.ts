@@ -22,6 +22,16 @@ const CUSTOMER_REDUCER = createSlice({
     [ActionCreators.getCustomerComments.rejected as any]: state => {
       state.loading = false;
     },
+    [ActionCreators.editCustomerById.pending as any]: state => {
+      state.loading = true;
+    },
+    [ActionCreators.editCustomerById.fulfilled as any]: (state, action) => {
+      state.customer = action.payload;
+      state.loading = false;
+    },
+    [ActionCreators.editCustomerById.rejected as any]: state => {
+      state.loading = false;
+    },
     [ActionCreators.getCustomerComments.pending as any]: state => {
       state.loading = true;
     },

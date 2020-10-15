@@ -2,6 +2,7 @@ import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
 import UsersService from '../../services/users.service';
 
 export const ActionTypes = {
+  EDIT_CUSTOMER_INFO: 'edit customer info',
   GET_CUSTOMER_BY_ID: 'get_customer_by_id',
   GET_CUSTOMER_COMMENTS: 'get_customer_comments',
   CLEAR_COMMENTS: 'clear_comments',
@@ -12,6 +13,29 @@ const getCustomerById = createAsyncThunk(
   ActionTypes.GET_CUSTOMER_BY_ID,
   async (id: number) => {
     const response = await UsersService.getCustomerById(id);
+    return response.data;
+  },
+);
+
+const editCustomerById = createAsyncThunk(
+  ActionTypes.EDIT_CUSTOMER_INFO,
+  async (data: any) => {
+    const {
+      customerId,
+      name,
+      surname,
+      location,
+      contact,
+      profile_picture,
+    } = data;
+    const response = await UsersService.editCustomerInfo(
+      customerId,
+      name,
+      surname,
+      location,
+      contact,
+      profile_picture,
+    );
     return response.data;
   },
 );
@@ -46,6 +70,7 @@ const clearComments = createAction(ActionTypes.CLEAR_COMMENTS);
 
 export const ActionCreators = {
   getCustomerById,
+  editCustomerById,
   getCustomerComments,
   clearComments,
   createCommentForCustomer,

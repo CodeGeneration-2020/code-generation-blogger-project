@@ -52,6 +52,12 @@ const SHARED_DATA_REDUCER = createSlice({
         cities: state.cities.filter(c => c.countryId !== action.payload),
       };
     },
+    [ActionTypes.CLEAR_CITIES]: state => {
+      return {
+        ...state,
+        cities: [],
+      };
+    },
     [ActionTypes.SET_THEME]: (state, action) => {
       return {
         ...state,

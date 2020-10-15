@@ -23,9 +23,14 @@ import { ActionCreators } from '../store/sharedData/actions';
 import { connect } from 'react-redux';
 import { bloggerTheme, customerTheme } from '../consts/theme';
 
-function App({ setTheme }) {
+function App({ setTheme, getCountries }) {
   const isBlogger = !true;
-  setTheme(isBlogger ? bloggerTheme : customerTheme);
+  React.useEffect(() => {
+    setTheme(isBlogger ? bloggerTheme : customerTheme);
+    getCountries();
+    // eslint-disable-next-line
+  },[])
+
   return (
     <BrowserRouter>
       <Helmet
@@ -49,4 +54,7 @@ function App({ setTheme }) {
   );
 }
 
-export default connect(null, { setTheme: ActionCreators.setTheme })(App);
+export default connect(null, {
+  setTheme: ActionCreators.setTheme,
+  getCountries: ActionCreators.getCountry,
+})(App);

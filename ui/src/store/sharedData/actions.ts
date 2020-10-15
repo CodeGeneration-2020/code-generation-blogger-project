@@ -5,6 +5,7 @@ const ActionTypes = {
   GET_TAGS: '[SHARED_DATA] get_tags',
   GET_COUNTRY: '[SHARED_DATA] get_country',
   GET_CITY: '[SHARED_DATA] get_city',
+  CLEAR_CITIES: '[SHARED_DATA] clear cities',
   CLEAR_CITIES_BY_COUNTRY_ID: '[SHARED_DATA] clear_cities_by_country',
   SET_THEME: `[SHARED_DATA] set theme`,
 };
@@ -24,6 +25,8 @@ const getCity = createAsyncThunk(ActionTypes.GET_CITY, async countryId => {
   return response.data;
 });
 
+const clearCities = createAction(ActionTypes.CLEAR_CITIES);
+
 const clearCityByCountryId = createAction(
   ActionTypes.CLEAR_CITIES_BY_COUNTRY_ID,
 );
@@ -35,6 +38,7 @@ const ActionCreators = {
   getCountry,
   getCity,
   clearCityByCountryId,
+  clearCities,
   setTheme,
 };
 

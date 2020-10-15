@@ -10,6 +10,9 @@ const Input = ({ errors, name, ...props }) => {
         name={name}
         onChange={props.onChange}
         value={props.value}
+        fontSize={props.style && props.style.fontSize}
+        lineHeight={props.style && props.style.lineHeight}
+        padding={props.style && props.style.padding}
         // onBlur={props.onBlur}
         // error={props.errors}
         // touched={props.touched}
