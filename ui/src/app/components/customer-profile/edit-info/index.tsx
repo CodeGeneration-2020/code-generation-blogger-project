@@ -88,6 +88,8 @@ const CustomerProfileEdit = props => {
                     }}
                     selected={[values.city]}
                     options={props.cities}
+                    name={'city'}
+                    errors={errors}
                     placeholder={values.city.label}
                   />
                 </div>

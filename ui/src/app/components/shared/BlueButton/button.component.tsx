@@ -11,6 +11,7 @@ const BlueButton: React.FC<{
   type?;
   style?: IButtonStyle;
   theme?: ITheme;
+  className?: string;
 }> = ({
   children,
   onClick = () => {},
@@ -18,14 +19,16 @@ const BlueButton: React.FC<{
   type = 'button',
   style = {},
   theme,
+  className = 'shared-button',
 }) => {
   return (
-    <Link to={link}>
+    <Link to={link} className={className}>
       <Styled.Button
         theme={theme}
         type={type}
         onClick={onClick}
         width={style.width || ''}
+        hover={style.hover}
         height={style.height || ''}
         boxShadow={style.boxShadow || ''}
         borderRadius={style.borderRadius || '8px'}

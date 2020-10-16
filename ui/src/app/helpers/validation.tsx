@@ -73,11 +73,13 @@ export const linkSchema = yup
   .required('Please enter instagram link');
 
 export const countryCustomerInfoSchema = yup
-  .object()
+  .string()
+  .trim()
   .required('Please select country');
 
 export const cityCustomerInfoSchema = yup
-  .object()
+  .string()
+  .trim()
   .required('Please select city');
 
 export const profilePictureSchema = yup

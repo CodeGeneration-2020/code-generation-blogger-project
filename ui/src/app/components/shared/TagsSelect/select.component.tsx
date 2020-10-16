@@ -9,7 +9,17 @@ const RSelect: React.FC<{
   selected;
   placeholder;
   theme?;
-}> = ({ options, changeHandler, selected, placeholder, theme }) => {
+  name?;
+  errors?;
+}> = ({
+  options,
+  changeHandler,
+  selected,
+  placeholder,
+  theme,
+  name,
+  errors,
+}) => {
   const selectStyles = {
     input: provided => ({
       ...provided,
@@ -100,6 +110,7 @@ const RSelect: React.FC<{
         isMulti={true}
         onFocus={_ => {}}
       />
+      {errors && <span className="error">{errors[name]}</span>}
     </SelectContainer>
   );
 };

@@ -3,16 +3,10 @@ import * as Style from './styles';
 import Ava from '../../../../img/ava.svg';
 import { contactsIcons } from '../../../../img';
 import withTheme from '../../../../HOC/withTheme';
-// import { TABS } from '../../../../consts/lists';
-// import Comments from '../../customer-comments';
 
 const CustomerProfile = props => {
-  // const [activeTab, setTab] = useState(TABS.feedbacks);
-  // const setActiveTab = tab => {
-  //   setTab(tab);
-  // };
   return (
-    <Style.ProfileContainer>
+    <Style.ProfileInfoContainer>
       <Style.CustomerInfo theme={props.theme}>
         <div className="ava">
           <img src={Ava} alt="ava" />
@@ -67,34 +61,7 @@ const CustomerProfile = props => {
           </div>
         </div>
       </Style.ContactInfo>
-      {/* <Style.Edit theme={props.theme}>
-        <span className="text">Edit</span>
-      </Style.Edit>
-      <Style.Tabs>
-        <Style.LeftTab
-          active={activeTab === TABS.feedbacks}
-          theme={props.theme}
-          onClick={() => setActiveTab(TABS.feedbacks)}
-        >
-          Feedbacks
-        </Style.LeftTab>
-        <Style.RightTab
-          active={activeTab === TABS.jobs}
-          theme={props.theme}
-          onClick={() => setActiveTab(TABS.jobs)}
-        >
-          Jobs
-        </Style.RightTab>
-      </Style.Tabs> */}
-
-      {/* {activeTab === TABS.feedbacks ? (
-        <Style.Feedbacks theme={props.theme}>
-
-        </Style.Feedbacks>
-      ) : (
-        <Style.ListJobs theme={props.theme}></Style.ListJobs>
-      )} */}
-    </Style.ProfileContainer>
+    </Style.ProfileInfoContainer>
   );
 };
 

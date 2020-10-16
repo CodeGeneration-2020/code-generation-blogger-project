@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FILLSTARS } from '../../../../consts/lists';
+import { v4 as uuidv4 } from 'uuid';
 
 const DrawStars = ({ count, className, score, setScore }) => {
   const items: any = [];
@@ -13,6 +14,7 @@ const DrawStars = ({ count, className, score, setScore }) => {
   for (let i = 0; i < count; i++) {
     items.push(
       <svg
+        key={uuidv4()}
         onClick={() => {
           setScore && setScore(i + 1);
         }}

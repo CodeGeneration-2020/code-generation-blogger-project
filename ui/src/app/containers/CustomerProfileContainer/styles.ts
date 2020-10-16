@@ -49,7 +49,7 @@ export const Edit = styled.div<IPropsTheme>`
 export const Tabs = styled.div`
   width: 214px;
   height: 32px;
-  margin: 0 auto 50px;
+  margin: 0 auto;
   display: flex;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
@@ -85,8 +85,9 @@ export const RightTab = styled.div<IActive>`
 `;
 
 export const Feedbacks = styled.div<IPropsTheme>`
-  width: 100%;
-  margin-left: 161px;
+  margin: 0 161px;
+  margin-top: 50px;
+  /* background: red; */
   .infinite-scroll {
     overflow: scroll;
     ::-webkit-scrollbar {
@@ -100,8 +101,31 @@ export const Feedbacks = styled.div<IPropsTheme>`
       background-color: #414d55;
     }
     ::-webkit-scrollbar-thumb {
-      background-color: #d022ed;
+      background-color: ${({ theme }) => theme && theme.color};
       border-radius: 3px;
     }
+  }
+`;
+
+export const ListJobs = styled.div`
+  width: 100%;
+  & > .new-job {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+    .text {
+      font-family: 'Poppins', sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+      color: #fff;
+    }
+  }
+  a {
+    text-decoration: none;
+    cursor: default;
   }
 `;

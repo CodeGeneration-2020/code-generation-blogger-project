@@ -19,7 +19,7 @@ class Job {
 
     async getJobsByCustomerId(req: Request, res: Response, next: NextFunction) {
         try {
-            const jobs = await this.userService.getJobsByCustomerId(+req.params.id);
+            const jobs = await this.userService.getJobsByCustomerId(+req.params.id,+req.query.skip,+req.query.limit);
             res.json(jobs);
         } catch (e) {
             return next(e);

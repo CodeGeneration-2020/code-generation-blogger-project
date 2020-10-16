@@ -3,6 +3,7 @@ import { ActionCreators, ActionTypes } from './actions';
 
 const initialState = {
   listJobs: [],
+  currentCustomerJobs: [],
   job: {
     title: '',
     budget: '',
@@ -38,6 +39,24 @@ const JOB_REDUCER = createSlice({
     },
     [ActionCreators.getJobById.rejected as any]: state => {
       state.loading = false;
+    },
+    [ActionCreators.getJobsByCustomerId.pending as any]: state => {
+      state.loading = true;
+    },
+    [ActionCreators.getJobsByCustomerId.fulfilled as any]: (state, action) => {
+      state.currentCustomerJobs = state.currentCustomerJobs.concat(
+        action.payload,
+      );
+      state.loading = false;
+    },
+    [ActionCreators.getJobsByCustomerId.rejected as any]: state => {
+      state.loading = false;
+    },
+    [ActionTypes.CLEAR_CURRENT_CUSTOMER_JOBS]: state => {
+      return {
+        ...state,
+        currentCustomerJobs: [],
+      };
     },
     [ActionCreators.getAllJobs.pending as any]: state => {
       state.loading = true;
