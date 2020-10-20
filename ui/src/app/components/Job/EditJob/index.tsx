@@ -1,43 +1,36 @@
 import React from 'react';
-import * as Styled from '../job.styles';
-import Input from '../../shared/Input/input.commponent';
-import Textarea from '../../shared/Textarea/textarea.component';
-import FormikSelect from '../../shared/FormikSelect/formik-select.component';
+import * as Style from './styles';
 import { IOption, IJob } from '../../../../types';
-import { Formik, Field, FormikValues } from 'formik';
+import { Formik, FormikValues } from 'formik';
 import { jobFormSchema } from '../../../helpers/validation';
 import { initDataJob } from '../../../../consts/initData';
+import ShortTitle from './short-title';
+import Budget from './budget';
+import Tags from './tags';
+import Location from './location';
+import Description from './description';
+import Contacts from './contacts';
+import Attachments from './attachments';
 
 const EditJob: React.FC<{
   job: IJob;
   tags: IOption[];
   countries: IOption[];
   cities: IOption[];
-  newJob: boolean;
-  createJob: any;
-  editJob: any;
-  callBack: any;
+  saveJob: any;
+  setCountry: any;
   innerRef: FormikValues;
+  removeCityByCountryId: any;
 }> = ({
   job,
   tags,
   countries,
   cities,
-  newJob,
-  createJob,
-  editJob,
-  callBack,
+  saveJob,
   innerRef,
+  setCountry,
+  removeCityByCountryId,
 }) => {
-  const saveJob = dataJob => {
-    callBack();
-    if (newJob) {
-      createJob({ dataJob, userId: 1 });
-    } else {
-      editJob({ dataJob, jobId: job._id });
-    }
-  };
-
   return (
     <Formik
       innerRef={innerRef as any}
@@ -47,147 +40,87 @@ const EditJob: React.FC<{
         saveJob(values);
       }}
     >
-      {({ values, errors, touched, handleChange, handleBlur }) => {
+      {({ values, errors, touched, handleChange, handleBlur, setValues }) => {
         return (
-          <Styled.JobContainer>
-            <Styled.JobHeader>
-              <Styled.Description>
-                <div className="title">
-                  Title:
-                  <Input
-                    placeholder={''}
-                    type="text"
-                    name="title"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.title}
-                    errors={errors}
-                    touched={touched}
-                  />
-                </div>
-                <div className="budget">
-                  Budget:
-                  <Input
-                    placeholder={''}
-                    type="text"
-                    name="budget"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.budget}
-                    errors={errors}
-                    touched={touched}
-                  />
-                </div>
-                <div className="short-description">
-                  Description:
-                  <Input
-                    placeholder={''}
-                    type="text"
-                    name="description"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.description}
-                    errors={errors}
-                    touched={touched}
-                  />
-                </div>
-              </Styled.Description>
-              <Styled.Tags>
-                <>
-                  TAGS:
-                  <Field
-                    name="tags"
-                    component={FormikSelect}
-                    value={values.tags}
-                    options={tags}
-                    isMulti={true}
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    errors={errors}
-                    touched={touched}
-                  />
-                </>
-              </Styled.Tags>
-            </Styled.JobHeader>
-            <Styled.Contact>
-              <div>How to contact:</div>
-              <div className="phone">
-                phone:
-                <Input
-                  placeholder={job.contact.phone}
-                  type="text"
-                  name="phone"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.phone}
-                  errors={errors}
-                  touched={touched}
-                />
-              </div>
-              <div className="email">
-                email:
-                <Input
-                  placeholder={job.contact.email}
-                  type="text"
-                  name="email"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.email}
-                  errors={errors}
-                  touched={touched}
-                />
-              </div>
-            </Styled.Contact>
-            <Styled.AdditionalContact>
-              <div>Additional Contacts</div>
-              <div className="contact">
-                <Textarea
-                  placeholder={''}
-                  name="additional_contacts"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.additional_contacts}
-                  errors={errors}
-                  touched={touched}
-                />
-              </div>
-            </Styled.AdditionalContact>
-            <Styled.Location>
-              Location:
-              <div className="country">
-                country:
-                <Field
-                  name="countries"
-                  component={FormikSelect}
-                  value={values.countries}
-                  options={countries}
-                  isMulti={true}
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  errors={errors}
-                  touched={touched}
-                />
-              </div>
-              <div className="city">
-                city:
-                <Field
-                  name="cities"
-                  component={FormikSelect}
-                  value={values.cities}
-                  options={cities}
-                  isMulti={true}
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  errors={errors}
-                  touched={touched}
-                />
-              </div>
-            </Styled.Location>
-            <Styled.Attachments>
-              <div>Attachments +</div>
-              <input type="file" />
-            </Styled.Attachments>
-          </Styled.JobContainer>
+          <Style.JobContainer>
+            <ShortTitle
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              title={values.title}
+              errors={errors}
+              touched={touched}
+            />
+            <Budget
+              budget={values.budget}
+              setBudget={value =>
+                !isNaN(value) && setValues({ ...values, budget: value })
+              }
+              handleBlur={handleBlur}
+              errors={errors}
+              touched={touched}
+            />
+            <Tags
+              chosenTags={values.tags}
+              optionsTags={tags}
+              errors={errors}
+              selectTag={tag =>
+                setValues({ ...values, tags: [...values.tags, tag] })
+              }
+              removeTag={tag =>
+                setValues({
+                  ...values,
+                  tags: values.tags.filter(t => t.value !== tag.value),
+                })
+              }
+            />
+            <Location
+              optionsCountries={countries}
+              optionsCities={cities}
+              chosenCountries={values.countries}
+              chosenCities={values.cities}
+              errors={errors}
+              setCountry={setCountry}
+              removeCountry={country => {
+                setValues({
+                  ...values,
+                  countries: values.countries.filter(
+                    c => c.value !== country.value,
+                  ),
+                  cities: values.cities.filter(
+                    c => c.countryId !== country.value,
+                  ),
+                });
+                removeCityByCountryId(country.value);
+              }}
+              selectCity={city =>
+                setValues({
+                  ...values,
+                  cities: [...values.cities, city],
+                })
+              }
+              removeCity={city =>
+                setValues({
+                  ...values,
+                  cities: values.cities.filter(c => c.value !== city.value),
+                })
+              }
+            />
+            <Description
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              description={values.description}
+              errors={errors}
+              touched={touched}
+            />
+            <Contacts
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              additional_contacts={values.additional_contacts}
+              errors={errors}
+              touched={touched}
+            />
+            <Attachments />
+          </Style.JobContainer>
         );
       }}
     </Formik>

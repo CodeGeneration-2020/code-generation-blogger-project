@@ -19,15 +19,16 @@ import BloggerDetails from './components/blogger-details/BloggerDetails';
 import Job from './containers/JobContainer';
 import ListJob from './components/list-jobs/list.component';
 import CustomerProfile from './containers/CustomerProfileContainer';
-import { ActionCreators } from '../store/sharedData/actions';
+import { ActionCreators as SharedAC } from '../store/sharedData/actions';
 import { connect } from 'react-redux';
 import { bloggerTheme, customerTheme } from '../consts/theme';
 
-function App({ setTheme, getCountries }) {
+function App({ setTheme, getCountries, getTags }) {
   const isBlogger = !true;
   React.useEffect(() => {
     setTheme(isBlogger ? bloggerTheme : customerTheme);
     getCountries();
+    getTags();
     // eslint-disable-next-line
   },[])
 
@@ -46,7 +47,7 @@ function App({ setTheme, getCountries }) {
         <Route exact path="/blogger/details/:id" component={BloggerDetails} />
         <Route path="/job/details/:jobId/:customerId" component={Job} />
         <Route path="/customer/profile/:id" component={CustomerProfile} />
-        <Route path="/job" render={() => <Job newJob={true} />} />
+        <Route path="/addJob" render={() => <Job newJob={true} />} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />
@@ -55,6 +56,7 @@ function App({ setTheme, getCountries }) {
 }
 
 export default connect(null, {
-  setTheme: ActionCreators.setTheme,
-  getCountries: ActionCreators.getCountry,
+  setTheme: SharedAC.setTheme,
+  getCountries: SharedAC.getCountry,
+  getTags: SharedAC.getTags,
 })(App);

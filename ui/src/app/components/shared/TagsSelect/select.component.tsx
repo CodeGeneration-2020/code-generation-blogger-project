@@ -30,6 +30,7 @@ const RSelect: React.FC<{
       fontSize: '14px',
       lineHeight: '20px',
       paddingTop: '-3px',
+      paddingLeft: '10px',
     }),
     placeholder: base => ({
       ...base,
@@ -38,6 +39,7 @@ const RSelect: React.FC<{
       fontStyle: 'normal',
       fontSize: '14px',
       lineHeight: '20px',
+      paddingLeft: '10px',
     }),
     control: base => ({
       ...base,
@@ -55,7 +57,7 @@ const RSelect: React.FC<{
     valueContainer: styles => {
       return {
         ...styles,
-        paddingLeft: '15px',
+        paddingLeft: '1px',
       };
     },
     option: (styles, { isFocused }) => {

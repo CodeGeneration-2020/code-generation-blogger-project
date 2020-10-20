@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import * as Style from './styles';
 import CustomerInfoView from '../../components/customer-profile/view-info';
 import CustomerInfoEdit from '../../components/customer-profile/edit-info';
@@ -22,7 +23,7 @@ const CustomerProfileContainer = props => {
   const formRef = React.useRef<FormikValues>() as React.MutableRefObject<
     FormikValues | undefined
   >;
-
+  const history = useHistory();
   const setActiveTab = tab => {
     setTab(tab);
   };
@@ -35,19 +36,19 @@ const CustomerProfileContainer = props => {
     }
   };
 
-  const getCitiesByCountryId = id => {
+  const getCities = id => {
     props.clearCities();
     props.getCitiesByCountryId(id);
   };
 
-  const selectCountry = c => {
+  const setCountry = c => {
     if (formRef.current) {
       formRef.current.setValues({
         ...formRef.current.values,
         country: { value: c.value, label: c.label },
         city: '',
       });
-      getCitiesByCountryId(c.value);
+      getCities(c.value);
     }
   };
 
@@ -73,6 +74,11 @@ const CustomerProfileContainer = props => {
       key: 'customerComments',
       skip: props.skipCustomerComments + PAGINATION.limit,
     });
+  };
+
+  const resetSkip = () => {
+    props.resetSkip({ key: 'currentCustomerJobs' });
+    props.resetSkip({ key: 'customerComments' });
   };
 
   useEffect(() => {
@@ -101,8 +107,8 @@ const CustomerProfileContainer = props => {
                   customerInfo={props.customerInfo}
                   countries={props.countries}
                   cities={props.cities}
-                  selectCountry={selectCountry}
-                  getCitiesByCountryId={getCitiesByCountryId}
+                  selectCountry={setCountry}
+                  getCitiesByCountryId={getCities}
                   editCustomerInfo={props.editCustomerInfo}
                 />
               )}
@@ -136,12 +142,14 @@ const CustomerProfileContainer = props => {
           ) : (
             <Style.ListJobs>
               <BlueButton
+                onClick={() => history.push('/addJob')}
                 className="new-job"
                 style={{ width: '87px', hover: false }}
               >
                 <span className="text">New Job</span>
               </BlueButton>
               <ListOwnJobs
+                resetSkip={() => resetSkip()}
                 jobs={props.jobs}
                 loading={props.jobsLoading}
                 getJobsPagination={() =>
@@ -185,5 +193,6 @@ export default connect(
     clearCities: SharedAC.clearCities,
     clearComments: CustomerAC.clearComments,
     setSkip: FiltersAC.setSkip,
+    resetSkip: FiltersAC.resetSkip,
   },
 )(withTheme(CustomerProfileContainer));

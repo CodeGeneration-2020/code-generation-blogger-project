@@ -15,7 +15,7 @@ const ListJobs = props => {
           loader={props.loading && <h4>Loading...</h4>}
         >
           {props.jobs.map(job => (
-            <JobCard jobInfo={job} key={uuidv4()} />
+            <JobCard jobInfo={job} key={uuidv4()} resetSkip={props.resetSkip} />
           ))}
         </InfiniteScroll>
       )}

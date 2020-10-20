@@ -38,7 +38,8 @@ export const additionalContactSchema = yup
   .string()
   .trim()
   .nullable(true)
-  .max(100, 'additional contact to long.');
+  .min(5, 'additional contact to short.')
+  .max(50, 'additional contact to long.');
 
 export const countrySchema = yup.array().required('please select country');
 
@@ -50,8 +51,8 @@ export const jobFormSchema = yup.object().shape({
   title: titleSchema,
   budget: budgetSchema,
   description: descriptionSchema,
-  phone: phoneSchema,
-  email: emailSchema,
+  // phone: phoneSchema,
+  // email: emailSchema,
   additional_contacts: additionalContactSchema,
   countries: countrySchema,
   cities: citySchema,

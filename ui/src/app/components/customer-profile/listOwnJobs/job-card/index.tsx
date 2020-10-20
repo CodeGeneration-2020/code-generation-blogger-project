@@ -1,11 +1,17 @@
 import React from 'react';
 import * as Style from './styles';
 import withTheme from '../../../../../HOC/withTheme';
+import { useHistory } from 'react-router-dom';
 import BlueButton from '../../../shared/BlueButton/button.component';
 import { v4 as uuidv4 } from 'uuid';
 import Tag from '../../../shared/Tag';
 
-const JobCard: React.FC<{ theme?; jobInfo }> = ({ theme, jobInfo }) => {
+const JobCard: React.FC<{ theme?; jobInfo; resetSkip }> = ({
+  theme,
+  jobInfo,
+  resetSkip,
+}) => {
+  const history = useHistory();
   return (
     <Style.JobCardContainer theme={theme}>
       <div className="title">{jobInfo.title}</div>
@@ -35,6 +41,10 @@ const JobCard: React.FC<{ theme?; jobInfo }> = ({ theme, jobInfo }) => {
         </div>
       </div>
       <BlueButton
+        onClick={() => {
+          history.push(`/job/details/${jobInfo._id}/${jobInfo.customerId}`);
+          resetSkip();
+        }}
         className="view-button"
         style={{ width: '105px', height: '54px', hover: false }}
       >

@@ -129,6 +129,7 @@ const CustomerProfileEdit = props => {
                       errors={errors}
                       touched={touched}
                       style={{
+                        height: '52px',
                         fontSize: '20px',
                         lineHeight: '29px',
                         padding: '8px 15px 7px',
@@ -155,6 +156,7 @@ const CustomerProfileEdit = props => {
                       errors={errors}
                       touched={touched}
                       style={{
+                        height: '52px',
                         fontSize: '20px',
                         lineHeight: '29px',
                         padding: '8px 15px 7px',

@@ -71,3 +71,12 @@ export const TABS = {
   jobs: 'jobs',
 };
 export const FILLSTARS = { grey: '#90A1AC', score: '#FFD800' };
+
+export const FILETYPES = {
+  jpg: 'image/jpeg',
+  png: 'image/png',
+  zip: 'application/x-zip-compressed',
+  pdf: 'application/pdf',
+  xls: 'application/vnd.ms-excel',
+  ppt: 'application/vnd.ms-powerpoint',
+};

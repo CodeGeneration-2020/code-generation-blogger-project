@@ -3,7 +3,7 @@ import * as Styled from './input.styles';
 
 const Input = ({ errors, name, ...props }) => {
   return (
-    <Styled.InputWrapper>
+    <Styled.InputWrapper height={props.style && props.style.height}>
       <Styled.Input
         placeholder={props.placeholder}
         type={props.type}
@@ -13,6 +13,7 @@ const Input = ({ errors, name, ...props }) => {
         fontSize={props.style && props.style.fontSize}
         lineHeight={props.style && props.style.lineHeight}
         padding={props.style && props.style.padding}
+        width={props.style && props.style.width}
         // onBlur={props.onBlur}
         // error={props.errors}
         // touched={props.touched}

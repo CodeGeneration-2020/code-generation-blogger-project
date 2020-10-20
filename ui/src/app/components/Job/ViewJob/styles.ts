@@ -1,16 +1,11 @@
+import { IPropsTheme } from './../../../../types/index';
 import styled from 'styled-components';
 
 export const JobContainer = styled.div`
-  max-width: 780px;
-  margin: 0 auto;
-  padding-top: 83px;
-  padding-bottom: 80px;
-  background: #1a1e24;
-  box-shadow: 0px 1px 8px rgba(110, 110, 110, 0.1);
-  border-radius: 16px;
+  width: 100%;
 `;
 
-export const JobInfo = styled.div`
+export const JobInfo = styled.div<IPropsTheme>`
   display: flex;
   flex-direction: column;
   /* header-info */
@@ -46,7 +41,7 @@ export const JobInfo = styled.div`
         font-size: 28px;
         line-height: 40px;
         text-align: center;
-        color: #d022ed;
+        color: ${({ theme }) => theme && theme.color};
       }
       & > .text {
         text-align: center;
@@ -89,7 +84,7 @@ export const JobInfo = styled.div`
     font-weight: normal;
     font-size: 14px;
     line-height: 20px;
-    color: #d022ed;
+    color: ${({ theme }) => theme && theme.color};
     margin-right: 7px;
     &:last-child {
       margin-right: 0px;
@@ -97,7 +92,7 @@ export const JobInfo = styled.div`
   }
 `;
 
-export const Description = styled.div`
+export const Description = styled.div<IPropsTheme>`
   margin: 0 40px 32px;
   display: flex;
   flex-direction: column;
@@ -117,11 +112,11 @@ export const Description = styled.div`
     font-size: 10px;
     line-height: 15px;
     text-align: center;
-    color: #d022ed;
+    color: ${({ theme }) => theme && theme.color};
   }
 `;
 
-export const Connection = styled.div`
+export const Connection = styled.div<IPropsTheme>`
   margin: 0 50px 34px;
   display: flex;
   flex-direction: column;
@@ -163,6 +158,7 @@ export const Connection = styled.div`
         margin-right: 14px;
       }
       & > .content {
+        color: ${({ theme }) => theme && theme.color};
         max-width: 150px;
         white-space: nowrap;
         overflow: hidden;
@@ -173,7 +169,7 @@ export const Connection = styled.div`
 `;
 
 export const Attachments = styled.div`
-  margin: 0 87px 57px;
+  margin: 0 87px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -200,7 +196,7 @@ export const Attachments = styled.div`
 
 export const Rating = styled.div`
   width: 570px;
-  margin: 0 auto;
+  margin: 57px auto 0;
   padding-top: 30px;
   padding-bottom: 33px;
   border: 1px solid #414d55;
