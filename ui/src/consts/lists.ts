@@ -80,3 +80,27 @@ export const FILETYPES = {
   xls: 'application/vnd.ms-excel',
   ppt: 'application/vnd.ms-powerpoint',
 };
+
+export const AVATYPES = {
+  jpg: 'image/jpeg',
+  png: 'image/png',
+};
+
+export const JOBINIT = {
+  title: '',
+  budget: '',
+  description: '',
+  tags: [],
+  contact: {
+    phone: '',
+    email: '',
+  },
+  additional_contacts: '',
+  location: {
+    countries: [],
+    cities: [],
+  },
+  attachments: [],
+  _id: '',
+  customerId: {},
+};

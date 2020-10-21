@@ -7,13 +7,26 @@ import { Formik } from 'formik';
 import { customerInfoFormSchema } from '../../../helpers/validation';
 import Input from '../../shared/Input/input.commponent';
 import Select from '../../shared/TagsSelect/select.component';
+import uploadAva from '../../../../img/arrowUploadAva.svg';
 import { initCustomerInfo } from '../../../../consts/initData';
+import FileLoader from '../../shared/file-loader';
+import { AVATYPES } from '../../../../consts/lists';
 
 const CustomerProfileEdit = props => {
+  const [prevAva, setAva] = React.useState<any>();
   React.useEffect(() => {
     props.getCitiesByCountryId(props.customerInfo.location.country.value);
     // eslint-disable-next-line
   },[])
+
+  const prevSaveAva = file => {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = async (e: any) => {
+      setAva({ ava: e.target.result, file });
+    };
+  };
+
   return (
     <Formik
       innerRef={props.innerRef as any}
@@ -44,7 +57,20 @@ const CustomerProfileEdit = props => {
           <Style.ProfileContainer>
             <Style.CustomerInfo theme={props.theme}>
               <div className="ava">
-                <img src={Ava} alt="ava" />
+                <FileLoader
+                  id={'upload-ava'}
+                  handleSaveFile={ava => prevSaveAva(ava)}
+                  allowedFormats={Object.values(AVATYPES)}
+                />
+                <label className="images" htmlFor={'upload-ava'}>
+                  <img
+                    src={prevAva ? prevAva.ava : Ava}
+                    alt="ava"
+                    className="ava"
+                  />
+                  <img className="upload-background" alt="" />
+                  <img src={uploadAva} alt="ava" className="uploadAva" />
+                </label>
               </div>
               <div className="info">
                 <div className="item">

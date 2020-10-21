@@ -1,27 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { JOBINIT } from 'consts/lists';
 import { ActionCreators, ActionTypes } from './actions';
 
 const initialState = {
   listJobs: [],
   currentCustomerJobs: [],
-  job: {
-    title: '',
-    budget: '',
-    description: '',
-    tags: [],
-    contact: {
-      phone: '',
-      email: '',
-    },
-    additional_contacts: '',
-    location: {
-      countries: [],
-      cities: [],
-    },
-    attachments: [],
-    _id: '',
-    customerId: {},
-  },
+  job: JOBINIT,
   editMode: false,
   loading: false,
 };
@@ -56,6 +40,7 @@ const JOB_REDUCER = createSlice({
       return {
         ...state,
         currentCustomerJobs: [],
+        job: JOBINIT,
       };
     },
     [ActionCreators.getAllJobs.pending as any]: state => {

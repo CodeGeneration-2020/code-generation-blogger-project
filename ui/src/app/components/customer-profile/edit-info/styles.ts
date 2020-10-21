@@ -14,10 +14,32 @@ export const CustomerInfo = styled.div<IPropsTheme>`
     display: flex;
     align-items: center;
     margin-right: 41px;
-    & > img {
+    & > .images {
+      position: relative;
       width: 160px;
       height: 160px;
-      border-radius: 50%;
+      & > .ava {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+      }
+      & > .upload-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.5;
+        z-index: 100;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(360deg, #0059d6 0%, #30a5e7 100%);
+        border-radius: 50%;
+      }
+      & > .uploadAva {
+        z-index: 999;
+        top: 45px;
+        left: 45px;
+        position: absolute;
+      }
     }
   }
   & > .info {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as Style from './styles';
 import { IOption, IJob } from '../../../../types';
 import { Formik, FormikValues } from 'formik';
@@ -21,6 +21,7 @@ const EditJob: React.FC<{
   setCountry: any;
   innerRef: FormikValues;
   removeCityByCountryId: any;
+  getCitiesByCountryId: any;
 }> = ({
   job,
   tags,
@@ -30,7 +31,12 @@ const EditJob: React.FC<{
   innerRef,
   setCountry,
   removeCityByCountryId,
+  getCitiesByCountryId,
 }) => {
+  useEffect(() => {
+    job.location.countries.forEach(c => getCitiesByCountryId(c.value));
+    // eslint-disable-next-line
+  }, []);
   return (
     <Formik
       innerRef={innerRef as any}
@@ -87,7 +93,7 @@ const EditJob: React.FC<{
                     c => c.value !== country.value,
                   ),
                   cities: values.cities.filter(
-                    c => c.countryId !== country.value,
+                    c => c.countryId !== country.value && c,
                   ),
                 });
                 removeCityByCountryId(country.value);

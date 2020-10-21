@@ -20,10 +20,13 @@ const getCountry = createAsyncThunk(ActionTypes.GET_COUNTRY, async () => {
   return response.data;
 });
 
-const getCity = createAsyncThunk(ActionTypes.GET_CITY, async countryId => {
-  const response = await SharedDataService.getCity(countryId);
-  return response.data;
-});
+const getCitiesByCountryId = createAsyncThunk(
+  ActionTypes.GET_CITY,
+  async countryId => {
+    const response = await SharedDataService.getCity(countryId);
+    return response.data;
+  },
+);
 
 const clearCities = createAction(ActionTypes.CLEAR_CITIES);
 
@@ -36,7 +39,7 @@ const setTheme = createAction(ActionTypes.SET_THEME);
 const ActionCreators = {
   getTags,
   getCountry,
-  getCity,
+  getCitiesByCountryId,
   clearCityByCountryId,
   clearCities,
   setTheme,

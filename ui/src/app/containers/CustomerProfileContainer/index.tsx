@@ -86,6 +86,7 @@ const CustomerProfileContainer = props => {
     props.getCustomer(customerId);
     props.clearCurrentCustomerJobs();
     props.clearComments();
+    props.clearCities();
     getJobsByCustomerId(customerId);
     getComments(customerId);
     // eslint-disable-next-line
@@ -142,7 +143,10 @@ const CustomerProfileContainer = props => {
           ) : (
             <Style.ListJobs>
               <BlueButton
-                onClick={() => history.push('/addJob')}
+                onClick={() => {
+                  history.push('/addJob');
+                  resetSkip();
+                }}
                 className="new-job"
                 style={{ width: '87px', hover: false }}
               >
@@ -189,7 +193,7 @@ export default connect(
     clearCurrentCustomerJobs: JobAC.clearCurrentCustomerJobs,
     getComments: CustomerAC.getCustomerComments,
     editCustomerInfo: CustomerAC.editCustomerById,
-    getCitiesByCountryId: SharedAC.getCity,
+    getCitiesByCountryId: SharedAC.getCitiesByCountryId,
     clearCities: SharedAC.clearCities,
     clearComments: CustomerAC.clearComments,
     setSkip: FiltersAC.setSkip,

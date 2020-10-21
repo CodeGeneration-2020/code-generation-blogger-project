@@ -58,9 +58,9 @@ const JobContainer = props => {
 
   const initJobData = (jobId, customerId) => {
     props.toggleEditMode(false);
-    props.getJobById(jobId);
     props.resetSkip({ key: 'customerComments' });
     props.clearComments();
+    props.getJobById(jobId);
     getCommentsPagination(customerId, 0);
   };
 
@@ -86,6 +86,7 @@ const JobContainer = props => {
       {props.loading && <Loader />}
       {props.editMode ? (
         <JobEdit
+          getCitiesByCountryId={props.getCitiesByCountryId}
           setCountry={setCountry}
           innerRef={formRef}
           saveJob={saveJob}
@@ -172,7 +173,7 @@ export default connect(
   },
   {
     getCountry: SharedAC.getCountry,
-    getCitiesByCountryId: SharedAC.getCity,
+    getCitiesByCountryId: SharedAC.getCitiesByCountryId,
     removeCityByCountryId: SharedAC.clearCityByCountryId,
     getComments: CustomerAC.getCustomerComments,
     createComment: CustomerAC.createCommentForCustomer,
