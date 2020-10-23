@@ -9,6 +9,7 @@ const Textarea = ({
   onBlur,
   errors,
   touched,
+  ...props
 }) => {
   return (
     <Styled.TextWrapper>
@@ -17,9 +18,8 @@ const Textarea = ({
         name={name}
         onChange={onChange}
         value={value}
-        // onBlur={onBlur}
-        // errors={props.errors}
-        // touched={touched}
+        fontSize={props.style && props.style.fontSize}
+        lineHeight={props.style && props.style.lineHeight}
       />
       <Styled.Error>{errors?.[name]}</Styled.Error>
     </Styled.TextWrapper>

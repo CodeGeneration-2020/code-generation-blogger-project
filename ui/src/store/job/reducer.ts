@@ -1,26 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { JOBINIT } from 'consts/lists';
 import { ActionCreators, ActionTypes } from './actions';
 
 const initialState = {
   listJobs: [],
-  job: {
-    title: '',
-    budget: '',
-    description: '',
-    tags: [],
-    contact: {
-      phone: '',
-      email: '',
-    },
-    additional_contacts: '',
-    location: {
-      countries: [],
-      cities: [],
-    },
-    attachments: [],
-    _id: '',
-    customerId: {},
-  },
+  currentCustomerJobs: [],
+  job: JOBINIT,
   editMode: false,
   loading: false,
 };
@@ -38,6 +23,25 @@ const JOB_REDUCER = createSlice({
     },
     [ActionCreators.getJobById.rejected as any]: state => {
       state.loading = false;
+    },
+    [ActionCreators.getJobsByCustomerId.pending as any]: state => {
+      state.loading = true;
+    },
+    [ActionCreators.getJobsByCustomerId.fulfilled as any]: (state, action) => {
+      state.currentCustomerJobs = state.currentCustomerJobs.concat(
+        action.payload,
+      );
+      state.loading = false;
+    },
+    [ActionCreators.getJobsByCustomerId.rejected as any]: state => {
+      state.loading = false;
+    },
+    [ActionTypes.CLEAR_CURRENT_CUSTOMER_JOBS]: state => {
+      return {
+        ...state,
+        currentCustomerJobs: [],
+        job: JOBINIT,
+      };
     },
     [ActionCreators.getAllJobs.pending as any]: state => {
       state.loading = true;

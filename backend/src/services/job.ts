@@ -16,7 +16,7 @@ export interface ICreateJobBody{
 
 export interface IJobService{
     createJob: (id: number, body: ICreateJobBody) => void;
-    getJobsByCustomerId: (id: number) => Promise<JobsDocumnet[]>;
+    getJobsByCustomerId: (id: number, skip: number, limit: number) => Promise<JobsDocumnet[]>;
     getAllJobs: () => Promise<JobsDocumnet[]>;
     getJobById: (id:string) => Promise<JobsDocumnet>;
     updateStatusJobById: (id:string,status:boolean) => Promise<JobsDocumnet>;
@@ -47,8 +47,8 @@ class JobService implements IJobService  {
         await job.save();
     }
     
-    async getJobsByCustomerId(id: number) {
-        return Jobs.find({customerId:id});
+    async getJobsByCustomerId(id: number, skip: number, limit: number) {
+        return Jobs.find({customerId:id}).skip(+skip).limit(+limit);
     }
 
     async getAllJobs() {

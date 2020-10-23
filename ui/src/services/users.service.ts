@@ -11,6 +11,25 @@ class UsersService {
   getBloggerById(bloggerId) {
     return this.apiService.GET(`user/blogger/${bloggerId}`, {});
   }
+  getCustomerById(customerId) {
+    return this.apiService.GET(`user/customer/${customerId}`, {});
+  }
+  editCustomerInfo(
+    customerId,
+    name,
+    surname,
+    location,
+    contact,
+    profile_picture,
+  ) {
+    return this.apiService.PUT(`user/customer/${customerId}`, {
+      name,
+      surname,
+      location,
+      contact,
+      profile_picture,
+    });
+  }
   getUsers(user) {
     return this.apiService.GET(`users/${user}?&skip=0&limit=5`, {});
   }
@@ -30,10 +49,11 @@ class UsersService {
       {},
     );
   }
-  createComment(userType, senderId, receiverId, comment) {
-    return this.apiService.POST(`user/${userType}/${receiverId}/comment`, {
+  createCommentForCustomer(senderId, receiverId, comment, score) {
+    return this.apiService.POST(`user/customer/${receiverId}/comment`, {
       senderId,
       comment,
+      score,
     });
   }
   getComments(userType, userId, skip, limit) {

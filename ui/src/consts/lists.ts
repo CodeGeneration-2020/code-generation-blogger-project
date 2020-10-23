@@ -65,3 +65,42 @@ export const PAGINATION = {
   skip: 0,
   limit: 5,
 };
+
+export const TABS = {
+  feedbacks: 'feedbacks',
+  jobs: 'jobs',
+};
+export const FILLSTARS = { grey: '#90A1AC', score: '#FFD800' };
+
+export const FILETYPES = {
+  jpg: 'image/jpeg',
+  png: 'image/png',
+  zip: 'application/x-zip-compressed',
+  pdf: 'application/pdf',
+  xls: 'application/vnd.ms-excel',
+  ppt: 'application/vnd.ms-powerpoint',
+};
+
+export const AVATYPES = {
+  jpg: 'image/jpeg',
+  png: 'image/png',
+};
+
+export const JOBINIT = {
+  title: '',
+  budget: '',
+  description: '',
+  tags: [],
+  contact: {
+    phone: '',
+    email: '',
+  },
+  additional_contacts: '',
+  location: {
+    countries: [],
+    cities: [],
+  },
+  attachments: [],
+  _id: '',
+  customerId: {},
+};

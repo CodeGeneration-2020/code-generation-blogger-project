@@ -9,11 +9,13 @@ const initialState: IFiltersReducer = {
   pagination: {
     bloggers: PAGINATION,
     comments: PAGINATION,
+    customerComments: PAGINATION,
+    currentCustomerJobs: PAGINATION,
   },
   filters: {},
 };
 
-const USER_REDUCER = createSlice({
+const FILTERS_REDUCER = createSlice({
   name: 'FILTERS_REDUCER',
   initialState,
   reducers: {},
@@ -61,11 +63,11 @@ const USER_REDUCER = createSlice({
         ...state,
         pagination: {
           ...state.pagination,
-          [action.payload.key]: { skip: 0, limit: PAGINATION.limit },
+          [action.payload.key]: PAGINATION,
         },
       };
     },
   },
 });
 
-export default USER_REDUCER;
+export default FILTERS_REDUCER;

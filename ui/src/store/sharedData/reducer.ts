@@ -32,7 +32,7 @@ const SHARED_DATA_REDUCER = createSlice({
     [ActionCreators.getCountry.pending as any]: state => {
       state.loading = true;
     },
-    [ActionCreators.getCity.fulfilled as any]: (state, action) => {
+    [ActionCreators.getCitiesByCountryId.fulfilled as any]: (state, action) => {
       state.loading = false;
       state.cities = [
         ...state.cities,
@@ -43,13 +43,19 @@ const SHARED_DATA_REDUCER = createSlice({
         })),
       ];
     },
-    [ActionCreators.getCity.pending as any]: state => {
+    [ActionCreators.getCitiesByCountryId.pending as any]: state => {
       state.loading = true;
     },
     [ActionTypes.CLEAR_CITIES_BY_COUNTRY_ID]: (state, action) => {
       return {
         ...state,
         cities: state.cities.filter(c => c.countryId !== action.payload),
+      };
+    },
+    [ActionTypes.CLEAR_CITIES]: state => {
+      return {
+        ...state,
+        cities: [],
       };
     },
     [ActionTypes.SET_THEME]: (state, action) => {

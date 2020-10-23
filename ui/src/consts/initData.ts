@@ -11,3 +11,16 @@ export const initDataJob = job => {
     tags: job.tags,
   };
 };
+
+export const initCustomerInfo = info => {
+  return {
+    name: info.name,
+    surname: info.surname,
+    profile_picture: info.profile_picture,
+    country: info.location.country,
+    city: info.location.city,
+    mail: info.contact.mail,
+    phone: info.contact.phone,
+    link: info.contact.link,
+  };
+};

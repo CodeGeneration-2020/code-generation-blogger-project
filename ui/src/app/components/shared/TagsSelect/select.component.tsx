@@ -9,17 +9,37 @@ const RSelect: React.FC<{
   selected;
   placeholder;
   theme?;
-}> = ({ options, changeHandler, selected, placeholder, theme }) => {
+  name?;
+  errors?;
+}> = ({
+  options,
+  changeHandler,
+  selected,
+  placeholder,
+  theme,
+  name,
+  errors,
+}) => {
   const selectStyles = {
     input: provided => ({
       ...provided,
       minHeight: '1px',
-      color: theme && theme.color,
-      fontFamily: 'Roboto,sans-serif',
+      color: '#90A1AC',
+      fontFamily: 'Roboto',
       fontStyle: 'normal',
       fontSize: '14px',
       lineHeight: '20px',
-      paddingTop: '-5px',
+      paddingTop: '-3px',
+      paddingLeft: '10px',
+    }),
+    placeholder: base => ({
+      ...base,
+      color: '#90A1AC',
+      fontFamily: 'Roboto',
+      fontStyle: 'normal',
+      fontSize: '14px',
+      lineHeight: '20px',
+      paddingLeft: '10px',
     }),
     control: base => ({
       ...base,
@@ -37,7 +57,7 @@ const RSelect: React.FC<{
     valueContainer: styles => {
       return {
         ...styles,
-        paddingLeft: '15px',
+        paddingLeft: '1px',
       };
     },
     option: (styles, { isFocused }) => {
@@ -92,6 +112,7 @@ const RSelect: React.FC<{
         isMulti={true}
         onFocus={_ => {}}
       />
+      {errors && <span className="error">{errors[name]}</span>}
     </SelectContainer>
   );
 };

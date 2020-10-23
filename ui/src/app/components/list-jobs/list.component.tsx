@@ -10,7 +10,6 @@ import Loader from '../../../loader/component/loader.component';
 
 const ListJob = ({ getAllJobs, jobs, loading }) => {
   const [jobId, setJobId] = React.useState<string>();
-
   const openSideBar = (e, id: string) => {
     e.preventDefault();
     setJobId(id);
@@ -31,7 +30,8 @@ const ListJob = ({ getAllJobs, jobs, loading }) => {
           {jobs.map(job => (
             <JobCard
               openSideBar={openSideBar}
-              id={job._id}
+              jobId={job._id}
+              customerId={job.customerId}
               title={job.title}
               budget={job.budget}
               location={job.location}
@@ -42,7 +42,9 @@ const ListJob = ({ getAllJobs, jobs, loading }) => {
         </Styled.ListJobsContainer>
       )}
       <SideBar>
-        <JobContainer jobId={jobId} />
+        {jobId && (
+          <JobContainer jobFromList={jobs.find(e => e._id === jobId)} />
+        )}
       </SideBar>
     </>
   );
