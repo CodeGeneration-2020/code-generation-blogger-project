@@ -11,23 +11,45 @@ import uploadAva from '../../../../img/arrowUploadAva.svg';
 import { initCustomerInfo } from '../../../../consts/initData';
 import FileLoader from '../../shared/file-loader';
 import { AVATYPES } from '../../../../consts/lists';
+import CropImg from '../../shared/crop-image';
+import { verifyImage } from '../../../helpers/verification';
 
 const CustomerProfileEdit = props => {
-  const [prevAva, setAva] = React.useState<any>();
+  const [prevAva, setAva] = React.useState<any>(undefined);
+  const [cropAvaMode, toggleCropMode] = React.useState<boolean>(false);
+  const [file, setFile] = React.useState<any>(undefined);
+
   React.useEffect(() => {
     props.getCitiesByCountryId(props.customerInfo.location.country.value);
     // eslint-disable-next-line
-  },[])
+  },[]);
 
-  const prevSaveAva = file => {
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = async (e: any) => {
-      setAva({ ava: e.target.result, file });
-    };
+  const prevSaveAva = async file => {
+    const verifyImg = await verifyImage(file, 536, 274, 4000, 4000);
+    if (verifyImg) {
+      setFile(URL.createObjectURL(file));
+      toggleCropMode(true);
+    }
   };
 
-  return (
+  const onCropImgage = ava => {
+    if (ava) {
+      setAva(ava);
+    }
+    setFile(undefined);
+    toggleCropMode(false);
+  };
+
+  return cropAvaMode ? (
+    <CropImg
+      widthCrop={160}
+      heightCrop={160}
+      previewWidth={536}
+      previewHeight={274}
+      imgFile={file}
+      onCropImage={onCropImgage}
+    />
+  ) : (
     <Formik
       innerRef={props.innerRef as any}
       validationSchema={customerInfoFormSchema}
@@ -64,7 +86,7 @@ const CustomerProfileEdit = props => {
                 />
                 <label className="images" htmlFor={'upload-ava'}>
                   <img
-                    src={prevAva ? prevAva.ava : Ava}
+                    src={prevAva ? prevAva : Ava}
                     alt="ava"
                     className="ava"
                   />
