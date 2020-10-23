@@ -80,6 +80,7 @@ export interface IButtonStyle {
   border?: string;
   borderRadius?: string;
   background?: string;
+  filter?: string;
 }
 
 export interface ICrop {

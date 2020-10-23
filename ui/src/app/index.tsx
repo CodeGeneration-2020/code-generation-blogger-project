@@ -16,6 +16,7 @@ import { HomePage } from './containers/HomePage/Loadable';
 import { NotFoundPage } from './components/not-found-page/Loadable';
 import ListBloggers from './components/list-bloggers/list.component';
 import BloggerDetails from './components/blogger-details/BloggerDetails';
+import NewBlogger from './components/new-blogger';
 import Job from './containers/JobContainer';
 import ListJob from './components/list-jobs/list.component';
 import CustomerProfile from './containers/CustomerProfileContainer';
@@ -48,6 +49,7 @@ function App({ setTheme, getCountries, getTags }) {
         <Route path="/job/details/:jobId/:customerId" component={Job} />
         <Route path="/customer/profile/:id" component={CustomerProfile} />
         <Route path="/addJob" render={() => <Job newJob={true} />} />
+        <Route path="/new-blogger" component={NewBlogger} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

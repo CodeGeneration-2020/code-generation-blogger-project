@@ -23,6 +23,11 @@ import bloggerLogo from './BloggerLogo.svg';
 import customerLogo from './CustomerLogo.svg';
 import facebook from './facebookIcon.svg';
 import google from './googleIcon.svg';
+//PriceList
+import post from './newBloggerPostPrice.svg';
+import story from './newBloggerStoryPrice.svg';
+import postStory from './newBloggerPostStoryPrice.svg';
+import dollar from './dollar.svg';
 
 export const attachmentsIconsBlogger = {
   png,
@@ -55,4 +60,11 @@ export const chooseRoleIcons = {
   customerLogo,
   facebook,
   google,
+};
+
+export const priceList = {
+  post,
+  story,
+  postStory,
+  dollar,
 };

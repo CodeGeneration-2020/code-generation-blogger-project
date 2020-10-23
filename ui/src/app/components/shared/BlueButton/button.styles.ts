@@ -9,6 +9,7 @@ interface Props {
   hover?: boolean;
   background?: string;
   border?: string;
+  filter?: string;
   theme: ITheme;
 }
 
@@ -27,6 +28,7 @@ export const Button = styled.button<Props>`
   box-shadow: ${({ boxShadow }) => boxShadow && boxShadow};
   border: ${({ border }) => border && border};
   border-radius: ${({ borderRadius }) => borderRadius && borderRadius};
+  filter: ${({ filter }) => filter && filter};
   color: #fff;
   &:hover {
     cursor: pointer;

@@ -33,6 +33,7 @@ const BlueButton: React.FC<{
         height={style.height || ''}
         boxShadow={style.boxShadow || ''}
         border={style.border}
+        filter={style.filter}
         borderRadius={style.borderRadius || '8px'}
       >
         {children}
