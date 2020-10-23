@@ -27,7 +27,7 @@ export const CropImgContainer = styled.div<IPropsTheme>`
       text-align: center;
     }
     .cancel {
-      color: #b240e4;
+      color: ${({ theme }) => theme.color};
       font-family: 'Roboto', sans-serif;
       font-style: normal;
       font-weight: 900;
