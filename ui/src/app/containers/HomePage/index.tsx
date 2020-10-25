@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import ChooseRole from '../../components/choose-role';
 
 export function HomePage() {
   return (
@@ -8,7 +9,7 @@ export function HomePage() {
         <title>Home Page</title>
         <meta name="description" content="A Boilerplate application homepage" />
       </Helmet>
-      <div>HELLO</div>
+      <ChooseRole />
     </div>
   );
 }

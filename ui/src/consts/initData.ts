@@ -24,3 +24,5 @@ export const initCustomerInfo = info => {
     link: info.contact.link,
   };
 };
+
+export const initPriceList = () => ({ post: '', story: '', postStory: '' });

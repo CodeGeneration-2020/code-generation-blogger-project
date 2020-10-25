@@ -59,6 +59,18 @@ export const jobFormSchema = yup.object().shape({
   tags: tagsSchema,
 });
 
+//Price
+export const price = yup
+  .number('Please enter a valid price must be number')
+  .nullable(true)
+  .required('Please enter your price.');
+
+export const priceFormSchema = yup.object().shape({
+  post: price,
+  story: price,
+  postStory: price,
+});
+
 //CustomerInfo
 
 export const nameSchema = yup.string().trim().required('Please enter name');
