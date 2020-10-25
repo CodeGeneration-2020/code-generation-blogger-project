@@ -29,8 +29,10 @@ const BlueButton: React.FC<{
         onClick={onClick}
         width={style.width || ''}
         hover={style.hover}
+        background={style.background}
         height={style.height || ''}
         boxShadow={style.boxShadow || ''}
+        border={style.border}
         borderRadius={style.borderRadius || '8px'}
       >
         {children}
