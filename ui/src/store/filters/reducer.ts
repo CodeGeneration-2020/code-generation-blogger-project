@@ -8,6 +8,7 @@ const initialState: IFiltersReducer = {
   type: '',
   pagination: {
     bloggers: PAGINATION,
+    jobs: PAGINATION,
     comments: PAGINATION,
     customerComments: PAGINATION,
     currentCustomerJobs: PAGINATION,

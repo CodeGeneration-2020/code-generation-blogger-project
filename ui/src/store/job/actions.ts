@@ -5,7 +5,8 @@ const ActionTypes = {
   TOGGLE_EDIT_MODE: '[JOB] toggle_edit_mode',
   CREATE_JOB: '[JOB] create_new_job',
   EDIT_JOB_BY_ID: '[JOB] edit_job_by_id',
-  GET_ALL_JOBS: '[JOB] get_all_jobs',
+  GET_JOBS_BY_PAGINATION: '[JOB] get_jobs_pagination',
+  GET_JOBS_BY_FILTERS: '[JOB] get_jobs_by_filters',
   GET_JOB_BY_ID: '[JOB] get_job_by_id',
   GET_JOB_BY_CUSTOMER_ID: '[JOB] get_job_by_customer_id',
   CLEAR_CURRENT_CUSTOMER_JOBS: '[JOB] clear_current_customer_jobs',
@@ -27,10 +28,21 @@ const editJob = createAsyncThunk(
   },
 );
 
-const getAllJobs = createAsyncThunk(ActionTypes.GET_ALL_JOBS, async () => {
-  const response = await JobService.getAllJobs();
-  return response.data;
-});
+const getJobsByPagination = createAsyncThunk(
+  ActionTypes.GET_JOBS_BY_PAGINATION,
+  async (data: { filters; skip: number }) => {
+    const response = await JobService.getJobsByFilters(data.filters, data.skip);
+    return response.data;
+  },
+);
+
+const getJobsByFilters = createAsyncThunk(
+  ActionTypes.GET_JOBS_BY_FILTERS,
+  async filters => {
+    const response = await JobService.getJobsByFilters(filters);
+    return response.data;
+  },
+);
 
 const getJobById = createAsyncThunk(ActionTypes.GET_JOB_BY_ID, async jobId => {
   const response = await JobService.getJobById(jobId);
@@ -58,7 +70,8 @@ const ActionCreators = {
   toggleEditMode,
   createJob,
   editJob,
-  getAllJobs,
+  getJobsByFilters,
+  getJobsByPagination,
   getJobById,
   getJobsByCustomerId,
   clearCurrentCustomerJobs,

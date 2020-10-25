@@ -4,7 +4,7 @@ import LocationSearch from './search/index';
 import { connect } from 'react-redux';
 import SelectionList from './selection-list';
 import SelectedList from './selected-list';
-import { ActionCreators } from '../../../../../store/locationSearch/actions';
+import { ActionCreators } from '../../../../store/locationSearch/actions';
 
 const LocationFilter = props => {
   const setCountryFilter = option => {

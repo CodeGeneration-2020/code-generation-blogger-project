@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import * as Style from './styles';
 import FilterCard from '../../shared/FilterCard/card';
-import Search from './search';
-import SubscribersFilter from './subscribers';
-import PriceFilter from './price';
-import GenderFilter from './gender';
-import LocationFilter from './location';
-import TagsFilter from './tags';
+import Search from '../search';
+import SubscribersFilter from '../subscribers';
+import PriceFilter from '../price';
+import GenderFilter from '../gender';
+import LocationFilter from '../location';
+import TagsFilter from '../tags';
 import { ActionCreators as SharedAC } from '../../../../store/sharedData/actions';
 import { ActionCreators as FiltersAC } from '../../../../store/filters/actions';
 import { ActionCreators as LocationAC } from '../../../../store/locationSearch/actions';

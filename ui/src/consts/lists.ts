@@ -104,3 +104,8 @@ export const JOBINIT = {
   _id: '',
   customerId: {},
 };
+export const SKIP = {
+  jobs: 'jobs',
+  bloggers: 'bloggers',
+  comments: 'comments',
+};

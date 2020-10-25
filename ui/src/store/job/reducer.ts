@@ -43,14 +43,24 @@ const JOB_REDUCER = createSlice({
         job: JOBINIT,
       };
     },
-    [ActionCreators.getAllJobs.pending as any]: state => {
+    [ActionCreators.getJobsByFilters.fulfilled as any]: (state, action) => {
+      state.listJobs = action.payload;
+      state.loading = false;
+    },
+    [ActionCreators.getJobsByFilters.pending as any]: state => {
       state.loading = true;
     },
-    [ActionCreators.getAllJobs.fulfilled as any]: (state, action) => {
+    [ActionCreators.getJobsByFilters.rejected as any]: state => {
       state.loading = false;
-      state.listJobs = action.payload;
     },
-    [ActionCreators.getAllJobs.rejected as any]: state => {
+    [ActionCreators.getJobsByPagination.pending as any]: state => {
+      state.loading = true;
+    },
+    [ActionCreators.getJobsByPagination.fulfilled as any]: (state, action) => {
+      state.loading = false;
+      state.listJobs = [...state.listJobs, ...action.payload];
+    },
+    [ActionCreators.getJobsByPagination.rejected as any]: state => {
       state.loading = false;
     },
     [ActionCreators.editJob.pending as any]: state => {
