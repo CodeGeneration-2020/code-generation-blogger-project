@@ -66,6 +66,7 @@ export const PAGINATION = {
   limit: 5,
 };
 
+export const FILLSTARS = { grey: '#90A1AC', score: '#FFD800' };
 export const SKIP = {
   jobs: 'jobs',
   bloggers: 'bloggers',

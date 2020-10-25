@@ -14,7 +14,6 @@ import { PAGINATION, SKIP } from '../../../consts/lists';
 
 const ListJob = ({ getJobs, setSkip, jobs, filters, skip, loading }) => {
   const [jobId, setJobId] = React.useState<string>();
-
   const openSideBar = (e, id: string) => {
     e.preventDefault();
     setJobId(id);
@@ -46,7 +45,8 @@ const ListJob = ({ getJobs, setSkip, jobs, filters, skip, loading }) => {
             {jobs.map(job => (
               <JobCard
                 openSideBar={openSideBar}
-                id={job._id}
+                jobId={job._id}
+                customerId={job.customerId}
                 title={job.title}
                 budget={job.budget}
                 location={job.location}
@@ -58,7 +58,9 @@ const ListJob = ({ getJobs, setSkip, jobs, filters, skip, loading }) => {
         </Styled.ListJobsContainer>
       )}
       <SideBar>
-        <JobContainer jobId={jobId} />
+        {jobId && (
+          <JobContainer jobFromList={jobs.find(e => e._id === jobId)} />
+        )}
       </SideBar>
     </>
   );

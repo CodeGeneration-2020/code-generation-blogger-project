@@ -10,6 +10,7 @@ import { createReducer } from './reducers';
 import FILTERS_REDUCER from './filters/reducer';
 import JOB_REDUCER from './job/reducer';
 import BLOGGER_REDUCER from './blogger/reducer';
+import CUSTOMER_REDUCER from './customer/reducer';
 import SHARED_DATA_REDUCER from './sharedData/reducer';
 import LOCATION_SEARCH_REDUCER from './locationSearch/reducer';
 import CreateLoaderReducer from '../loader/store/reducer';
@@ -38,6 +39,7 @@ export function configureAppStore() {
   const store = configureStore({
     reducer: createReducer({
       BLOGGER_REDUCER: BLOGGER_REDUCER.reducer,
+      CUSTOMER_REDUCER: CUSTOMER_REDUCER.reducer,
       FILTERS_REDUCER: FILTERS_REDUCER.reducer,
       JOB_REDUCER: JOB_REDUCER.reducer,
       SHARED_DATA_REDUCER: SHARED_DATA_REDUCER.reducer,

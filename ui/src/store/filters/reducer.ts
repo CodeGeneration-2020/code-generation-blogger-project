@@ -10,11 +10,12 @@ const initialState: IFiltersReducer = {
     bloggers: PAGINATION,
     jobs: PAGINATION,
     comments: PAGINATION,
+    customerComments: PAGINATION,
   },
   filters: {},
 };
 
-const USER_REDUCER = createSlice({
+const FILTERS_REDUCER = createSlice({
   name: 'FILTERS_REDUCER',
   initialState,
   reducers: {},
@@ -69,4 +70,4 @@ const USER_REDUCER = createSlice({
   },
 });
 
-export default USER_REDUCER;
+export default FILTERS_REDUCER;
