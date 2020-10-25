@@ -1,13 +1,8 @@
 import mongoose from 'mongoose';
 
-export interface ITags{
-    value:String;
+export interface IOption {
     label:String;
-}
-
-export interface ILocation{
     value:String;
-    label:String;
 }
 
 export type JobsDocumnet = mongoose.Document & {
@@ -15,15 +10,15 @@ export type JobsDocumnet = mongoose.Document & {
     status:boolean;
     title:String;
     budget:Number;
-    tags:ITags[];
+    tags: IOption[];
     description:String;
     contact:{
         phone: String;
         email: String;
     };
     location: {
-        countries:ILocation[];
-        cities:ILocation[];
+        countries: IOption[];
+        cities: IOption[];
     };
     additional_contacts: String;
     attachments: String[];

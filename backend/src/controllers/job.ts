@@ -26,9 +26,10 @@ class Job {
         }
     }
 
-    async getAllJobs(req: Request, res: Response, next: NextFunction) {
+    async getJobs(req: Request, res: Response, next: NextFunction) {
         try {
-            const jobs = await this.userService.getAllJobs();
+            const filters = JSON.parse(JSON.stringify(req.query));
+            const jobs = await this.userService.getJobs(filters);
             res.json(jobs);
         } catch (e) {
             return next(e);

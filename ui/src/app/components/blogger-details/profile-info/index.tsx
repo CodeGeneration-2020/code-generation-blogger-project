@@ -224,7 +224,7 @@ const ProfileInfo: React.FC<{ bloggerInfo; theme? }> = ({
               <span className="text">ER</span>
             </div>
             <div className="chart">
-              <LineChart er={bloggerInfo && bloggerInfo.metric.er} />
+              <LineChart er={bloggerInfo && +bloggerInfo.metric.er} />
             </div>
           </div>
         </Style.Audience>

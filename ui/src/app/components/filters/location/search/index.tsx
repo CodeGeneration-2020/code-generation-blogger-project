@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import * as Style from './styles';
 import { connect } from 'react-redux';
-import { ActionCreators } from '../../../../../../store/locationSearch/actions';
+import { ActionCreators } from '../../../../../store/locationSearch/actions';
 
 const LocationSearch = props => {
   useEffect(() => {
@@ -31,7 +31,7 @@ const LocationSearch = props => {
           if (props.title === props.search.active_search) return;
           if (
             (props.title === 'state' && props.selected.length >= 3) ||
-            (props.title === 'city' && props.selected.length >= 5)
+            (props.title === 'city' && props.selected.length >= 6)
           ) {
             props.setActiveSearch(null);
             return;

@@ -2,7 +2,9 @@ import styled from 'styled-components';
 
 export const FiltersContainer = styled.div`
   box-sizing: border-box;
+  max-width: 1170px;
   width: 100%;
+  margin: 0 auto;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -13,39 +15,21 @@ export const FiltersContainer = styled.div`
 export const Filters = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
 `;
 
 export const SharedFilters = styled.div`
-  width: 74.5%;
+  width: 872px;
   display: flex;
   flex-direction: column;
-  margin-right: 24px;
-  & > .quantitative-filters {
+  margin-right: 23px;
+  & > .price {
+    width: 100%;
+    height: 180px;
     margin-bottom: 20px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    & > .subscribers {
-      margin-right: 24px;
-      width: 40%;
-    }
-    & > .price {
-      width: 60%;
-    }
   }
-  & > .person-filters {
+  & > .location {
     width: 100%;
-    display: flex;
-    align-items: stretch;
     height: 204px;
-    & > .gender {
-      margin-right: 24px;
-      width: 15%;
-    }
-    & > .location {
-      width: 85%;
-    }
   }
 
   .slider-handles {
@@ -61,5 +45,5 @@ export const SharedFilters = styled.div`
 `;
 
 export const Tags = styled.div`
-  width: 23.5%;
+  width: 275px;
 `;
