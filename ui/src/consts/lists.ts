@@ -65,3 +65,9 @@ export const PAGINATION = {
   skip: 0,
   limit: 5,
 };
+
+export const SKIP = {
+  jobs: 'jobs',
+  bloggers: 'bloggers',
+  comments: 'comments',
+};

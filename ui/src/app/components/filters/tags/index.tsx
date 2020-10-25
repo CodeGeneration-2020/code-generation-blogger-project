@@ -1,9 +1,9 @@
 import React from 'react';
 import * as Style from './styles';
 import { v4 as uuidv4 } from 'uuid';
-import BlueButton from '../../../shared/BlueButton/button.component';
-import TagsSelect from '../../../shared/TagsSelect/select.component';
-import withTheme from '../../../../../HOC/withTheme';
+import BlueButton from '../../shared/BlueButton/button.component';
+import TagsSelect from '../../shared/TagsSelect/select.component';
+import withTheme from '../../../../HOC/withTheme';
 
 const TagsFilter = props => {
   const removeOption = idtags => {

@@ -26,5 +26,5 @@ export const HorizantalSep = styled('div')`
   width: 66px !important;
   height: 1px !important;
   background: #30393e;
-  margin: 22px 0 29px !important;
+  margin: 22px 0 20px !important;
 `;

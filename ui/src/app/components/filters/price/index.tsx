@@ -1,8 +1,8 @@
 import React from 'react';
 import * as Style from './styles';
-import CustomSlider from '../../../slider-range-component/Slider';
-import { reduceNumber } from '../../../../helpers/reduceNumber';
-import withTheme from '../../../../../HOC/withTheme';
+import CustomSlider from '../../slider-range-component/Slider';
+import { reduceNumber } from '../../../helpers/reduceNumber';
+import withTheme from '../../../../HOC/withTheme';
 
 const PriceFilter = props => {
   return (

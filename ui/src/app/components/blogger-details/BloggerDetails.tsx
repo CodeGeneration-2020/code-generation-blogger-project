@@ -14,7 +14,7 @@ import Rating from './rating';
 import Comments from './comments';
 import Loader from '../../../loader/component/loader.component';
 import Statistics from './statistics/statistics';
-import { PAGINATION } from '../../../consts/lists';
+import { PAGINATION, SKIP } from '../../../consts/lists';
 
 const BloggerDetails: React.FC<{
   match?: any;
@@ -30,6 +30,7 @@ const BloggerDetails: React.FC<{
   loading: boolean;
   skip: number;
   setSkip: any;
+  resetSkip: any;
 }> = ({
   match,
   idBlogger,
@@ -44,13 +45,14 @@ const BloggerDetails: React.FC<{
   loading,
   skip,
   setSkip,
+  resetSkip,
 }) => {
   const ig_id = match ? match.params.id : idBlogger;
   const initBloggerInfo = id => {
     if (id) {
       getBlogger(id);
       clearComments();
-      setSkip({ key: 'comments', skip: PAGINATION.limit });
+      resetSkip({ key: SKIP.comments });
       getBloggerComments({
         bloggerId: id,
         skip: 0,
@@ -91,7 +93,7 @@ const BloggerDetails: React.FC<{
                 skip: skip + PAGINATION.limit,
                 limit: PAGINATION.limit,
               });
-              setSkip({ key: 'comments', skip: skip + PAGINATION.limit });
+              setSkip({ key: SKIP.comments, skip: skip + PAGINATION.limit });
             }}
           />
         </>
@@ -118,5 +120,6 @@ export default connect(
     getBloggerComments: BloggerActions.ActionCreators.getBloggerComments,
     clearComments: BloggerActions.ActionCreators.clearBloggerComments,
     setSkip: FilterCreators.setSkip,
+    resetSkip: FilterCreators.resetSkip,
   },
 )(BloggerDetails);

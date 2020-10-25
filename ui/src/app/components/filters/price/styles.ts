@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IPropsTheme } from '../../../../../types';
+import { IPropsTheme } from '../../../../types';
 
 export const Price = styled.div<IPropsTheme>`
   width: 100%;
