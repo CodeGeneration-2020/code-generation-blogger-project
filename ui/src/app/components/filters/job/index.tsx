@@ -81,7 +81,7 @@ export default connect(
   {
     getTags: SharedAC.getTags,
     getCountry: SharedAC.getCountry,
-    getCity: SharedAC.getCity,
+    getCity: SharedAC.getCitiesByCountryId,
     clearCityByCountryId: SharedAC.clearCityByCountryId,
     setFilter: FiltersAC.setFilter,
     closeSlider: LocationAC.setActiveSearch,
