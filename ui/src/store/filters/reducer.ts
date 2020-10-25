@@ -11,6 +11,7 @@ const initialState: IFiltersReducer = {
     jobs: PAGINATION,
     comments: PAGINATION,
     customerComments: PAGINATION,
+    currentCustomerJobs: PAGINATION,
   },
   filters: {},
 };

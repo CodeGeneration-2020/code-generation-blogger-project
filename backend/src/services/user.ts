@@ -25,7 +25,9 @@ export interface IUserService{
     getBlogger: (id: number) =>  Promise<BloggerDocument>;
     createCommentForBlogger: (id: number, body: ICreateCommentBlogger) => object;
     getBloggerComments: (id: number,skip: number,limit: number) => Promise<{ comments: BloggerCD[]; averageData: IAverageDataBlogger; }>;
-    getCustomer: (id: number) =>  Promise<CustomerDocument>;
+    createCustomer: (data: CustomerDocument) => Promise<CustomerDocument>;
+    updateCustomerById: (_id: number, data: CustomerDocument) => Promise<CustomerDocument>;
+    getCustomerById: (id: number) =>  Promise<CustomerDocument>;
     createCommentForCustomer: (id: number, body: ICreateCommentCustomer) => Promise<any>
     getCustomerComments: (id: number, skip: number,limit: number) => Promise <{comments: CustomerCD[],averageScore: Number}>;
 }
@@ -49,6 +51,7 @@ async function calculateAverageScoreCustomer (id:number) {
 }
 
 class UserService implements IUserService  {
+    //Blogger Services
     async getBlogger(id: number) {
         return Blogger.findOne({ig_id:id});
     }
@@ -71,7 +74,26 @@ class UserService implements IUserService  {
         return {comments, averageData};
     }
 
-    async getCustomer(id: number) {
+    //Customer Services
+    async createCustomer(data: CustomerDocument){
+        const lastCustomer = await Customer.findOne({}).sort({createdAt:-1});
+        const _id = lastCustomer ? lastCustomer._id + 1 : 1;
+        const newCustomer = new Customer({
+            _id ,
+            name: data.name,
+            surname: data.surname,
+            profile_picture: data.profile_picture,
+            location: data.location,
+            contact: data.contact
+        })
+        return await newCustomer.save();
+    }
+
+    async updateCustomerById(_id:number,data: CustomerDocument){
+        return await Customer.findOneAndUpdate({_id}, data, {new:true});
+    }
+    
+    async getCustomerById(id: number) {
         return Customer.findById(id);
     }
 

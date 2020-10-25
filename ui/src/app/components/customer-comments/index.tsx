@@ -8,12 +8,11 @@ import BlueButton from '../shared/BlueButton/button.component';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 const CustomerComments = props => {
-  const isBlogger = true;
   const commentRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
   const [score, setScore] = React.useState<number>(0);
   return (
     <>
-      {isBlogger && (
+      {props.isBlogger && (
         <Style.AddComment>
           <textarea
             ref={commentRef as any}

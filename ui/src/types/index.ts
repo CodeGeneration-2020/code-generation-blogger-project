@@ -75,6 +75,7 @@ export interface IPropsTheme {
 export interface IButtonStyle {
   width?: string;
   height?: string;
+  hover?: boolean;
   boxShadow?: string;
   borderRadius?: string;
 }

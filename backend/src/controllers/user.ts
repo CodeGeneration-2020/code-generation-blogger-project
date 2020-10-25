@@ -58,9 +58,25 @@ class User {
         }
     }
 
-    async getCustomer(req: Request, res: Response, next: NextFunction) {
+    async createCustomer(req: Request, res: Response, next: NextFunction) {
         try {
-            const users = await this.userService.getCustomer(+req.query.id);
+            const response = await this.userService.createCustomer(req.body);
+            res.json(response);
+        } catch (e) {
+            return next(e);
+        }
+    }
+    async updateCustomerById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const response = await this.userService.updateCustomerById(+req.params.id,req.body);
+            res.json(response);
+        } catch (e) {
+            return next(e);
+        }
+    }
+    async getCustomerById(req: Request, res: Response, next: NextFunction) {
+        try {
+            const users = await this.userService.getCustomerById(+req.params.id);
             res.json(users);
         } catch (e) {
             return next(e);

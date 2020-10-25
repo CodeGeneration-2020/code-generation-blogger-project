@@ -6,6 +6,7 @@ interface Props {
   height: string;
   boxShadow: string;
   borderRadius: string;
+  hover?: boolean;
   theme: ITheme;
 }
 
@@ -25,7 +26,7 @@ export const Button = styled.button<Props>`
   color: #fff;
   &:hover {
     cursor: pointer;
-    background: #fff;
-    color: black;
+    background: ${({ hover = true }) => hover && '#fff'};
+    color: ${({ hover = true }) => hover && 'black'};
   }
 `;

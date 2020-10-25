@@ -17,4 +17,9 @@ export const SelectContainer = styled.div<IPropsTheme>`
       background: ${({ theme }) => theme && theme.background};
     }
   }
+  .error {
+    color: red;
+    font-size: 0.7em;
+    margin-left: 7px;
+  }
 `;

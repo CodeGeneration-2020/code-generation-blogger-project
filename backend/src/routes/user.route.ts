@@ -18,6 +18,18 @@ user.post('/blogger/:id/comment', (req, res, next) => {
     userControllerInstance.createCommentForBlogger(req, res, next);
 });
 
+user.post('/customer', (req, res, next) => {
+    userControllerInstance.createCustomer(req, res, next);
+});
+
+user.get('/customer/:id', (req, res, next) => {
+    userControllerInstance.getCustomerById(req, res, next);
+});
+
+user.put('/customer/:id', (req, res, next) => {
+    userControllerInstance.updateCustomerById(req, res, next);
+});
+
 user.get('/customer/:id/comments', (req, res, next) => {
     userControllerInstance.getCustomerComments(req, res, next);
 });
@@ -26,8 +38,5 @@ user.post('/customer/:id/comment', (req, res, next) => {
     userControllerInstance.createCommentForCustomer(req, res, next);
 });
 
-user.get('/customer', (req, res, next) => {
-    userControllerInstance.getCustomer(req, res, next);
-});
 
 export default user;

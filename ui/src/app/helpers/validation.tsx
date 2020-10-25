@@ -38,7 +38,8 @@ export const additionalContactSchema = yup
   .string()
   .trim()
   .nullable(true)
-  .max(100, 'additional contact to long.');
+  .min(5, 'additional contact to short.')
+  .max(50, 'additional contact to long.');
 
 export const countrySchema = yup.array().required('please select country');
 
@@ -50,10 +51,50 @@ export const jobFormSchema = yup.object().shape({
   title: titleSchema,
   budget: budgetSchema,
   description: descriptionSchema,
-  phone: phoneSchema,
-  email: emailSchema,
+  // phone: phoneSchema,
+  // email: emailSchema,
   additional_contacts: additionalContactSchema,
   countries: countrySchema,
   cities: citySchema,
   tags: tagsSchema,
+});
+
+//CustomerInfo
+
+export const nameSchema = yup.string().trim().required('Please enter name');
+
+export const surNameSchema = yup
+  .string()
+  .trim()
+  .required('Please enter surname');
+
+export const linkSchema = yup
+  .string()
+  .trim()
+  .required('Please enter instagram link');
+
+export const countryCustomerInfoSchema = yup
+  .string()
+  .trim()
+  .required('Please select country');
+
+export const cityCustomerInfoSchema = yup
+  .string()
+  .trim()
+  .required('Please select city');
+
+export const profilePictureSchema = yup
+  .string()
+  .trim()
+  .required('Please select profile picture');
+
+export const customerInfoFormSchema = yup.object().shape({
+  name: nameSchema,
+  surname: surNameSchema,
+  profile_picture: profilePictureSchema,
+  country: countryCustomerInfoSchema,
+  city: cityCustomerInfoSchema,
+  mail: emailSchema,
+  phone: phoneSchema,
+  link: linkSchema,
 });

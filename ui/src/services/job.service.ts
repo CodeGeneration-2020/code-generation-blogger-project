@@ -27,6 +27,12 @@ class JobService {
       {},
     );
   }
+  getJobsByCustomerId(customerId, skip = 0, limit = PAGINATION.limit) {
+    return this.apiService.GET(
+      `job/customer/${customerId}?skip=${skip}&limit=${limit}`,
+      {},
+    );
+  }
   getJobById(jobId) {
     return this.apiService.GET(`job/${jobId}`, {});
   }
