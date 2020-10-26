@@ -23,6 +23,7 @@ import CustomerProfile from './containers/CustomerProfileContainer';
 import { ActionCreators as SharedAC } from '../store/sharedData/actions';
 import { connect } from 'react-redux';
 import { bloggerTheme, customerTheme } from '../consts/theme';
+import rootComponentWrapper from '../HOC/rootComponentWrapper';
 
 function App({ setTheme, getCountries, getTags }) {
   const isBlogger = !true;
@@ -57,8 +58,10 @@ function App({ setTheme, getCountries, getTags }) {
   );
 }
 
-export default connect(null, {
-  setTheme: SharedAC.setTheme,
-  getCountries: SharedAC.getCountry,
-  getTags: SharedAC.getTags,
-})(App);
+export default rootComponentWrapper(
+  connect(null, {
+    setTheme: SharedAC.setTheme,
+    getCountries: SharedAC.getCountry,
+    getTags: SharedAC.getTags,
+  })(App),
+);
