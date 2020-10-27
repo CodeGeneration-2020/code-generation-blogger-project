@@ -7,6 +7,9 @@ interface Props {
   boxShadow: string;
   borderRadius: string;
   hover?: boolean;
+  background?: string;
+  border?: string;
+  filter?: string;
   theme: ITheme;
 }
 
@@ -20,9 +23,12 @@ export const Button = styled.button<Props>`
   font-style: normal;
   line-height: 20px;
   padding: 6px 12px;
-  background: ${({ theme }) => theme && theme.background};
+  background: ${({ theme, background }) =>
+    background ? background : theme && theme.background};
   box-shadow: ${({ boxShadow }) => boxShadow && boxShadow};
+  border: ${({ border }) => border && border};
   border-radius: ${({ borderRadius }) => borderRadius && borderRadius};
+  filter: ${({ filter }) => filter && filter};
   color: #fff;
   &:hover {
     cursor: pointer;

@@ -5,6 +5,7 @@ const Input = ({ errors, name, ...props }) => {
   return (
     <Styled.InputWrapper height={props.style && props.style.height}>
       <Styled.Input
+        autoComplete={'off'}
         placeholder={props.placeholder}
         type={props.type}
         name={name}
