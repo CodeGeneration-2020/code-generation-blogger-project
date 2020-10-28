@@ -24,7 +24,7 @@ const RSelect: React.FC<{
     input: provided => ({
       ...provided,
       minHeight: '1px',
-      color: '#90A1AC',
+      color: `${theme && theme.color}`,
       fontFamily: 'Roboto',
       fontStyle: 'normal',
       fontSize: '14px',
@@ -64,7 +64,7 @@ const RSelect: React.FC<{
       return {
         ...styles,
         backgroundColor: isFocused ? theme && theme.color : '#1A1E24',
-        borderRadius: isFocused ? `15px` : 'none',
+        borderRadius: isFocused ? `8px` : 'none',
         width: '80%',
         marginLeft: '10px',
         color: isFocused ? 'white' : theme && theme.color,

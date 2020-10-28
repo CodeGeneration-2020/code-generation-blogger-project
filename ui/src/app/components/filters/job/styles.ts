@@ -2,23 +2,25 @@ import styled from 'styled-components';
 
 export const FiltersContainer = styled.div`
   box-sizing: border-box;
-  max-width: 1170px;
-  width: 100%;
   margin: 0 auto;
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: #0d0b18;
   margin-bottom: 100px;
 `;
 
 export const Filters = styled.div`
   display: flex;
-  width: 100%;
 `;
 
 export const SharedFilters = styled.div`
   width: 872px;
+  @media screen and (max-width: 1180px) {
+    width: ${(872 - 24) * 0.8 + 24 + 'px'};
+  }
+  @media screen and (max-width: 980px) {
+    width: ${(872 - 24) * 0.6 + 24 + 'px'};
+  }
   display: flex;
   flex-direction: column;
   margin-right: 23px;
@@ -46,4 +48,10 @@ export const SharedFilters = styled.div`
 
 export const Tags = styled.div`
   width: 275px;
+  @media screen and (max-width: 1180px) {
+    width: ${275 * 0.8 + 'px'};
+  }
+  @media screen and (max-width: 980px) {
+    width: ${275 * 0.6 + 'px'};
+  }
 `;

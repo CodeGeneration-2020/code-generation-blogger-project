@@ -77,5 +77,18 @@ export interface IButtonStyle {
   height?: string;
   hover?: boolean;
   boxShadow?: string;
+  border?: string;
   borderRadius?: string;
+  background?: string;
+  color?: string;
+  filter?: string;
+}
+
+export interface ICrop {
+  aspect?: string;
+  unit: string;
+  width: number;
+  height: number;
+  x: number;
+  y: number;
 }

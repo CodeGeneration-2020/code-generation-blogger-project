@@ -42,7 +42,8 @@ const SliderComponent: React.FC<{
 }> = ({ location, setLocation, theme }) => {
   let settings = {
     slidesToShow: 6,
-    slidesToScroll: 6,
+    slidesToScroll: 1,
+    variableWidth: true,
     nextArrow: <SampleNextArrow color={theme && theme.color} />,
     prevArrow: <SamplePrevArrow color={theme && theme.color} />,
     responsive: [
@@ -50,14 +51,14 @@ const SliderComponent: React.FC<{
         breakpoint: 1150,
         settings: {
           slidesToShow: 4,
-          slidesToScroll: 4,
+          slidesToScroll: 1,
         },
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 3,
-          slidesToScroll: 3,
+          slidesToScroll: 1,
         },
       },
     ],

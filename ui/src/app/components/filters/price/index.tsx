@@ -9,7 +9,7 @@ const PriceFilter = props => {
     <Style.Price theme={props.theme}>
       <div className="slider">
         <div className="info">
-          <span className="title">POSTS</span>
+          <span className="title">Posts</span>
           {props.pricePost && (
             <span className="data">
               {reduceNumber(props.pricePost[0]).value +
@@ -28,7 +28,7 @@ const PriceFilter = props => {
       </div>
       <div className="slider">
         <div className="info">
-          <span className="title">STORIES</span>
+          <span className="title">Stories</span>
           {props.priceStory && (
             <span className="data">
               {reduceNumber(props.priceStory[0]).value +

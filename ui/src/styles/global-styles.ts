@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    background: linear-gradient(180deg, #001642 -0.4%, #0B0D1F 21.09%, #0D0B18 49.71%, #0B0D1F 82.43%, #001642 97.77%);
     font-family: 'Helvetica Neue', Helvetica, Arial, 'Roboto', sans-serif;
   }
 
