@@ -1,7 +1,17 @@
 import styled from 'styled-components';
 
+const responsiveWidth = {
+  card: 1170,
+};
+
 export const CardContainer = styled.div`
-  width: 100%;
+  width: ${responsiveWidth.card + 'px'};
+  @media screen and (max-width: 1180px) {
+    width: ${responsiveWidth.card * 0.8 + 'px'};
+  }
+  @media screen and (max-width: 980px) {
+    width: ${responsiveWidth.card * 0.6 + 'px'};
+  }
   height: 100%;
   display: flex;
   background: #1a1e24;

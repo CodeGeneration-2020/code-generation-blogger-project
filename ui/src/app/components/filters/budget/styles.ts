@@ -20,14 +20,14 @@ export const Price = styled.div`
       line-height: 20px;
       text-align: center;
       & > .text {
-        width: 48%;
+        width: 50%;
         display: flex;
         justify-content: flex-end;
         color: #fff;
-        margin-right: 19px;
+        padding-right: 19px;
       }
       & > .sum {
-        width: 52%;
+        width: 50%;
         display: flex;
         justify-content: flex-start;
         color: #d022ed;

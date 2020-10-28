@@ -41,9 +41,10 @@ const BloggerList = props => {
             hasMore={true}
             loader={props.loading && <h4>Loading...</h4>}
           >
-            {props.bloggers.length &&
+            {props.bloggers.length > 0 &&
               props.bloggers.map((item: IBloggerInfo) => (
                 <NavLink
+                  className="item"
                   to={'/blogger/details/' + item.ig_id}
                   key={uuidv4()}
                   onClick={e => {

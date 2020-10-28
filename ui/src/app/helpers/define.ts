@@ -9,3 +9,8 @@ export const defineType = type => {
   });
   return result;
 };
+
+export const defineFirstTag = length => {
+  if (length !== 1) return;
+  return { margin: '0 auto', transform: 'translateX(-10px)' };
+};

@@ -1,50 +1,65 @@
 import styled from 'styled-components';
+import { bloggerFilters } from '../../../../consts/responsive';
 
 export const FiltersContainer = styled.div`
-  box-sizing: border-box;
-  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: #0d0b18;
-  margin-bottom: 100px;
+  margin: 0 auto 100px;
 `;
 
 export const Filters = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
 `;
 
 export const SharedFilters = styled.div`
-  width: 74.5%;
   display: flex;
   flex-direction: column;
-  margin-right: 24px;
+  margin-right: 23px;
   & > .quantitative-filters {
     margin-bottom: 20px;
-    width: 100%;
-    height: 100%;
     display: flex;
     & > .subscribers {
       margin-right: 24px;
-      width: 40%;
+      width: ${bloggerFilters.subscribers + 'px'};
+      @media screen and (max-width: 1180px) {
+        width: ${bloggerFilters.subscribers * 0.8 + 'px'};
+      }
+      @media screen and (max-width: 980px) {
+        width: ${bloggerFilters.subscribers * 0.6 + 'px'};
+      }
     }
     & > .price {
-      width: 60%;
+      width: ${bloggerFilters.price + 'px'};
+      @media screen and (max-width: 1180px) {
+        width: ${bloggerFilters.price * 0.8 + 'px'};
+      }
+      @media screen and (max-width: 980px) {
+        width: ${bloggerFilters.price * 0.6 + 'px'};
+      }
     }
   }
   & > .person-filters {
-    width: 100%;
     display: flex;
-    align-items: stretch;
     height: 204px;
     & > .gender {
-      margin-right: 24px;
-      width: 15%;
+      margin-right: 21px;
+      width: ${bloggerFilters.gender + 'px'};
+      @media screen and (max-width: 1180px) {
+        width: ${bloggerFilters.gender * 0.8 + 'px'};
+      }
+      @media screen and (max-width: 980px) {
+        width: ${bloggerFilters.gender * 0.6 + 'px'};
+      }
     }
     & > .location {
-      width: 85%;
+      width: ${bloggerFilters.location + 'px'};
+      @media screen and (max-width: 1180px) {
+        width: ${bloggerFilters.location * 0.8 + 'px'};
+      }
+      @media screen and (max-width: 980px) {
+        width: ${bloggerFilters.location * 0.6 + 'px'};
+      }
     }
   }
 
@@ -61,5 +76,11 @@ export const SharedFilters = styled.div`
 `;
 
 export const Tags = styled.div`
-  width: 23.5%;
+  width: ${bloggerFilters.tags + 'px'};
+  @media screen and (max-width: 1180px) {
+    width: ${bloggerFilters.tags * 0.8 + 'px'};
+  }
+  @media screen and (max-width: 980px) {
+    width: ${bloggerFilters.tags * 0.6 + 'px'};
+  }
 `;

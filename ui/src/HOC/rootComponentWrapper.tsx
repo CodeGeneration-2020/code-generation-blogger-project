@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '../app/components/shared/header';
 import Footer from '../app/components/shared/footer';
-import Loader from '../loader/component/loader.component';
 
 const RootComponentHOC = RootComponent => props => {
   return (
@@ -9,7 +8,6 @@ const RootComponentHOC = RootComponent => props => {
       <Header />
       <RootComponent {...props} />
       <Footer />
-      <Loader />
     </React.Fragment>
   );
 };

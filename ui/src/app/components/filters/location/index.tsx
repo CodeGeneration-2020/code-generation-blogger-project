@@ -1,13 +1,11 @@
 import React from 'react';
 import * as Style from './styles';
-import LocationSearch from './search/index';
-import { connect } from 'react-redux';
-import SelectionList from './selection-list';
 import SelectedList from './selected-list';
-import { ActionCreators } from '../../../../store/locationSearch/actions';
+import Select from '../../shared/TagsSelect/select.component';
 
 const LocationFilter = props => {
   const setCountryFilter = option => {
+    if (props.selectedCountry.length >= 3) return;
     const country = [...props.selectedCountry, option];
     props.setFilter(country, 'country');
     const countryId = country[country.length - 1].value;
@@ -15,6 +13,7 @@ const LocationFilter = props => {
   };
 
   const setCityFilter = option => {
+    if (props.selectedCity.length >= 6) return;
     const city = [...props.selectedCity, option];
     props.setFilter(city, 'city');
   };
@@ -36,57 +35,34 @@ const LocationFilter = props => {
     <Style.Location>
       <Style.Search>
         <div className="item">
-          <LocationSearch
-            location={props.countries}
-            title={'state'}
+          <Select
+            placeholder="state"
+            options={props.countries}
             selected={props.selectedCountry}
+            changeHandler={c => setCountryFilter(c)}
           />
         </div>
 
         <div className="item">
-          <LocationSearch
-            location={props.cities}
-            title={'city'}
+          <Select
+            placeholder="city"
+            options={props.cities}
             selected={props.selectedCity}
+            changeHandler={c => setCityFilter(c)}
           />
         </div>
       </Style.Search>
 
       <Style.LocationList>
-        {props.active_search ? (
-          <SelectionList
-            active_search={props.active_search}
-            setActiveSearch={props.setActiveSearch}
-            selectedCountry={props.selectedCountry}
-            selectedCity={props.selectedCity}
-            setCountryFilter={setCountryFilter}
-            setCityFilter={setCityFilter}
-            searchCity={props.searchCity}
-            searchState={props.searchState}
-          />
-        ) : (
-          <SelectedList
-            selectedCountry={props.selectedCountry}
-            removeCountry={removeCountry}
-            selectedCity={props.selectedCity}
-            removeCity={removeCity}
-          />
-        )}
+        <SelectedList
+          selectedCountry={props.selectedCountry}
+          removeCountry={removeCountry}
+          selectedCity={props.selectedCity}
+          removeCity={removeCity}
+        />
       </Style.LocationList>
     </Style.Location>
   );
 };
 
-export default connect(
-  (state: any) => {
-    const { LOCATION_SEARCH_REDUCER } = state;
-    return {
-      searchState: LOCATION_SEARCH_REDUCER.state,
-      searchCity: LOCATION_SEARCH_REDUCER.city,
-      active_search: LOCATION_SEARCH_REDUCER.active_search,
-    };
-  },
-  {
-    setActiveSearch: ActionCreators.setActiveSearch,
-  },
-)(LocationFilter);
+export default LocationFilter;

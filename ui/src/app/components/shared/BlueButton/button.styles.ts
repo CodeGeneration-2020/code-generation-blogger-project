@@ -29,7 +29,7 @@ export const Button = styled.button<Props>`
   border: ${({ border }) => border && border};
   border-radius: ${({ borderRadius }) => borderRadius && borderRadius};
   filter: ${({ filter }) => filter && filter};
-  color: #fff;
+  color: ${({ color }) => (color ? color : '#fff')};
   &:hover {
     cursor: pointer;
     background: ${({ hover = true }) => hover && '#fff'};
