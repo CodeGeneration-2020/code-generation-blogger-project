@@ -4,8 +4,7 @@ export const Wrapper = styled('div')`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 185px 0 160px;
+  margin: 185px 0 180px;
   a {
     text-decoration: none;
     cursor: default;

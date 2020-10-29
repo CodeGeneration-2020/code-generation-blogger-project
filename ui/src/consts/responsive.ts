@@ -29,3 +29,12 @@ export const subscribers = {
 export const tags = {
   select: 207,
 };
+
+//Blogger Card
+export const bloggerCard = {
+  card: 1170,
+  personInfo: { maxWidth: 201, info: 102 },
+  audience: { maxWidth: 140, er: 53, chart: 73 },
+  price: 219,
+  tags: 200,
+};

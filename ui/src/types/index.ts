@@ -42,6 +42,7 @@ export interface IBloggerCard {
   storyPrice: number | undefined;
   pricePS: number | undefined;
   tags: Array<{ value: string; label: string }>;
+  theme?: ITheme;
 }
 
 export interface IJob {
