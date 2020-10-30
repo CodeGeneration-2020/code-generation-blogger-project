@@ -14,4 +14,5 @@ export const Footer = styled.div`
       height: 100%;
     }
   }
+  margin-top: 185px;
 `;

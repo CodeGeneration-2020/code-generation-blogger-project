@@ -58,6 +58,15 @@ const BLOGGER_REDUCER = createSlice({
       }
       state.loading = false;
     },
+    [ActionCreators.createCommentForBlogger.fulfilled as any]: (
+      state,
+      action,
+    ) => {
+      state.bloggerComments = {
+        ...state.bloggerComments,
+        comments: state.bloggerComments.comments.concat(action.payload),
+      };
+    },
   },
 } as any);
 

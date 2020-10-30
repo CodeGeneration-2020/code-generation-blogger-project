@@ -65,7 +65,7 @@ class UserService implements IUserService  {
             subs_came: body.subs_came
         })
         await comment.save();
-        return {createComment:'success'};
+        return await BlogerComments.findById(comment._id).populate('customerId');
     }
 
     async getBloggerComments(id:number,skip: number,limit: number){

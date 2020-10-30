@@ -46,4 +46,5 @@ export const Header = styled.div`
       color: #ffffff;
     }
   }
+  margin-bottom: 185px;
 `;

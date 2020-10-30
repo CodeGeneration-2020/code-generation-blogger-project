@@ -56,6 +56,14 @@ class UsersService {
       score,
     });
   }
+  createCommentForBlogger(bloggerId, senderId, comment, score, subs_came) {
+    return this.apiService.POST(`user/blogger/${bloggerId}/comment`, {
+      senderId,
+      comment,
+      score,
+      subs_came,
+    });
+  }
   getComments(userType, userId, skip, limit) {
     return this.apiService.GET(
       `user/${userType}/${userId}/comments?skip=${skip}&limit=${limit}`,

@@ -7,6 +7,9 @@ export const JobCardContainer = styled.div<{ theme }>`
   box-shadow: 0px 1px 8px rgba(110, 110, 110, 0.1);
   border-radius: 16px;
   margin-bottom: 24px;
+  &:last-child{
+    margin-bottom: 0px;
+  }
   height: 190px;
   width: ${jobCard.card + 'px'};
   padding-left: 80px;

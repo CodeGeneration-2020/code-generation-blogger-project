@@ -31,6 +31,7 @@ const BloggerDetails: React.FC<{
   skip: number;
   setSkip: any;
   resetSkip: any;
+  addComment;
 }> = ({
   match,
   idBlogger,
@@ -46,6 +47,7 @@ const BloggerDetails: React.FC<{
   skip,
   setSkip,
   resetSkip,
+  addComment,
 }) => {
   const ig_id = match ? match.params.id : idBlogger;
   const initBloggerInfo = id => {
@@ -87,6 +89,7 @@ const BloggerDetails: React.FC<{
           <Comments
             comments={comments.comments}
             loading={loading}
+            addComment={comment => addComment({ ...comment, bloggerId: ig_id })}
             getPaginationComments={() => {
               getBloggerComments({
                 bloggerId: ig_id,
@@ -118,6 +121,7 @@ export default connect(
   {
     getBlogger: BloggerActions.ActionCreators.getBloggerById,
     getBloggerComments: BloggerActions.ActionCreators.getBloggerComments,
+    addComment: BloggerActions.ActionCreators.createCommentForBlogger,
     clearComments: BloggerActions.ActionCreators.clearBloggerComments,
     setSkip: FilterCreators.setSkip,
     resetSkip: FilterCreators.resetSkip,
