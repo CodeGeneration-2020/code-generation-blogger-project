@@ -1,84 +1,62 @@
 import styled from 'styled-components';
+import { hexToRGBA } from '../../../helpers/hexToRgba';
 
-export const Gender = styled.div`
+export const Gender = styled.div<{ theme }>`
+  padding: 18px 35px 0 34px;
   width: 100%;
-  padding: 0 30%;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 10px;
-  & > .item {
+  @media screen and (max-width: 1180px) {
+    padding: 18px 24px 0 23px;
+  }
+  @media screen and (max-width: 980px) {
+    padding: 18px 14px 0 13px;
+  }
+
+  & > .male {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  & > .female {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .icon-male {
+    transform: translateY(-5px);
+  }
+
+  .icon-female {
+    width: 21px;
+    transform: translateY(2px);
+    & > svg {
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+
+  .ckeckbox {
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    border-radius: 4px;
+    mix-blend-mode: normal;
+    border: 1px solid
+      ${({ theme }) => theme.color && hexToRGBA(theme.color, 0.5)};
+    padding: 4px;
     display: flex;
     justify-content: center;
-    margin-bottom: 12px;
-    &:last-child {
-      margin-bottom: none;
-    }
-    & > .checkbox {
-      margin-top: 8px;
-      position: relative;
-      display: flex;
-      & > .checkbox-input {
-        -webkit-appearance: none;
-        appearance: none;
-        position: absolute;
-      }
-      & > .checkbox-input:checked + .label:after {
-        opacity: 1;
-      }
-      & > .label {
-        padding-left: 25px;
-      }
-      & > .label::before {
-        cursor: pointer;
-        content: '';
-        display: block;
-        box-sizing: border-box;
-        width: 20px;
-        height: 20px;
-        opacity: 0.5;
-        border: 1px solid #28b5e1;
-        border-radius: 4px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        z-index: 1;
-      }
-      & > .label::after {
-        cursor: pointer;
-        content: '';
-        display: block;
-        width: 12px;
-        height: 12px;
-        background: linear-gradient(360deg, #0496ff 0%, #28b5e0 100%);
-        border-radius: 2px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        margin-top: 4px;
-        margin-left: 4px;
-        z-index: 2;
-        opacity: 0;
-        transition: opacity 0.1s linear;
-      }
-    }
-
-    & > .icon-male {
-      & > img {
-        width: 21px;
-        height: 21px;
-      }
-      padding-left: 12%;
-      margin-top: 3px;
-    }
-
-    & > .icon-female {
-      margin-top: 10px;
-      margin-right: 5px;
-      padding-left: 12%;
-      & > img {
-        width: 16.5px;
-        height: 29px;
-      }
+    align-items: center;
+    & > .checked {
+      z-index: 100;
+      width: 100%;
+      height: 100%;
+      border-radius: 2px;
+      background: ${({ theme }) => theme && theme.background};
     }
   }
 `;

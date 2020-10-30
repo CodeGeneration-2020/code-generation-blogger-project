@@ -16,7 +16,7 @@ const CustomSlider = props => {
     height: 16,
     borderRadius: 8,
     cursor: 'pointer',
-    backgroundColor: '#30393E', // polosa
+    backgroundColor: '#414D55',
   };
 
   const domain: number[] = props.domain;

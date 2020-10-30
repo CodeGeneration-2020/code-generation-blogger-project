@@ -2,10 +2,12 @@ import React from 'react';
 import * as Style from './styles';
 import { v4 as uuidv4 } from 'uuid';
 import BlueButton from '../../../shared/BlueButton/button.component';
+import withTheme from '../../../../../HOC/withTheme';
 
-const SelectedList = props => {
+const SelectedList = ({ ...props }) => {
+  const [hoverCountry, setHoverCountry] = React.useState<string>();
   return (
-    <Style.SelectedContainer>
+    <Style.SelectedContainer theme={props.theme}>
       <div className="countries">
         {props.selectedCountry &&
           props.selectedCountry.map(c => {
@@ -15,7 +17,13 @@ const SelectedList = props => {
                 className="item"
                 onClick={() => props.removeCountry(c.value)}
               >
-                <BlueButton style={{ height: '32px' }}>{c.label}</BlueButton>
+                <BlueButton
+                  style={{ height: '32px' }}
+                  onMouseEnter={() => setHoverCountry(c.value)}
+                  onMouseLeave={() => setHoverCountry('')}
+                >
+                  {c.label}
+                </BlueButton>
               </span>
             );
           })}
@@ -29,7 +37,13 @@ const SelectedList = props => {
                 className="item"
                 onClick={() => props.removeCity(c.value)}
               >
-                <BlueButton style={{ height: '32px' }}>
+                <BlueButton
+                  style={
+                    c.countryId === hoverCountry
+                      ? { height: '32px', background: 'fff', color: 'black' }
+                      : { height: '32px' }
+                  }
+                >
                   <span className="city">{c.label}</span>
                 </BlueButton>
               </span>
@@ -40,4 +54,4 @@ const SelectedList = props => {
   );
 };
 
-export default SelectedList;
+export default withTheme(SelectedList);

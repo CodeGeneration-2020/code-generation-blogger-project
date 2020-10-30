@@ -1,12 +1,18 @@
 import React from 'react';
 import * as Style from './styles';
 import BlueButton from '../../../components/shared/BlueButton/button.component';
+import withTheme from '../../../../HOC/withTheme';
 
-const Search = props => {
+const Search = ({ ...props }) => {
   return (
-    <Style.SearchContainer>
+    <Style.SearchContainer theme={props.theme}>
       <div className="input">
-        <input type="text" placeholder="Search" id="search-input" />
+        <input
+          type="text"
+          placeholder="Search"
+          id="search-input"
+          autoComplete={'off'}
+        />
       </div>
       <div className="button">
         <BlueButton
@@ -25,4 +31,4 @@ const Search = props => {
   );
 };
 
-export default Search;
+export default withTheme(Search);

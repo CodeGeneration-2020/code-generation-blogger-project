@@ -1,45 +1,57 @@
 import styled from 'styled-components';
+import { bloggerCard } from '../../../../consts/responsive';
 
 export const CardContainer = styled.div`
-  width: 100%;
-  height: 100%;
+  width: ${bloggerCard.card + 'px'};
+  height: 190px;
+  padding: 0 83px;
+  @media screen and (max-width: 1180px) {
+    width: ${bloggerCard.card * 0.8 + 'px'};
+    padding: 0 50px;
+  }
+  @media screen and (max-width: 980px) {
+    width: ${bloggerCard.card * 0.6 + 'px'};
+    padding: 0 30px;
+  }
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   background: #1a1e24;
   box-shadow: 0px 1px 8px rgba(110, 110, 110, 0.1);
   border-radius: 16px;
   margin-bottom: 24px;
 `;
 
-export const PersonInfo = styled.div`
-  width: 17.5%;
-  margin: 0 6%;
-  padding: 55px 0;
+export const PersonInfo = styled.div<{ theme }>`
+  width: ${bloggerCard.personInfo.maxWidth + 'px'};
+  @media screen and (max-width: 980px) {
+    width: ${bloggerCard.personInfo.maxWidth * 0.8 + 'px'};
+  }
   display: flex;
   & > .avatar {
-    width: 53%;
-    display: flex;
-    justify-content: center;
-    margin-right: 2%;
-    @media screen and (max-width: 950px) {
-      padding-left: 0;
+    margin-right: 19px;
+    @media screen and (max-width: 980px) {
+      margin-right: 9px;
     }
-    align-items: center;
     & > img {
+      border-radius: 50%;
       width: 80px;
       height: 80px;
-      border-radius: 50%;
-      @media screen and (max-width: 1150px) {
-        width: 67px;
-        height: 67px;
+      @media screen and (max-width: 980px) {
+        width: 70px;
+        height: 70px;
       }
     }
   }
 
   & > .info {
     display: flex;
-    width: 45%;
     flex-direction: column;
     justify-content: center;
+    width: ${bloggerCard.personInfo.info + 'px'};
+    @media screen and (max-width: 980px) {
+      width: ${bloggerCard.personInfo.info * 0.8 + 'px'};
+    }
     & > .full-name {
       display: flex;
       flex-direction: column;
@@ -50,20 +62,15 @@ export const PersonInfo = styled.div`
       line-height: 20px;
       letter-spacing: 0.01px;
       color: #ffffff;
-      font-size: 16px;
       margin-bottom: 2px;
-      @media screen and (max-width: 1150px) {
-        font-size: 14px;
+      font-size: 18px;
+      @media screen and (max-width: 980px) {
+        font-size: 15px;
       }
-      @media screen and (max-width: 950px) {
-        font-size: 12px;
-      }
-      @media screen and (max-width: 800px) {
-        font-size: 11px;
-      }
-      & > .name {
-      }
-      & > .surname {
+      & > .trim {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
 
@@ -73,21 +80,14 @@ export const PersonInfo = styled.div`
       font-family: 'Roboto', sans-serif;
       font-style: normal;
       font-weight: normal;
-      font-size: 12px;
       line-height: 20px;
-      color: #28b5e1;
-      @media screen and (max-width: 1150px) {
-        font-size: 10px;
+      color: ${({ theme }) => theme && theme.color};
+      font-size: 14px;
+      @media screen and (max-width: 980px) {
+        font-size: 12px;
       }
-      @media screen and (max-width: 950px) {
-        font-size: 9px;
-      }
-      @media screen and (max-width: 800px) {
-        font-size: 8px;
-      }
-
       & > .country {
-        margin-right: 2px;
+        margin-right: 3px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -101,24 +101,24 @@ export const PersonInfo = styled.div`
   }
 `;
 
-export const Audience = styled.div`
-  width: 10%;
-  margin-right: 6%;
+export const Audience = styled.div<{ theme }>`
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  font-family: 'Poppins' sans-serif;
-  font-style: normal;
-  font-weight: bold;
-
+  width: ${bloggerCard.audience.maxWidth + 'px'};
+  @media screen and (max-width: 980px) {
+    width: ${bloggerCard.audience.maxWidth * 0.8 + 'px'};
+  }
   & > .result {
-    width: 100%;
-    font-size: 28px;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: bold;
     line-height: 40px;
     text-align: center;
-    color: #28b5e1;
-    margin-bottom: 2px;
-    @media screen and (max-width: 1150px) {
+    color: ${({ theme }) => theme.color && theme.color};
+    font-size: 28px;
+    @media screen and (max-width: 980px) {
       font-size: 24px;
     }
     & > .value {
@@ -131,56 +131,73 @@ export const Audience = styled.div`
   & > .details {
     width: 100%;
     display: flex;
+    justify-content: center;
     align-items: center;
-    font-size: 8px;
-    line-height: 12px;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    line-height: 18px;
     text-align: center;
-    letter-spacing: 0.666667px;
+    letter-spacing: 0.67px;
     text-transform: uppercase;
+    margin-bottom: 4px;
+    font-size: 12px;
+    @media screen and (max-width: 980px) {
+      font-size: 10px;
+    }
     & > .er {
       display: flex;
-      margin-right: 6%;
-      width: 36%;
+      justify-content: center;
       & > .count {
-        color: #28b5e1;
-        margin-right: 2px;
+        color: ${({ theme }) => theme.color && theme.color};
+        font-weight: 700;
+        margin-right: 3px;
       }
       & > .text {
         color: #30393e;
       }
-      @media screen and (max-width: 1150px) {
-        font-size: 7px;
-        margin-top: 2px;
-      }
-      @media screen and (max-width: 950px) {
-        font-size: 6px;
-      }
     }
     & > .chart {
       height: 6px;
-      width: 58%;
+      margin-left: 6px;
+      width: ${bloggerCard.audience.chart + 'px'};
+      @media screen and (max-width: 980px) {
+        margin-left: 4px;
+        width: ${bloggerCard.audience.chart * 0.8 + 'px'};
+      }
+    }
+  }
+  & > .text-field {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    color: #414d55;
+    @media screen and (max-width: 980px) {
+      font-size: 10px;
     }
   }
 `;
 
 export const PriceList = styled.div`
-  width: 19%;
-  padding-top: 44px;
-  margin-right: 6%;
-  font-family: 'Roboto' sans-serif;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 900;
-  font-size: 12px;
   line-height: 14px;
-  display: flex;
-  @media screen and (max-width: 1150px) {
-    font-size: 10px;
-  }
-  @media screen and (max-width: 1000px) {
-    font-size: 8px;
+  font-size: 14px;
+  width: ${bloggerCard.price + 'px'};
+  @media screen and (max-width: 980px) {
+    width: ${bloggerCard.price * 0.8 + 'px'};
+    font-size: 12px;
   }
   & > .post {
-    width: 24%;
+    width: 52px;
+    @media screen and (max-width: 980px) {
+      width: 44px;
+    }
     & > .icon {
       text-align: center;
       margin-top: 27px;
@@ -192,7 +209,10 @@ export const PriceList = styled.div`
     }
   }
   & > .story {
-    width: 28%;
+    width: 52px;
+    @media screen and (max-width: 980px) {
+      width: 44px;
+    }
     & > .icon {
       text-align: center;
       margin-top: 23px;
@@ -204,7 +224,10 @@ export const PriceList = styled.div`
     }
   }
   & > .post-story {
-    width: 48%;
+    width: 78px;
+    @media screen and (max-width: 980px) {
+      width: 63px;
+    }
     & > .icon {
       text-align: center;
       margin-top: 23px;
@@ -219,7 +242,6 @@ export const PriceList = styled.div`
   .title {
     text-align: center;
     color: #ffffff;
-    text-transform: uppercase;
   }
   .sum {
     text-align: center;
@@ -227,46 +249,25 @@ export const PriceList = styled.div`
   }
 `;
 
-export const TagsList = styled.div`
-  width: 23.5%;
-  margin-right: 6%;
-  padding: 58px 0;
-  & > .tags {
-    width: 100%;
-    padding-right: 10%;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Roboto' sans-serif;
+export const TagsList = styled.div<{ theme }>`
+  width: ${bloggerCard.tags + 'px'};
+  @media screen and (max-width: 980px) {
+    width: ${bloggerCard.tags * 0.8 + 'px'};
+  }
+  display: flex;
+  justify-content: center;
+
+  .tag {
+    white-space: nowrap;
+    margin-right: 7px;
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: normal;
     line-height: 20px;
-    color: #28b5e1;
-    font-size: 12px;
-    @media screen and (max-width: 1150px) {
-      font-size: 10px;
-    }
-    @media screen and (max-width: 850px) {
-      font-size: 8px;
-    }
-    & > .first-line {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 14px;
-      & > .tag {
-        &:first-child {
-          margin-right: 6%;
-        }
-      }
-    }
-    & > .second-line {
-      display: flex;
-      justify-content: center;
-      & > .tag {
-        margin-right: 6%;
-        &:last-child {
-          margin-right: 0;
-        }
-      }
+    font-size: 14px;
+    color: ${({ theme }) => theme.color && theme.color};
+    @media screen and (max-width: 980px) {
+      font-size: 12px;
     }
   }
 `;

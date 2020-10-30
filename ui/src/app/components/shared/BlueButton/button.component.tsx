@@ -7,6 +7,8 @@ import { ITheme, IButtonStyle } from '../../../../types';
 const BlueButton: React.FC<{
   children?;
   onClick?;
+  onMouseEnter?;
+  onMouseLeave?;
   link?: string;
   type?;
   style?: IButtonStyle;
@@ -15,6 +17,8 @@ const BlueButton: React.FC<{
 }> = ({
   children,
   onClick = () => {},
+  onMouseEnter,
+  onMouseLeave,
   link = '#',
   type = 'button',
   style = {},
@@ -27,10 +31,16 @@ const BlueButton: React.FC<{
         theme={theme}
         type={type}
         onClick={onClick}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
         width={style.width || ''}
         hover={style.hover}
+        background={style.background}
+        color={style.color}
         height={style.height || ''}
         boxShadow={style.boxShadow || ''}
+        border={style.border}
+        filter={style.filter}
         borderRadius={style.borderRadius || '8px'}
       >
         {children}
