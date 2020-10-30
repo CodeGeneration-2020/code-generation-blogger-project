@@ -1,42 +1,41 @@
 import styled from 'styled-components';
+import { jobCard } from '../../../../consts/responsive';
 
-export const JobCardContainer = styled.div`
-  max-width: 1170px;
-  height: 190px;
-  background: #1a1e24;
+export const JobCardContainer = styled.div<{ theme }>`
+  display: flex;
+  background: #1A1E24;
   box-shadow: 0px 1px 8px rgba(110, 110, 110, 0.1);
   border-radius: 16px;
-  margin: 24px auto 0;
-  padding: 47px 120px 41px 81px;
-  display: flex;
-  @media screen and (max-width: 1170px) {
-    padding: 47px 90px 41px 60px;
-    margin: 24px 20px 0;
+  margin-bottom: 24px;
+  height: 190px;
+  width: ${jobCard.card + 'px'};
+  padding-left: 80px;
+  padding-right: 120px;
+  @media screen and (max-width: 1180px) {
+    width: ${jobCard.card * 0.8 + 'px'};
+    padding-left: 50px;
+    padding-right: 75px;
   }
-  @media screen and (max-width: 1050px) {
-    padding: 47px 45px 41px 30px;
-  }
-  @media screen and (max-width: 850px) {
-    padding: 47px 25px 41px 15px;
+  @media screen and (max-width: 980px) {
+    width: ${jobCard.card * 0.6 + 'px'};
+    padding-left: 30px;
+    padding-right: 50px;
   }
   /* job-info */
   & > .job-info {
     display: flex;
-    max-width: 326px;
-    margin-right: auto;
     flex-direction: column;
     justify-content: space-between;
-    @media screen and (max-width: 1050px) {
-      max-width: 280px;
+    padding: 47px 0 41px 0;
+    width: ${jobCard.jobInfo + 'px'};
+    margin-right: auto;
+    @media screen and (max-width: 1180px) {
+      width: ${jobCard.jobInfo * 0.8 + 'px'};
     }
-    @media screen and (max-width: 900px) {
-      max-width: 250px;
-    }
-    @media screen and (max-width: 800px) {
-      max-width: 220px;
+    @media screen and (max-width: 980px) {
+      width: ${jobCard.jobInfo * 0.6 + 'px'};
     }
     & > .short-title {
-      width: 100%;
       font-family: 'Poppins', sans-serif;
       font-style: normal;
       font-weight: bold;
@@ -48,20 +47,19 @@ export const JobCardContainer = styled.div`
       display: -webkit-box;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      @media screen and (max-width: 1050px) {
+      @media screen and (max-width: 1180px) {
         font-size: 20px;
       }
-      @media screen and (max-width: 950px) {
-        font-size: 18px;
+      @media screen and (max-width: 980px) {
+        font-size: 16px;
       }
     }
 
     & > .budget {
-      width: 100%;
       display: flex;
       align-items: flex-end;
       & > .text {
-        font-family: 'Roboto' sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-style: normal;
         font-weight: bold;
         font-size: 12px;
@@ -76,14 +74,14 @@ export const JobCardContainer = styled.div`
         font-size: 28px;
         line-height: 40px;
         text-align: center;
-        color: #d022ed;
+        color: ${({ theme }) => theme.color && theme.color};
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        @media screen and (max-width: 1050px) {
+        @media screen and (max-width: 1180px) {
           font-size: 24px;
         }
-        @media screen and (max-width: 950px) {
+        @media screen and (max-width: 980px) {
           font-size: 20px;
         }
       }
@@ -93,17 +91,20 @@ export const JobCardContainer = styled.div`
 
   /* location */
   & > .location {
-    width: 238px;
-    margin-right: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    @media screen and (max-width: 1170px) {
-      margin-right: 90px;
+    justify-content: flex-start;
+    padding: 46px 0 47px 0;
+    margin-right: 120px;
+    width: ${jobCard.location + 'px'};
+    @media screen and (max-width: 1180px) {
+      /* width: ${jobCard.location * 0.9 + 'px'}; */
+      margin-right: 75px;
     }
-    @media screen and (max-width: 950px) {
-      margin-right: 45px;
+    @media screen and (max-width: 980px) {
+      width: ${jobCard.location * 0.8 + 'px'};
+      margin-right: 50px;
     }
     & > .country {
       margin-bottom: 7px;
@@ -112,62 +113,19 @@ export const JobCardContainer = styled.div`
       width: 100%;
       display: flex;
       justify-content: center;
-      overflow-x: auto;
-      padding-bottom: 15px;
-      .item {
-        &:first-child {
-          margin-left: 25px;
-        }
-      }
-      ::-webkit-scrollbar {
-        width: 200px;
-        height: 8px;
-        mix-blend-mode: normal;
-        opacity: 0.5;
-        border: 1px solid #d022ed;
-        box-sizing: border-box;
-        border-radius: 4px;
-        transform: rotate(90deg);
-      }
-      ::-webkit-scrollbar-thumb {
-        height: 8px;
-        background: linear-gradient(270deg, #9c1abc 0%, #d022ed 100%);
-        border-radius: 4px;
-        transform: rotate(90deg);
-      }
     }
   }
   /*End location */
 
   /* tags */
   & > .tags {
-    width: 200px;
-    @media screen and (max-width: 800px) {
-      width: 180px;
+    padding: 85px 0 47px 0;
+    width: ${jobCard.tags + 'px'};
+    @media screen and (max-width: 1180px) {
+      width: ${jobCard.tags * 0.9 + 'px'};
     }
-    & > .list-tags {
-      margin-top: 40px;
-      width: 100%;
-      display: flex;
-      overflow-x: auto;
-      padding-bottom: 15px;
-      ::-webkit-scrollbar {
-        width: 200px;
-        height: 8px;
-        mix-blend-mode: normal;
-        opacity: 0.5;
-        border: 1px solid #d022ed;
-        box-sizing: border-box;
-        border-radius: 4px;
-        transform: rotate(90deg);
-      }
-      ::-webkit-scrollbar-thumb {
-        /* width: 112px; */
-        height: 8px;
-        background: linear-gradient(270deg, #9c1abc 0%, #d022ed 100%);
-        border-radius: 4px;
-        transform: rotate(90deg);
-      }
+    @media screen and (max-width: 980px) {
+      width: ${jobCard.tags * 0.8 + 'px'};
     }
   }
   /* End tags */
@@ -178,13 +136,13 @@ export const JobCardContainer = styled.div`
     font-weight: normal;
     font-size: 14px;
     line-height: 20px;
-    color: #d022ed;
-    margin-right: 7px;
+    color: ${({ theme }) => theme.color && theme.color};
     white-space: nowrap;
+    margin-right: 7px;
     &:last-child {
       margin-right: 0px;
     }
-    @media screen and (max-width: 1050px) {
+    @media screen and (max-width: 980px) {
       font-size: 12px;
     }
   }

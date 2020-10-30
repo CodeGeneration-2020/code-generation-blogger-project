@@ -85,22 +85,9 @@ const BloggerCard: React.FC<IBloggerCard> = ({
       </Style.PriceList>
 
       <Style.TagsList theme={theme}>
-        <div className="tags">
-          <div className="first-line">
-            {tags.length > 2 && (
-              <ScrollTags tags={tags.slice(0, 2)} className="tag" />
-            )}
-          </div>
-          <div className="second-line">
-            {tags.length > 2 && (
-              <ScrollTags
-                tags={[...tags, ...tags, ...tags].slice(2)}
-                scroll={'auto'}
-                className="tag"
-              />
-            )}
-          </div>
-        </div>
+        {tags.length > 0 && (
+          <ScrollTags tags={tags} scroll={'auto'} className="tag" />
+        )}
       </Style.TagsList>
     </Style.CardContainer>
   );

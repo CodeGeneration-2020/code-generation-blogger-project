@@ -1,9 +1,10 @@
 import React from 'react';
 import * as Style from './styles';
 import { v4 as uuidv4 } from 'uuid';
-import Tag from '../../shared/Tag';
+import ScrollItems from '../../shared/scroll-tags';
 import { NavLink } from 'react-router-dom';
-import { ILocation, IOption } from '../../../../types';
+import { ILocation, IOption, ITheme } from '../../../../types';
+import withTheme from '../../../../HOC/withTheme';
 
 const JobCard: React.FC<{
   title: string;
@@ -13,9 +14,19 @@ const JobCard: React.FC<{
   jobId: number;
   customerId: number;
   openSideBar;
-}> = ({ title, budget, location, tags, jobId, customerId, openSideBar }) => {
+  theme?: ITheme;
+}> = ({
+  title,
+  budget,
+  location,
+  tags,
+  jobId,
+  customerId,
+  openSideBar,
+  theme,
+}) => {
   return (
-    <Style.JobCardContainer>
+    <Style.JobCardContainer theme={theme}>
       <NavLink
         className="job-info"
         to={`/job/details/${jobId}/${customerId}`}
@@ -32,28 +43,25 @@ const JobCard: React.FC<{
       </NavLink>
       <div className="location">
         <div className="country">
-          {location &&
-            location.countries.map(c => (
-              <Tag key={uuidv4()} title={c.label} className="item" />
-            ))}
+          {location && (
+            <ScrollItems tags={location.countries} className="item" />
+          )}
         </div>
         <div className="city">
-          {location &&
-            [...location.cities, ...location.cities].map(c => (
-              <Tag key={uuidv4()} title={c.label} className="item" />
-            ))}
+          {location && (
+            <ScrollItems
+              tags={location.cities}
+              scroll={'auto'}
+              className="item"
+            />
+          )}
         </div>
       </div>
       <div className="tags">
-        <div className="list-tags">
-          {tags &&
-            tags.map((tag, i) => (
-              <Tag key={i} title={tag.label} className={'item'} />
-            ))}
-        </div>
+        {tags && <ScrollItems tags={tags} scroll={'auto'} className="item" />}
       </div>
     </Style.JobCardContainer>
   );
 };
 
-export default JobCard;
+export default withTheme(JobCard);

@@ -254,36 +254,12 @@ export const TagsList = styled.div<{ theme }>`
   @media screen and (max-width: 980px) {
     width: ${bloggerCard.tags * 0.8 + 'px'};
   }
-  & > .tags {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    & > .first-line {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 7px;
-      .tag {
-        &:nth-child(2) {
-          margin-left: 7px;
-        }
-      }
-    }
-
-    & > .second-line {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      .tag {
-        margin-right: 7px;
-        &:last-child {
-          margin-right: 0;
-        }
-      }
-    }
-  }
+  display: flex;
+  justify-content: center;
 
   .tag {
     white-space: nowrap;
+    margin-right: 7px;
     font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: normal;

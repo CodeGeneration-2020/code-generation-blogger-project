@@ -38,3 +38,10 @@ export const bloggerCard = {
   price: 219,
   tags: 200,
 };
+//Job Card
+export const jobCard = {
+  card: 1170,
+  jobInfo: 326,
+  location: 237,
+  tags: 200,
+};

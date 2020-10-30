@@ -33,7 +33,7 @@ export const ListTags = styled.div<IProps>`
     font-weight: normal;
     line-height: 20px;
     font-size: 14px;
-    color: #30a5e7;
-    margin-right: 6px;
+    color: ${({ theme }) => theme.color && theme.color};
+    margin-right: 7px;
   }
 `;
