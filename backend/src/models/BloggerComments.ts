@@ -17,4 +17,4 @@ const commentsSchema = new mongoose.Schema({
     subs_came: mongoose.Schema.Types.Number,
 },{timestamps: true});
 
-export const Comments = mongoose.model<CommentsDocumnet>('Comments', commentsSchema);
+export const Comments = mongoose.model<CommentsDocumnet>('BloggerComments', commentsSchema);

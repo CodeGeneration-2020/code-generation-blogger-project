@@ -24,3 +24,7 @@ export const initCustomerInfo = info => {
     link: info.contact.link,
   };
 };
+
+export const initPriceList = () => ({ post: '', story: '', postStory: '' });
+
+export const initComment = () => ({ comment: '', score: 0, subsCame: '' });

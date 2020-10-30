@@ -19,12 +19,18 @@ export const CardContainer = styled('div')<IPropsTheme>`
     font-style: normal;
     letter-spacing: 0.01px;
     font-weight: bold;
+    @media screen and (max-width: 980px) {
+      font-size: 14px;
+    }
   }
 `;
 
 export const HorizantalSep = styled('div')`
   width: 66px !important;
   height: 1px !important;
-  background: #30393e;
+  background: #414d55;
   margin: 22px 0 20px !important;
+  @media screen and (max-width: 980px) {
+    width: 56px !important;
+  }
 `;

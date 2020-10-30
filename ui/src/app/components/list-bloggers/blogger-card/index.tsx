@@ -5,10 +5,11 @@ import PostIcon from '../../../../img/post.svg';
 import StoryIcon from '../../../../img/story.svg';
 import PostStoryIcon from '../../../../img/post+story.svg';
 import LineChart from '../../shared/line-chart';
-import Tag from '../../shared/Tag';
 import { reduceNumber } from '../../../helpers/reduceNumber';
 import { IBloggerCard } from '../../../../types/index';
 import parseFullName from '../../../helpers/parseFullName';
+import ScrollTags from '../../shared/scroll-tags';
+import withTheme from '../../../../HOC/withTheme';
 
 const BloggerCard: React.FC<IBloggerCard> = ({
   full_name,
@@ -20,17 +21,20 @@ const BloggerCard: React.FC<IBloggerCard> = ({
   storyPrice,
   pricePS,
   tags,
+  theme,
 }) => {
   return (
     <Style.CardContainer>
-      <Style.PersonInfo>
+      <Style.PersonInfo theme={theme}>
         <div className="avatar">
           <img src={Ava} alt="ava" />
         </div>
         <div className="info">
           <div className="full-name">
-            <div className="name">{parseFullName.getName(full_name)}</div>
-            <div className="surname">{parseFullName.getSurname(full_name)}</div>
+            <div className="name trim">{parseFullName.getName(full_name)}</div>
+            <div className="surname trim">
+              {parseFullName.getSurname(full_name)}
+            </div>
           </div>
           <div className="location">
             <span className="country">{country},</span>
@@ -39,7 +43,7 @@ const BloggerCard: React.FC<IBloggerCard> = ({
         </div>
       </Style.PersonInfo>
 
-      <Style.Audience>
+      <Style.Audience theme={theme}>
         <div className="result">
           <span className="value">{reduceNumber(followers).value}</span>
           <span className="unit">{reduceNumber(followers).unit}</span>
@@ -53,6 +57,7 @@ const BloggerCard: React.FC<IBloggerCard> = ({
             <LineChart er={engagement_rate} />
           </div>
         </div>
+        <span className="text-field">active audience share</span>
       </Style.Audience>
 
       <Style.PriceList>
@@ -79,30 +84,13 @@ const BloggerCard: React.FC<IBloggerCard> = ({
         </div>
       </Style.PriceList>
 
-      <Style.TagsList>
-        <div className="tags">
-          <div className="first-line">
-            {tags &&
-              tags.map((tag, i) => {
-                if (i < 2) {
-                  return <Tag key={i} title={tag.label} className={'tag'} />;
-                }
-                return null;
-              })}
-          </div>
-          <div className="second-line">
-            {tags &&
-              tags.map((tag, i) => {
-                if (i > 1 && i < 5) {
-                  return <Tag key={i} title={tag.label} className={'tag'} />;
-                }
-                return null;
-              })}
-          </div>
-        </div>
+      <Style.TagsList theme={theme}>
+        {tags.length > 0 && (
+          <ScrollTags tags={tags} scroll={'auto'} className="tag" />
+        )}
       </Style.TagsList>
     </Style.CardContainer>
   );
 };
 
-export default BloggerCard;
+export default withTheme(BloggerCard);

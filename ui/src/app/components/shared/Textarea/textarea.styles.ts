@@ -3,6 +3,8 @@ import styled from 'styled-components';
 interface IStyleProps {
   fontSize?: string;
   lineHeight?: string;
+  borderRadius?: string;
+  theme?: string;
 }
 
 export const TextWrapper = styled('div')`
@@ -24,7 +26,8 @@ export const Text = styled('textarea')<IStyleProps>`
   resize: none;
   padding: 10px 12px;
   border: 1px solid #414d55;
-  border-radius: 12px;
+  border-radius: ${({ borderRadius }) =>
+    borderRadius ? borderRadius : '12px'};
   min-height: 50px;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
@@ -32,6 +35,21 @@ export const Text = styled('textarea')<IStyleProps>`
   font-size: ${({ fontSize }) => (fontSize ? fontSize : '10px')};
   line-height: ${({ lineHeight }) => (lineHeight ? lineHeight : '15px')};
   color: #90a1ac;
+  ::-webkit-input-placeholder {
+    color: #90a1ac;
+    opacity: 1;
+  }
+  ::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #414d55;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.color && theme.color};
+    border-radius: 3px;
+  }
 `;
 
 export const Error = styled('div')`

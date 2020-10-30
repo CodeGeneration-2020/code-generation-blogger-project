@@ -10,11 +10,11 @@ const Subscribers = props => {
       <div className="total">
         <div className="range-slider">
           <CustomSlider
-            domain={[0, 10000000]}
+            domain={[0, 60000000]}
             changeHandler={data => props.setFilter(data, 'subscribers')}
           />
         </div>
-        <div className="data-slider">
+        <div className="data">
           <span className="text">Total</span>
           <span className="result">
             {props.subscribers && (
@@ -36,7 +36,7 @@ const Subscribers = props => {
             changeHandler={data => props.setFilter(data, 'er')}
           />
         </div>
-        <div className="data-slider">
+        <div className="data">
           <span className="text">ER</span>
           {props.er && (
             <span className="result">
@@ -44,6 +44,7 @@ const Subscribers = props => {
             </span>
           )}
         </div>
+        <span className="text">active audience share</span>
       </div>
     </Style.Subscribers>
   );

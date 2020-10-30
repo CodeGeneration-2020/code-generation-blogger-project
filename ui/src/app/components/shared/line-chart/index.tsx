@@ -13,7 +13,7 @@ const LineChart: React.FC<{ er; theme? }> = ({ er, theme }) => {
 };
 
 LineChart.propTypes = {
-  er: PropTypes.number,
+  er: PropTypes.any,
   theme: PropTypes.object,
 };
 

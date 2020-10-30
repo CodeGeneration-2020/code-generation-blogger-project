@@ -8,6 +8,7 @@ const ActionTypes = {
   GET_BLOGGER_COMMENTS: '[BLOGGER] get_blogger_comments',
   CLEAR_BLOGGER_COMMENTS: '[BLOGGER] clear_blogger_comments',
   CLEAR_BLOGGER_INFO: '[BLOGGER] clear_blogger_info',
+  CREATE_COMMENT_FOR_BLOGGER: '[BLOGGER] create_comment_for_blogger',
 };
 
 const clearBloggerComments = createAction(ActionTypes.CLEAR_BLOGGER_COMMENTS);
@@ -54,6 +55,20 @@ const getBloggersPagination = createAsyncThunk(
   },
 );
 
+const createCommentForBlogger = createAsyncThunk(
+  ActionTypes.CREATE_COMMENT_FOR_BLOGGER,
+  async (data: any) => {
+    const response = await UsersService.createCommentForBlogger(
+      data.bloggerId,
+      2,
+      data.comment,
+      data.score,
+      data.subsCame,
+    );
+    return response.data;
+  },
+);
+
 const ActionCreators = {
   getBloggerById,
   getBloggersPagination,
@@ -61,6 +76,7 @@ const ActionCreators = {
   getBloggerComments,
   clearBloggerComments,
   clearBloggerInfo,
+  createCommentForBlogger,
 };
 
 export { ActionTypes, ActionCreators };

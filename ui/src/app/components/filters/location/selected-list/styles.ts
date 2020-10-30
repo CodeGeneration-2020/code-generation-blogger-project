@@ -1,6 +1,8 @@
+import { IPropsTheme } from './../../../../../types/index';
 import styled from 'styled-components';
+import { location } from '../../../../../consts/responsive';
 
-export const SelectedContainer = styled.div`
+export const SelectedContainer = styled.div<IPropsTheme>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -8,27 +10,33 @@ export const SelectedContainer = styled.div`
   & > .countries {
     width: 100%;
     height: 32px;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
   }
   & > .cities {
+    width: ${location.selectedCity + 'px'};
+    @media screen and (max-width: 1180px) {
+      width: ${location.selectedCity * 0.8 + 'px'};
+    }
+    @media screen and (max-width: 980px) {
+      width: ${location.selectedCity * 0.6 + 'px'};
+    }
     display: flex;
-    width: 100%;
-    height: 60px;
-    padding-bottom: 20px;
+    height: 61px;
+    padding-bottom: 21px;
     overflow-x: auto;
     ::-webkit-scrollbar {
       width: 200px;
       height: 8px;
       mix-blend-mode: normal;
       opacity: 0.5;
-      border: 1px solid #d022ed;
+      border: 1px solid ${({ theme }) => theme && theme.color};
       box-sizing: border-box;
       border-radius: 4px;
       transform: rotate(90deg);
     }
     ::-webkit-scrollbar-thumb {
       height: 8px;
-      background: linear-gradient(270deg, #9c1abc 0%, #d022ed 100%);
+      background: ${({ theme }) => theme && theme.background};
       border-radius: 4px;
       transform: rotate(90deg);
     }

@@ -26,26 +26,28 @@ export const SliderNext = styled(Arrow)`
 
 export const SliderContainer = styled.div<IPropsTheme>`
   width: 100%;
-  height: 74px;
-  padding: 0 5%;
-  border: 1px solid #414d55;
-  border-radius: 8px;
+  height: 32px;
+  padding-left: 10px;
   & .item {
+    padding: 0 3px;
     & > .title {
-      width: 95%;
-      height: 100%;
+      font-family: 'Roboto', sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 20px;
+      color: ${({ theme }) => theme && theme.color};
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 12px;
-      line-height: 20px;
-      text-align: center;
-      color: ${({ theme }) => theme && theme.color};
+      height: 100%;
+      padding: 0 12px;
+      border: 1px solid #414d55;
+      border-radius: 8px;
+      white-space: nowrap;
       &:hover {
         cursor: pointer;
         color: #fff;
         background: ${({ theme }) => theme && theme.background};
-        border-radius: 8px;
       }
     }
   }

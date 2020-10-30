@@ -59,6 +59,18 @@ export const jobFormSchema = yup.object().shape({
   tags: tagsSchema,
 });
 
+//Price
+export const price = yup
+  .number('Please enter a valid price must be number')
+  .nullable(true)
+  .required('Please enter your price.');
+
+export const priceFormSchema = yup.object().shape({
+  post: price,
+  story: price,
+  postStory: price,
+});
+
 //CustomerInfo
 
 export const nameSchema = yup.string().trim().required('Please enter name');
@@ -97,4 +109,28 @@ export const customerInfoFormSchema = yup.object().shape({
   mail: emailSchema,
   phone: phoneSchema,
   link: linkSchema,
+});
+
+//Comment
+export const textCommentSchema = yup
+  .string()
+  .trim()
+  .nullable(true)
+  .required('write a comment');
+
+export const scoreSchema = yup
+  .number()
+  .min(1, 'rate the blogger')
+  .nullable(true)
+  .required('rate the blogger');
+
+export const subsCameSchema = yup
+  .number('please enter a valid value')
+  .nullable(true)
+  .required('enter subs came');
+
+export const commentFormSchema = yup.object().shape({
+  comment: textCommentSchema,
+  score: scoreSchema,
+  subsCame: subsCameSchema,
 });
